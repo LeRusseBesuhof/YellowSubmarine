@@ -6,8 +6,8 @@ class ProfileViewController: UIViewController {
     
     private lazy var accessLabel : UILabel = AppUI.createLabel(
         withText: "Access Allowed!",
-        textColor: .appOrange,
-        font: UIFont.systemFont(ofSize: 52, weight: .bold), 
+        textColor: .appYellow,
+        font: UIFont.systemFont(ofSize: 52, weight: .bold),
         alignment: .left,
         isUnderlined: true)
     
@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate([
             accessLabel.topAnchor.constraint(equalTo: canvasImageView.topAnchor, constant: 250),
             accessLabel.leadingAnchor.constraint(equalTo: canvasImageView.leadingAnchor, constant: 50),
-            accessLabel.widthAnchor.constraint(equalToConstant: 200),
+            accessLabel.widthAnchor.constraint(equalToConstant: 220),
             accessLabel.heightAnchor.constraint(equalToConstant: 200),
         ])
     }

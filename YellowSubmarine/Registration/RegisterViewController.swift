@@ -1,6 +1,14 @@
 import UIKit
 
 final class RegisterViewController: UIViewController {
+    
+    private let registerModel : RegistrationModel = RegistrationModel()
+    
+    private lazy var userRegData : UserRegData = registerModel.setUserRegData(
+        name: nicknameTextField.text ?? "simple nickname",
+        email: emailTextField.text ?? "simple email",
+        password: passwordTextField.text ?? "simple password"
+    )
 
     private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
     
@@ -55,9 +63,19 @@ final class RegisterViewController: UIViewController {
         }
     }()
     
-    private lazy var regButtonAction = UIAction { _ in
-        // do registration
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: EnterViewController()))
+    private lazy var regButtonAction = UIAction { [weak self] _ in
+        guard let self = self else { return }
+        
+        registerModel.userRegistration(userData: userRegData) { result in
+            switch result {
+            case .success(let success):
+                if success { 
+                    NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: EnterViewController()))
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
     
     private lazy var loginButton : UIButton = {

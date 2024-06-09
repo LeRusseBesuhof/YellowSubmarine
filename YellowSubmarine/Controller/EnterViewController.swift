@@ -14,7 +14,7 @@ final class EnterViewController: UIViewController {
     
     private lazy var emailTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Email",
-        bgColor: .appYellow,
+        bgColor: .appLightYellow,
         textColor: .appPlaceholder,
         leftViewPic: "envelope",
         cornerRadius: 20
@@ -22,7 +22,7 @@ final class EnterViewController: UIViewController {
     
     private lazy var passwordTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Password",
-        bgColor: .appYellow,
+        bgColor: .appLightYellow,
         textColor: .appPlaceholder,
         leftViewPic: "lock",
         cornerRadius: 20
