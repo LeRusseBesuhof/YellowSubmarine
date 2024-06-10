@@ -58,7 +58,7 @@ final class RegisterViewController: UIViewController {
     private lazy var regButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
-            $0.setImage(.submarine, for: .normal)
+            $0.setImage(.regMarine, for: .normal)
             $0.addAction(regButtonAction, for: .touchUpInside)
         }
     }()
@@ -118,10 +118,10 @@ final class RegisterViewController: UIViewController {
             
             regButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40),
             regButton.leadingAnchor.constraint(equalTo: textFieldsStack.centerXAnchor, constant: 60),
-            regButton.widthAnchor.constraint(equalToConstant: 95),
-            regButton.heightAnchor.constraint(equalToConstant: 50),
+            regButton.widthAnchor.constraint(equalToConstant: 85),
+            regButton.heightAnchor.constraint(equalToConstant: 80),
             
-            loginButton.topAnchor.constraint(equalTo: regButton.bottomAnchor, constant: 50),
+            loginButton.topAnchor.constraint(equalTo: regButton.bottomAnchor, constant: 35),
             loginButton.centerXAnchor.constraint(equalTo: regButton.leadingAnchor, constant: -20),
             loginButton.widthAnchor.constraint(equalToConstant: 80),
             loginButton.heightAnchor.constraint(equalToConstant: 40)

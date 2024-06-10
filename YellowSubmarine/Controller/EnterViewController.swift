@@ -42,13 +42,13 @@ final class EnterViewController: UIViewController {
     private lazy var logButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
-            $0.setImage(.submarine, for: .normal)
+            $0.setImage(.logMarine, for: .normal)
             $0.addAction(logButtonAction, for: .touchUpInside)
         }
     }()
     
     private lazy var logButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: EnterViewController()))
+        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: ProfileViewController()))
     }
     
     private lazy var regButton : UIButton = {
@@ -91,10 +91,10 @@ final class EnterViewController: UIViewController {
             
             logButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 100),
             logButton.leadingAnchor.constraint(equalTo: textFieldsStack.centerXAnchor, constant: 60),
-            logButton.widthAnchor.constraint(equalToConstant: 95),
-            logButton.heightAnchor.constraint(equalToConstant: 50),
+            logButton.widthAnchor.constraint(equalToConstant: 85),
+            logButton.heightAnchor.constraint(equalToConstant: 80),
             
-            regButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 50),
+            regButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 35),
             regButton.centerXAnchor.constraint(equalTo: logButton.leadingAnchor, constant: -20),
             regButton.widthAnchor.constraint(equalToConstant: 120),
             regButton.heightAnchor.constraint(equalToConstant: 40)
