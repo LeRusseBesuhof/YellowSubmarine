@@ -18,15 +18,7 @@ final class RegistrationModel {
                 
                 // user.sendEmailVerification()
                 
-                let userData : [String : Any] = [
-                    "name" : userData.name,
-                    "isActive" : true
-                ]
-                
-                Firestore.firestore()
-                    .collection("users")
-                    .document(user.uid)
-                    .setData(userData)
+                setUserInitialDatabaseData(name: userData.name, uid: user.uid)
                 
                 completion(.success(true))
             }
@@ -36,6 +28,18 @@ final class RegistrationModel {
     
     func setUserRegData(name: String, email: String, password: String) -> UserRegData {
         UserRegData(name: name, email: email, password: password)
+    }
+    
+    func setUserInitialDatabaseData(name: String, uid: String) {
+        let userData : [String : Any] = [
+            "name" : name,
+            "isActive" : true
+        ]
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(uid)
+            .setData(userData)
     }
     
 }
