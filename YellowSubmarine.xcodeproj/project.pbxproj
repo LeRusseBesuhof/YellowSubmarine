@@ -22,6 +22,7 @@
 		378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0002C15C6AF007FC2A1 /* String.ext.swift */; };
 		378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */; };
 		378CA0092C15F4C3007FC2A1 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0082C15F4C3007FC2A1 /* RegistrationModel.swift */; };
+		378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA00D2C1882AB007FC2A1 /* AuthModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		378CA0002C15C6AF007FC2A1 /* String.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.ext.swift; sourceTree = "<group>"; };
 		378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		378CA0082C15F4C3007FC2A1 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		378CA00D2C1882AB007FC2A1 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +79,11 @@
 			children = (
 				378C9FF92C145202007FC2A1 /* AppUI.swift */,
 				378C9FFB2C14521D007FC2A1 /* Extension */,
+				378CA0072C15F4A1007FC2A1 /* Registration */,
+				378CA00B2C188184007FC2A1 /* Authorisation */,
+				378CA0042C15E25B007FC2A1 /* Controller */,
 				378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */,
 				378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */,
-				378CA0072C15F4A1007FC2A1 /* Registration */,
-				378CA0042C15E25B007FC2A1 /* Controller */,
 				378C9FE22C1444AD007FC2A1 /* Assets.xcassets */,
 				378C9FE42C1444AD007FC2A1 /* LaunchScreen.storyboard */,
 				378C9FE72C1444AD007FC2A1 /* Info.plist */,
@@ -108,7 +111,6 @@
 		378CA0042C15E25B007FC2A1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				378C9FFE2C15C597007FC2A1 /* EnterViewController.swift */,
 				378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */,
 			);
 			path = Controller;
@@ -117,10 +119,35 @@
 		378CA0072C15F4A1007FC2A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				378CA00A2C188170007FC2A1 /* Model */,
 				378C9FDD2C1444AB007FC2A1 /* RegisterViewController.swift */,
-				378CA0082C15F4C3007FC2A1 /* RegistrationModel.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		378CA00A2C188170007FC2A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				378CA0082C15F4C3007FC2A1 /* RegistrationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		378CA00B2C188184007FC2A1 /* Authorisation */ = {
+			isa = PBXGroup;
+			children = (
+				378CA00C2C188297007FC2A1 /* Model */,
+				378C9FFE2C15C597007FC2A1 /* EnterViewController.swift */,
+			);
+			path = Authorisation;
+			sourceTree = "<group>";
+		};
+		378CA00C2C188297007FC2A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				378CA00D2C1882AB007FC2A1 /* AuthModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +238,7 @@
 				378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* EnterViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegistrationModel.swift in Sources */,
+				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

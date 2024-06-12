@@ -1,6 +1,13 @@
 import UIKit
 
 final class EnterViewController: UIViewController {
+    
+    private let authModel : AuthModel = AuthModel()
+    
+    private lazy var authUserData : AuthUserData = authModel.setUserAuthData(
+        email: emailTextField.text ?? .simpleEmail,
+        password: passwordTextField.text ?? .simplePassword
+    )
 
     private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
     
@@ -47,8 +54,25 @@ final class EnterViewController: UIViewController {
         }
     }()
     
-    private lazy var logButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: ProfileViewController()))
+    private lazy var logButtonAction = UIAction { [weak self] _ in
+        
+        guard let self = self else { return }
+        
+        authModel.signIn(userData: authUserData) { result in
+            
+            switch result {
+            case .success(let success):
+                
+                switch success {
+                case .allowed: print("Everything Alright")
+                case .denied: self.createAlert()
+                }
+
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+        // NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: ProfileViewController()))
     }
     
     private lazy var regButton : UIButton = {
@@ -74,7 +98,7 @@ final class EnterViewController: UIViewController {
     }
     
     private func setUpView() {
-        [loginLabel, textFieldsStack, logButton, regButton].forEach { canvasImageView.addSubview($0) }
+        canvasImageView.addSubviews(loginLabel, textFieldsStack, logButton, regButton)
         canvasImageView.frame = view.frame
         view.addSubview(canvasImageView)
     }
@@ -100,4 +124,23 @@ final class EnterViewController: UIViewController {
             regButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+}
+
+extension EnterViewController {
+    
+    func createAlert() {
+        
+        let alert = UIAlertController(
+            title: "Email Verification Error",
+            message: "Уважаемый пользователь, пройдите верификацию почтового ящика для дальнейшего доступа к приложению!",
+            preferredStyle: .alert
+        )
+        
+        let cancelButton = UIAlertAction(title: "Понятно", style: .cancel)
+        
+        alert.addAction(cancelButton)
+        
+        self.present(alert, animated: true)
+    }
+    
 }

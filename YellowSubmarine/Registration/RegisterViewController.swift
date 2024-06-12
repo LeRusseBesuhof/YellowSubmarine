@@ -5,9 +5,9 @@ final class RegisterViewController: UIViewController {
     private let registerModel : RegistrationModel = RegistrationModel()
     
     private lazy var userRegData : UserRegData = registerModel.setUserRegData(
-        name: nicknameTextField.text ?? "simple nickname",
-        email: emailTextField.text ?? "simple email",
-        password: passwordTextField.text ?? "simple password"
+        name: nicknameTextField.text ?? .simpleNickname,
+        email: emailTextField.text ?? .simpleEmail,
+        password: passwordTextField.text ?? .simplePassword
     )
 
     private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
@@ -101,7 +101,7 @@ final class RegisterViewController: UIViewController {
     }
     
     private func setUpView() {
-        [registerLabel, textFieldsStack, regButton, loginButton].forEach { canvasImageView.addSubview($0) }
+        canvasImageView.addSubviews(registerLabel, textFieldsStack, regButton, loginButton)
         canvasImageView.frame = view.frame
         view.addSubview(canvasImageView)
     }

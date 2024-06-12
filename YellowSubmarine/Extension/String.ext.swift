@@ -9,4 +9,8 @@ extension String {
         let underlineAttributedString = NSAttributedString(string: str, attributes: underlineAttribute)
         return underlineAttributedString
     }
+    
+    static let simpleNickname = "Simple Nickname"
+    static let simpleEmail = "Simple Email"
+    static let simplePassword = "SimplePassword"
 }
