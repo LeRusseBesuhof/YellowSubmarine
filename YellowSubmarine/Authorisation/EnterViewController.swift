@@ -14,23 +14,27 @@ final class EnterViewController: UIViewController {
     private lazy var loginLabel : UILabel = AppUI.createLabel(
         withText: "Login",
         textColor: .appBrown,
-        font: .systemFont(ofSize: 50, weight: .bold),
+        font: .getAmitaFont(fontType: .bold, fontSize: 50),
         alignment: .center,
         isUnderlined: false
     )
     
     private lazy var emailTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Email",
+        placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        textColor: .appPlaceholder,
+        font: UIFont.getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
         leftViewPic: "envelope",
         cornerRadius: 20
     )
     
     private lazy var passwordTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Password",
+        placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        textColor: .appPlaceholder,
+        font: UIFont.getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
         leftViewPic: "lock",
         cornerRadius: 20
     )
@@ -78,7 +82,7 @@ final class EnterViewController: UIViewController {
             let title = String.getUnderlinedString("Register")
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 28)
+            $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
             $0.addAction(regButtonAction, for: .touchUpInside)
         }
     }()
@@ -104,6 +108,7 @@ final class EnterViewController: UIViewController {
         NSLayoutConstraint.activate([
             loginLabel.topAnchor.constraint(equalTo: canvasImageView.topAnchor, constant: 250),
             loginLabel.leadingAnchor.constraint(equalTo: canvasImageView.leadingAnchor, constant: 50),
+            loginLabel.heightAnchor.constraint(equalToConstant: 60),
             
             textFieldsStack.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 40),
             textFieldsStack.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor),

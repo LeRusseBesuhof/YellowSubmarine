@@ -25,6 +25,11 @@
 		378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA00D2C1882AB007FC2A1 /* AuthModel.swift */; };
 		378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */; };
 		378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA03F2C19674B007FC2A1 /* LoginModel.swift */; };
+		378CA0432C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0422C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf */; };
+		378CA0452C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0442C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf */; };
+		378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0462C19704E007FC2A1 /* UIFont.ext.swift */; };
+		378CA04A2C1972A3007FC2A1 /* Amita-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */; };
+		378CA04B2C1972A3007FC2A1 /* Amita-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +50,11 @@
 		378CA00D2C1882AB007FC2A1 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.ext.swift; sourceTree = "<group>"; };
 		378CA03F2C19674B007FC2A1 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		378CA0422C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		378CA0442C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merienda-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		378CA0462C19704E007FC2A1 /* UIFont.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.ext.swift; sourceTree = "<group>"; };
+		378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Bold.ttf"; sourceTree = "<group>"; };
+		378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 		378C9FD82C1444AB007FC2A1 /* YellowSubmarine */ = {
 			isa = PBXGroup;
 			children = (
+				378CA0412C196F56007FC2A1 /* Fonts */,
 				378CA03E2C196736007FC2A1 /* LoginModel */,
 				378C9FF92C145202007FC2A1 /* AppUI.swift */,
 				378C9FFB2C14521D007FC2A1 /* Extension */,
@@ -108,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				378C9FFC2C14522D007FC2A1 /* UIView.ext.swift */,
+				378CA0462C19704E007FC2A1 /* UIFont.ext.swift */,
 				378CA0002C15C6AF007FC2A1 /* String.ext.swift */,
 				378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */,
 			);
@@ -162,6 +174,17 @@
 				378CA03F2C19674B007FC2A1 /* LoginModel.swift */,
 			);
 			path = LoginModel;
+			sourceTree = "<group>";
+		};
+		378CA0412C196F56007FC2A1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				378CA0422C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf */,
+				378CA0442C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf */,
+				378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */,
+				378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,9 +253,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378CA0432C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf in Resources */,
+				378CA04B2C1972A3007FC2A1 /* Amita-Regular.ttf in Resources */,
 				378C9FE32C1444AD007FC2A1 /* Assets.xcassets in Resources */,
+				378CA04A2C1972A3007FC2A1 /* Amita-Bold.ttf in Resources */,
 				378C9FE62C1444AD007FC2A1 /* Base in Resources */,
 				378C9FEE2C144769007FC2A1 /* GoogleService-Info.plist in Resources */,
+				378CA0452C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +282,7 @@
 				378CA0092C15F4C3007FC2A1 /* RegistrationModel.swift in Sources */,
 				378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
+				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

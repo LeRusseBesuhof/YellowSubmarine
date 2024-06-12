@@ -15,31 +15,37 @@ final class RegisterViewController: UIViewController {
     private lazy var registerLabel : UILabel = AppUI.createLabel(
         withText: "Register", 
         textColor: .appBrown,
-        font: .systemFont(ofSize: 50, weight: .bold),
+        font: .getAmitaFont(fontType: .bold, fontSize: 50),
         alignment: .center,
         isUnderlined: false
     )
     
     private lazy var nicknameTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Nickname",
+        placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        textColor: .appPlaceholder,
+        font: UIFont.getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
         leftViewPic: "person",
         cornerRadius: 20
     )
     
     private lazy var emailTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Email",
+        placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        textColor: .appPlaceholder,
+        font: UIFont.getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
         leftViewPic: "envelope",
         cornerRadius: 20
     )
     
     private lazy var passwordTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Password",
+        placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        textColor: .appPlaceholder,
+        font: UIFont.getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
         leftViewPic: "lock",
         cornerRadius: 20
     )
@@ -84,7 +90,7 @@ final class RegisterViewController: UIViewController {
             let title = String.getUnderlinedString("Login")
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 28)
+            $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
             $0.addAction(logButtonAction, for: .touchUpInside)
         }
     }()
@@ -110,6 +116,7 @@ final class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate([
             registerLabel.topAnchor.constraint(equalTo: canvasImageView.topAnchor, constant: 250),
             registerLabel.leadingAnchor.constraint(equalTo: canvasImageView.leadingAnchor, constant: 50),
+            registerLabel.heightAnchor.constraint(equalToConstant: 60),
             
             textFieldsStack.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 40),
             textFieldsStack.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor),

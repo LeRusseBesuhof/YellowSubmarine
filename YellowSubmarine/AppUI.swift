@@ -26,18 +26,24 @@ final class AppUI {
         }
     }
     
-    static func createTextField(withPlaceholder text: String, bgColor: UIColor, textColor: UIColor, leftViewPic: String, cornerRadius: CGFloat) -> UITextField {
+    static func createTextField(withPlaceholder text: String, placeholderColor: UIColor , bgColor: UIColor, font: UIFont, textColor: UIColor, leftViewPic: String, cornerRadius: CGFloat) -> UITextField {
         {
-            $0.placeholder = text
             $0.layer.cornerRadius = cornerRadius
             $0.backgroundColor = bgColor
             $0.textColor = textColor
-            $0.tintColor = .lightGray
+            $0.tintColor = placeholderColor
+            
+            let attributes = [
+                NSAttributedString.Key.foregroundColor: placeholderColor,
+                NSAttributedString.Key.font : font
+            ]
+
+            $0.attributedPlaceholder = NSAttributedString(string: text, attributes:attributes)
             
             let imageView : UIImageView = {
                 $0.image = UIImage(systemName: leftViewPic)
                 return $0
-            }(UIImageView(frame: CGRect(x: 10, y: 12, width: 19, height: 16)))
+            }(UIImageView(frame: CGRect(x: 10, y: 12, width: 20, height: 16)))
             
             let leftView : UIView = {
                 $0.addSubview(imageView)
