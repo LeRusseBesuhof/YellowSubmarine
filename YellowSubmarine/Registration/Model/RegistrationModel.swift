@@ -16,7 +16,7 @@ final class RegistrationModel {
             
             if let user = result?.user {
                 
-                user.sendEmailVerification()
+                // user.sendEmailVerification()
                 
                 setUserInitialDatabaseData(name: userData.name, uid: user.uid)
                 

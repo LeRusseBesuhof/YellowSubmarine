@@ -70,7 +70,7 @@ final class RegisterViewController: UIViewController {
             switch result {
             case .success(let success):
                 if success { 
-                    NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: EnterViewController()))
+                    NotificationCenter.default.post(Notification(name: .setRoot, object: EnterViewController()))
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -90,7 +90,7 @@ final class RegisterViewController: UIViewController {
     }()
     
     private lazy var logButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: EnterViewController()))
+        NotificationCenter.default.post(Notification(name: .setRoot, object: EnterViewController()))
     }
     
     override func viewDidLoad() {

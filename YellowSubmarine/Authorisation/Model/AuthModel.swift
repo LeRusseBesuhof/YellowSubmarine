@@ -1,22 +1,31 @@
 import Foundation
 import FirebaseAuth
-import Firebase
 
 final class AuthModel {
     
-    func signIn(userData : AuthUserData, completion: @escaping (Result<UserEmailVerification, Error>) -> Void) {
+    func signIn(userData : AuthUserData, completion: @escaping (Result<Bool, AuthErrors>) -> Void) {
         
         Auth.auth().signIn(withEmail: userData.email, password: userData.password) { result, err  in
             
             guard err == nil else {
-                completion(.failure(err!))
+                let authError = AuthErrorCode(_nsError: err! as NSError)
+                switch authError.code {
+                case AuthErrorCode.wrongPassword:
+                    completion(.failure(.wrongPassword))
+                case AuthErrorCode.invalidEmail:
+                    completion(.failure(.invalidEmail))
+                case AuthErrorCode.unverifiedEmail:
+                    completion(.failure(.unverifiedEmail))
+                case AuthErrorCode.invalidCredential:
+                    completion(.failure(.userNotFound))
+                default:
+                    print(authError.userInfo)
+                }
                 return
             }
             
-            if let isVerified = result?.user.isEmailVerified, isVerified {
-                completion(.success(.allowed))
-            } else {
-                completion(.success(.denied))
+            if let _ = result?.user.uid {
+                completion(.success(true))
             }
         }
     }
@@ -27,14 +36,14 @@ final class AuthModel {
     
 }
 
-
-
 struct AuthUserData {
     let email: String
     let password: String
 }
 
-enum UserEmailVerification {
-    case allowed
-    case denied
+enum AuthErrors : String, Error {
+    case wrongPassword = "Wrong Password"
+    case invalidEmail = "Invalid email adress"
+    case unverifiedEmail = "Unverified email"
+    case userNotFound = "The supplied auth credential is malformed or has expired"
 }

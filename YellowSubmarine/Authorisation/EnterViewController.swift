@@ -62,17 +62,14 @@ final class EnterViewController: UIViewController {
             
             switch result {
             case .success(let success):
-                
-                switch success {
-                case .allowed: print("Everything Alright")
-                case .denied: self.createAlert()
+                if success {
+                    NotificationCenter.default.post(name: .setRoot, object: ProfileViewController())
                 }
 
             case .failure(let failure):
-                print(failure.localizedDescription)
+                self.createAlert(errorMessage: failure.rawValue)
             }
         }
-        // NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: ProfileViewController()))
     }
     
     private lazy var regButton : UIButton = {
@@ -87,7 +84,7 @@ final class EnterViewController: UIViewController {
     }()
     
     private lazy var regButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setRoot), object: RegisterViewController()))
+        NotificationCenter.default.post(Notification(name: .setRoot, object: RegisterViewController()))
     }
     
     override func viewDidLoad() {
@@ -128,15 +125,15 @@ final class EnterViewController: UIViewController {
 
 extension EnterViewController {
     
-    func createAlert() {
+    func createAlert(errorMessage : String) {
         
         let alert = UIAlertController(
-            title: "Email Verification Error",
-            message: "Уважаемый пользователь, пройдите верификацию почтового ящика для дальнейшего доступа к приложению!",
+            title: nil,
+            message: errorMessage,
             preferredStyle: .alert
         )
         
-        let cancelButton = UIAlertAction(title: "Понятно", style: .cancel)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(cancelButton)
         

@@ -1,8 +1,7 @@
-//
-//  Notification.ext.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 12.06.2024.
-//
-
 import Foundation
+
+extension Notification.Name {
+    
+    static let setRoot = Notification.Name("setRoot")
+    
+}
