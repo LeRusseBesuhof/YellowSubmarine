@@ -11,7 +11,7 @@ final class LoginModel {
         
         do {
             try Auth.auth().signOut()
-            NotificationCenter.default.post(name: .setRoot, object: RegisterViewController())
+            // NotificationCenter.default.post(name: .setRoot, object: RegisterViewController())
         } catch {
             print(error.localizedDescription)
         }

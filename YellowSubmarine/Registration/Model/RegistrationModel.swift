@@ -2,10 +2,34 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+protocol RegistrationModelProtocol : AnyObject {
+    func userRegistration(completion: @escaping (Result<Bool, Error>) -> Void)
+    func setUserInitialDatabaseData(name: String, uid: String)
+    func setUserRegData(name: String, email: String, password: String)
+    func getUserRegData() -> UserRegData
+}
+
 final class RegistrationModel {
     
-    func userRegistration(userData: UserRegData, completion: @escaping (Result<Bool, Error>) -> Void) {
-        Auth.auth().createUser(withEmail: userData.email, password: userData.password) { [weak self] result, err in
+    private var userRegData : UserRegData?
+    
+}
+
+extension RegistrationModel : RegistrationModelProtocol {
+    
+    func setUserRegData(name: String, email: String, password: String) {
+        userRegData = UserRegData(name: name, email: email, password: password)
+    }
+    
+    func getUserRegData() -> UserRegData {
+        guard let someUserRegData = userRegData else { return UserRegData(name: .simpleNickname, email: .simpleEmail, password: .simplePassword) }
+        return someUserRegData
+    }
+    
+    
+    func userRegistration(completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+        Auth.auth().createUser(withEmail: userRegData?.email ?? .simpleEmail, password: userRegData?.password ?? .simplePassword) { [weak self] result, err in
             
             guard let self = self else { return }
             
@@ -18,16 +42,12 @@ final class RegistrationModel {
                 
                 // user.sendEmailVerification()
                 
-                setUserInitialDatabaseData(name: userData.name, uid: user.uid)
+                setUserInitialDatabaseData(name: userRegData?.name ?? .simpleNickname, uid: user.uid)
                 
                 completion(.success(true))
             }
 
         }
-    }
-    
-    func setUserRegData(name: String, email: String, password: String) -> UserRegData {
-        UserRegData(name: name, email: email, password: password)
     }
     
     func setUserInitialDatabaseData(name: String, uid: String) {
@@ -41,7 +61,6 @@ final class RegistrationModel {
             .document(uid)
             .setData(userData)
     }
-    
 }
 
 struct UserRegData {

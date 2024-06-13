@@ -88,7 +88,7 @@ final class EnterViewController: UIViewController {
     }()
     
     private lazy var regButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: .setRoot, object: RegisterViewController()))
+        // NotificationCenter.default.post(Notification(name: .setRoot, object: RegisterViewController()))
     }
     
     override func viewDidLoad() {
