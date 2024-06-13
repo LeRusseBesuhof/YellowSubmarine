@@ -1,8 +1,8 @@
 import UIKit
 
-protocol TestRegisterViewControllerProtocol : AnyObject { }
+protocol RegisterViewControllerProtocol : AnyObject { }
 
-final class TestRegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
 
     private var registerView: RegisterViewProtocol!
     private var registerPresenter: RegisterPresenterProtocol!
@@ -33,4 +33,4 @@ final class TestRegisterViewController: UIViewController {
     
 }
 
-extension TestRegisterViewController : TestRegisterViewControllerProtocol { }
+extension RegisterViewController : RegisterViewControllerProtocol { }
