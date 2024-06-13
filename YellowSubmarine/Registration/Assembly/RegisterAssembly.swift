@@ -11,7 +11,7 @@ final class RegisterAssembly {
             dependencies: .init(model: model, router: router)
         )
         
-        let controller = TestRegisterViewController(
+        let controller = RegisterViewController(
             dependencies: .init(presenter: presenter)
         )
         

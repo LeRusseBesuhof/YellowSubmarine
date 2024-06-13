@@ -11,7 +11,7 @@
 		3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB52C1B2FF300BBD902 /* Router.swift */; };
 		3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */; };
 		3784DABB2C1B392800BBD902 /* RegisterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DABA2C1B392800BBD902 /* RegisterAssembly.swift */; };
-		3784DABD2C1B39B500BBD902 /* TestRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DABC2C1B39B500BBD902 /* TestRegisterViewController.swift */; };
+		3784DABD2C1B39B500BBD902 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DABC2C1B39B500BBD902 /* RegisterViewController.swift */; };
 		378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */; };
 		378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */; };
 		378C9FE32C1444AD007FC2A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378C9FE22C1444AD007FC2A1 /* Assets.xcassets */; };
@@ -41,7 +41,7 @@
 		3784DAB52C1B2FF300BBD902 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		3784DABA2C1B392800BBD902 /* RegisterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAssembly.swift; sourceTree = "<group>"; };
-		3784DABC2C1B39B500BBD902 /* TestRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRegisterViewController.swift; sourceTree = "<group>"; };
+		3784DABC2C1B39B500BBD902 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		378C9FD62C1444AB007FC2A1 /* YellowSubmarine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellowSubmarine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				3784DAB32C19E78C00BBD902 /* RegisterView.swift */,
-				3784DABC2C1B39B500BBD902 /* TestRegisterViewController.swift */,
+				3784DABC2C1B39B500BBD902 /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */,
 				378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */,
 				378C9FFD2C14522D007FC2A1 /* UIView.ext.swift in Sources */,
-				3784DABD2C1B39B500BBD902 /* TestRegisterViewController.swift in Sources */,
+				3784DABD2C1B39B500BBD902 /* RegisterViewController.swift in Sources */,
 				378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */,
 				3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */,
 				378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */,
