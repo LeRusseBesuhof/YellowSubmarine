@@ -2,17 +2,17 @@ import Foundation
 import UIKit
 
 protocol RegisterPresenterProtocol : AnyObject {
-    func loadView(controller: RegisterViewController, view: RegisterViewProtocol)
+    func loadView(controller: RegisterViewControllerProtocol, view: RegisterViewProtocol)
 }
 
 final class RegisterPresenter {
-    private let regModel : RegistrationModelProtocol
+    private let regModel : RegisterModelProtocol
     private let router : Router
     private weak var controller : RegisterViewControllerProtocol?
     private weak var view : RegisterViewProtocol?
     
     struct Dependencies {
-        let model : RegistrationModelProtocol
+        let model : RegisterModelProtocol
         let router : Router
     }
     
@@ -24,12 +24,26 @@ final class RegisterPresenter {
 
 private extension RegisterPresenter {
     
-    private func registerTouched() {
-        // reg logic
-        loginTouched()
+    private func onRegTouched() {
+        
+        guard let initialUserRegData = self.view?.getUserRegData() else { print(1); return }
+        
+        self.regModel.userRegistration(userRegData: initialUserRegData) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let success):
+                if success {
+                    onLoginTouched()
+                }
+            case .failure(let failure):
+                controller?.createAlert(errorMessage: failure.rawValue)
+            }
+        }
+        
     }
     
-    private func loginTouched() {
+    private func onLoginTouched() {
         self.router.nextController()
     }
     
@@ -37,12 +51,12 @@ private extension RegisterPresenter {
         
         self.view?.goToAuthHandler = { [weak self] in
             guard let self = self else { return }
-            self.loginTouched()
+            self.onLoginTouched()
         }
         
         self.view?.regAndGoToAuthHandler = { [weak self] in
             guard let self = self else { return }
-            self.registerTouched()
+            self.onRegTouched()
         }
         
     }
@@ -50,7 +64,7 @@ private extension RegisterPresenter {
 
 extension RegisterPresenter : RegisterPresenterProtocol {
     
-    func loadView(controller: RegisterViewController, view: RegisterViewProtocol) {
+    func loadView(controller: RegisterViewControllerProtocol, view: RegisterViewProtocol) {
         self.controller = controller
         self.view = view
         

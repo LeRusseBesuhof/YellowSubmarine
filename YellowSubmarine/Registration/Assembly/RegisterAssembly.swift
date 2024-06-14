@@ -4,7 +4,7 @@ import UIKit
 final class RegisterAssembly {
     
     static func build() -> UIViewController {
-        let model = RegistrationModel()
+        let model = RegisterModel()
         let router = Router()
         
         let presenter = RegisterPresenter(
@@ -15,7 +15,7 @@ final class RegisterAssembly {
             dependencies: .init(presenter: presenter)
         )
         
-        let targetController = EnterViewController()
+        let targetController = AuthViewController()
         
         router.setRootViewController(controller: controller)
         router.setTargetViewController(controller: targetController)

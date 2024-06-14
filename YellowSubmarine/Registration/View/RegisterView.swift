@@ -4,7 +4,7 @@ protocol RegisterViewProtocol : UIImageView {
     var goToAuthHandler: (() -> Void)? { get set }
     var regAndGoToAuthHandler: (() -> Void)? { get set }
     
-    func getTextFieldsData() -> (String, String, String)
+    func getUserRegData() -> UserRegData
 }
 
 final class RegisterView: UIImageView {
@@ -67,7 +67,7 @@ final class RegisterView: UIImageView {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
             $0.setImage(.regMarine, for: .normal)
-            $0.addTarget(self, action: #selector(registerTouched), for: .touchDown)
+            $0.addTarget(self, action: #selector(onRegTouched), for: .touchDown)
         }
     }()
     
@@ -78,7 +78,7 @@ final class RegisterView: UIImageView {
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
             $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
-            $0.addTarget(self, action: #selector(loginTouched), for: .touchDown)
+            $0.addTarget(self, action: #selector(onLoginTouched), for: .touchDown)
         }
     }()
     
@@ -95,7 +95,7 @@ final class RegisterView: UIImageView {
     
 }
 
-extension RegisterView {
+private extension RegisterView {
     
     private func setUpView() {
         image = .background
@@ -126,22 +126,22 @@ extension RegisterView {
         ])
     }
     
-    @objc private func registerTouched() {
-        // register
+    @objc private func onRegTouched() {
         self.regAndGoToAuthHandler?()
     }
     
-    @objc private func loginTouched() {
+    @objc private func onLoginTouched() {
         self.goToAuthHandler?()
     }
 }
 
 extension RegisterView : RegisterViewProtocol {
-    
-    func getTextFieldsData() -> (String, String, String) {
-        return (nicknameTextField.text ?? .simpleNickname,
-                emailTextField.text ?? .simpleEmail,
-                passwordTextField.text ?? .simplePassword)
+    func getUserRegData() -> UserRegData {
+        UserRegData(
+            name: nicknameTextField.text ?? .simpleNickname,
+            email: emailTextField.text ?? .simpleEmail,
+            password: passwordTextField.text ?? .simplePassword
+        )
     }
     
 }

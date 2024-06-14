@@ -2,14 +2,14 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-protocol RegistrationModelProtocol : AnyObject {
+protocol RegisterModelProtocol : AnyObject {
     func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void)
     func setUserInitialDatabaseData(name: String, uid: String)
 }
 
-final class RegistrationModel { }
+final class RegisterModel { }
 
-extension RegistrationModel : RegistrationModelProtocol {
+extension RegisterModel : RegisterModelProtocol {
     
     func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void) {
         
