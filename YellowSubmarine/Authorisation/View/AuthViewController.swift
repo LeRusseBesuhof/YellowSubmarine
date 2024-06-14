@@ -1,6 +1,6 @@
 import UIKit
 
-final class EnterViewController: UIViewController {
+final class AuthViewController: UIViewController {
     
     private let authModel : AuthModel = AuthModel()
     
@@ -126,23 +126,4 @@ final class EnterViewController: UIViewController {
             regButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-}
-
-extension EnterViewController {
-    
-    func createAlert(errorMessage : String) {
-        
-        let alert = UIAlertController(
-            title: nil,
-            message: errorMessage,
-            preferredStyle: .alert
-        )
-        
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alert.addAction(cancelButton)
-        
-        self.present(alert, animated: true)
-    }
-    
 }
