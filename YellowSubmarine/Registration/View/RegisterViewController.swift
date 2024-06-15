@@ -35,6 +35,4 @@ final class RegisterViewController: UIViewController {
     
 }
 
-extension RegisterViewController : RegisterViewControllerProtocol {
-    
-}
+extension RegisterViewController : RegisterViewControllerProtocol { }

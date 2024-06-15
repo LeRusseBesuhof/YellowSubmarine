@@ -85,6 +85,7 @@ private extension AuthView {
     private func setUpView() {
         self.image = .background
         self.isUserInteractionEnabled = true
+        addSubviews(loginLabel, textFieldsStack, logButton, regButton)
     }
     
     private func activateConstraints() {

@@ -22,25 +22,51 @@ final class AuthPresenter {
     }
 }
 
-extension AuthPresenter : AuthPresenterProtocol {
-    func loadView(controller: AuthViewControllerProtocol, view: AuthViewProtocol) {
-        <#code#>
+extension AuthPresenter {
+    
+    func onLogTouched() {
+        
+        guard let initialAuthUserData = self.view?.getAuthUserData() else { return }
+        
+        self.authModel.signIn(userData: initialAuthUserData) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let success):
+                if success {
+                    router.nextController()
+                }
+
+            case .failure(let failure):
+                controller?.createAlert(errorMessage: failure.rawValue)
+            }
+        }
+        
+    }
+    
+    func onRegTouched() {
+        self.router.prevController()
+    }
+    
+    func setHandlers() {
+        
+        self.view?.goToRegHandler = { [weak self] in
+            guard let self = self else { return }
+            self.onRegTouched()
+        }
+        
+        self.view?.goToProfileHandler = { [weak self] in
+            guard let self = self else { return }
+            self.onLogTouched()
+        }
     }
 }
 
-/*
- guard let self = self else { return }
- 
- authModel.signIn(userData: authUserData) { result in
-     
-     switch result {
-     case .success(let success):
-         if success {
-             NotificationCenter.default.post(name: .setRoot, object: ProfileViewController())
-         }
-
-     case .failure(let failure):
-         self.createAlert(errorMessage: failure.rawValue)
-     }
- }
- */
+extension AuthPresenter : AuthPresenterProtocol {
+    func loadView(controller: AuthViewControllerProtocol, view: AuthViewProtocol) {
+        self.controller = controller
+        self.view = view
+        
+        self.setHandlers()
+    }
+}
