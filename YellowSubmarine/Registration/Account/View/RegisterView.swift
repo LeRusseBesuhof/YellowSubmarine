@@ -11,8 +11,6 @@ final class RegisterView: UIImageView {
     
     internal var goToAuthHandler: (() -> Void)?
     internal var regAndGoToAuthHandler: (() -> Void)?
-
-    // private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
     
     private lazy var registerLabel : UILabel = AppUI.createLabel(
         withText: "Register",

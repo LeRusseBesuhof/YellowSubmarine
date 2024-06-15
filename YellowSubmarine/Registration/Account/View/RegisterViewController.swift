@@ -1,9 +1,5 @@
 import UIKit
 
-//protocol RegisterViewControllerProtocol : AnyObject {
-//    func createAlert(errorMessage: String)
-//}
-
 final class RegisterViewController: UIViewController {
 
     private var registerView: RegisterViewProtocol!

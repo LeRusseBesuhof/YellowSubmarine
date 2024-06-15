@@ -21,10 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: window)
         self.window?.makeKeyAndVisible()
         
-        self.vc = RegisterAssembly.build()
+        // self.vc = RegisterAssembly.build()
+        self.vc = PersonAssembly.build()
         guard let rootVC = self.vc else { return }
         self.window?.rootViewController = rootVC
-        // self.window?.rootViewController = loginModel.isUserLogin() ? ProfileViewController() : RegisterViewController()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setRoot(notifiaction: )), name: .setRoot, object: nil)
     }

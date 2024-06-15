@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */; };
+		3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB22C1DE54100220EA3 /* PersonModel.swift */; };
+		3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB42C1DE62E00220EA3 /* PersonView.swift */; };
+		3755FBB72C1DF25900220EA3 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB62C1DF25900220EA3 /* PersonViewController.swift */; };
+		3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB82C1DF29300220EA3 /* PersonPresenter.swift */; };
+		3755FBBB2C1DF7FB00220EA3 /* PersonAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBBA2C1DF7FB00220EA3 /* PersonAssembly.swift */; };
 		3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB32C19E78C00BBD902 /* RegisterView.swift */; };
 		3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB52C1B2FF300BBD902 /* Router.swift */; };
 		3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */; };
@@ -43,6 +48,11 @@
 
 /* Begin PBXFileReference section */
 		3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
+		3755FBB22C1DE54100220EA3 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		3755FBB42C1DE62E00220EA3 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		3755FBB62C1DF25900220EA3 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		3755FBB82C1DF29300220EA3 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
+		3755FBBA2C1DF7FB00220EA3 /* PersonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAssembly.swift; sourceTree = "<group>"; };
 		3784DAB32C19E78C00BBD902 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		3784DAB52C1B2FF300BBD902 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
@@ -95,6 +105,61 @@
 				3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3755FBAC2C1DE4B500220EA3 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				378CA00A2C188170007FC2A1 /* Model */,
+				3784DAB12C19E02300BBD902 /* View */,
+				3784DAB22C19E02D00BBD902 /* Presenter */,
+				3784DAB92C1B391900BBD902 /* Assembly */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		3755FBAD2C1DE4F500220EA3 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBB12C1DE52200220EA3 /* Model */,
+				3755FBB02C1DE51C00220EA3 /* View */,
+				3755FBAF2C1DE51300220EA3 /* Presenter */,
+				3755FBAE2C1DE50C00220EA3 /* Assembly */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		3755FBAE2C1DE50C00220EA3 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBBA2C1DF7FB00220EA3 /* PersonAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3755FBAF2C1DE51300220EA3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBB82C1DF29300220EA3 /* PersonPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3755FBB02C1DE51C00220EA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBB42C1DE62E00220EA3 /* PersonView.swift */,
+				3755FBB62C1DF25900220EA3 /* PersonViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3755FBB12C1DE52200220EA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBB22C1DE54100220EA3 /* PersonModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3784DAB12C19E02300BBD902 /* View */ = {
@@ -216,10 +281,8 @@
 		378CA0072C15F4A1007FC2A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				378CA00A2C188170007FC2A1 /* Model */,
-				3784DAB12C19E02300BBD902 /* View */,
-				3784DAB22C19E02D00BBD902 /* Presenter */,
-				3784DAB92C1B391900BBD902 /* Assembly */,
+				3755FBAD2C1DE4F500220EA3 /* Person */,
+				3755FBAC2C1DE4B500220EA3 /* Account */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -356,7 +419,9 @@
 				378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */,
 				3787E8012C1C92CA008938D7 /* AuthPresenter.swift in Sources */,
 				3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */,
+				3755FBBB2C1DF7FB00220EA3 /* PersonAssembly.swift in Sources */,
 				378C9FFA2C145202007FC2A1 /* AppUI.swift in Sources */,
+				3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */,
 				3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */,
 				3787E7F82C1C88A3008938D7 /* UIViewController.ext.swift in Sources */,
 				378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */,
@@ -365,12 +430,15 @@
 				378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */,
 				3787E7FB2C1C8E46008938D7 /* AuthView.swift in Sources */,
 				3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */,
+				3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */,
 				378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */,
 				378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
 				378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
+				3755FBB72C1DF25900220EA3 /* PersonViewController.swift in Sources */,
+				3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */,
 				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,
 				3784DABB2C1B392800BBD902 /* RegisterAssembly.swift in Sources */,
 				3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */,

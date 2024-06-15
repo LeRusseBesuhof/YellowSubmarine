@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 protocol RegisterPresenterProtocol : AnyObject {
     func loadView(controller: ViewControllerProtocol, view: RegisterViewProtocol)
