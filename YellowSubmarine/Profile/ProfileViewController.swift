@@ -1,6 +1,8 @@
 import UIKit
 
-class ProfileViewController: UIViewController {
+protocol ProfileViewControllerProtocol : AnyObject { }
+
+final class ProfileViewController: UIViewController {
     
     private let loginModel : LoginModel = LoginModel()
 
@@ -57,3 +59,5 @@ class ProfileViewController: UIViewController {
         ])
     }
 }
+
+extension ProfileViewController : ProfileViewControllerProtocol { }

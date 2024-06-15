@@ -1,19 +1,21 @@
 import UIKit
 
-final class RegisterViewController: UIViewController {
+protocol RegisterViewProtocol : UIImageView {
+    var goToAuthHandler: (() -> Void)? { get set }
+    var regAndGoToAuthHandler: (() -> Void)? { get set }
     
-    private let registerModel : RegistrationModel = RegistrationModel()
-    
-    private lazy var userRegData : UserRegData = registerModel.setUserRegData(
-        name: nicknameTextField.text ?? .simpleNickname,
-        email: emailTextField.text ?? .simpleEmail,
-        password: passwordTextField.text ?? .simplePassword
-    )
+    func getUserRegData() -> UserRegData
+}
 
-    private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
+final class RegisterView: UIImageView {
+    
+    internal var goToAuthHandler: (() -> Void)?
+    internal var regAndGoToAuthHandler: (() -> Void)?
+
+    // private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
     
     private lazy var registerLabel : UILabel = AppUI.createLabel(
-        withText: "Register", 
+        withText: "Register",
         textColor: .appBrown,
         font: .getAmitaFont(fontType: .bold, fontSize: 50),
         alignment: .center,
@@ -65,24 +67,9 @@ final class RegisterViewController: UIViewController {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
             $0.setImage(.regMarine, for: .normal)
-            $0.addAction(regButtonAction, for: .touchUpInside)
+            $0.addTarget(self, action: #selector(onRegTouched), for: .touchDown)
         }
     }()
-    
-    private lazy var regButtonAction = UIAction { [weak self] _ in
-        guard let self = self else { return }
-        
-        registerModel.userRegistration(userData: userRegData) { result in
-            switch result {
-            case .success(let success):
-                if success { 
-                    NotificationCenter.default.post(Notification(name: .setRoot, object: EnterViewController()))
-                }
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        }
-    }
     
     private lazy var loginButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
@@ -91,36 +78,40 @@ final class RegisterViewController: UIViewController {
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
             $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
-            $0.addAction(logButtonAction, for: .touchUpInside)
+            $0.addTarget(self, action: #selector(onLoginTouched), for: .touchDown)
         }
     }()
     
-    private lazy var logButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: .setRoot, object: EnterViewController()))
-    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUpView()
         activateConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+private extension RegisterView {
+    
     private func setUpView() {
-        canvasImageView.addSubviews(registerLabel, textFieldsStack, regButton, loginButton)
-        canvasImageView.frame = view.frame
-        view.addSubview(canvasImageView)
+        image = .background
+        isUserInteractionEnabled = true
+        addSubviews(registerLabel, textFieldsStack, regButton, loginButton)
     }
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            registerLabel.topAnchor.constraint(equalTo: canvasImageView.topAnchor, constant: 250),
-            registerLabel.leadingAnchor.constraint(equalTo: canvasImageView.leadingAnchor, constant: 50),
+            registerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 250),
+            registerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             registerLabel.heightAnchor.constraint(equalToConstant: 60),
             
             textFieldsStack.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 40),
             textFieldsStack.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor),
-            textFieldsStack.trailingAnchor.constraint(equalTo: canvasImageView.trailingAnchor, constant: -100),
+            textFieldsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
             textFieldsStack.heightAnchor.constraint(equalToConstant: 180),
             
             regButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40),
@@ -134,5 +125,23 @@ final class RegisterViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
+    @objc private func onRegTouched() {
+        self.regAndGoToAuthHandler?()
+    }
+    
+    @objc private func onLoginTouched() {
+        self.goToAuthHandler?()
+    }
 }
 
+extension RegisterView : RegisterViewProtocol {
+    func getUserRegData() -> UserRegData {
+        UserRegData(
+            name: nicknameTextField.text ?? .simpleNickname,
+            email: emailTextField.text ?? .simpleEmail,
+            password: passwordTextField.text ?? .simplePassword
+        )
+    }
+    
+}

@@ -13,12 +13,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private var loginModel : LoginModel = LoginModel()
     
+    var vc : UIViewController?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let window = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: window)
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = loginModel.isUserLogin() ? ProfileViewController() : RegisterViewController()
+        
+        self.vc = RegisterAssembly.build()
+        guard let rootVC = self.vc else { return }
+        self.window?.rootViewController = rootVC
+        // self.window?.rootViewController = loginModel.isUserLogin() ? ProfileViewController() : RegisterViewController()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setRoot(notifiaction: )), name: .setRoot, object: nil)
     }

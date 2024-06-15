@@ -1,7 +1,13 @@
 import Foundation
 import FirebaseAuth
 
-final class AuthModel {
+protocol AuthModelProtocol : AnyObject {
+    func signIn(userData : AuthUserData, completion: @escaping (Result<Bool, AuthErrors>) -> Void)
+}
+
+final class AuthModel { }
+
+extension AuthModel : AuthModelProtocol {
     
     func signIn(userData : AuthUserData, completion: @escaping (Result<Bool, AuthErrors>) -> Void) {
         
@@ -29,11 +35,6 @@ final class AuthModel {
             }
         }
     }
-    
-    func setUserAuthData(email: String, password: String) -> AuthUserData {
-        AuthUserData(email: email, password: password)
-    }
-    
 }
 
 struct AuthUserData {

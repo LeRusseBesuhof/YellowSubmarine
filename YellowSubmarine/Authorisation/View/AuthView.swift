@@ -1,15 +1,15 @@
 import UIKit
 
-final class EnterViewController: UIViewController {
+protocol AuthViewProtocol : UIImageView {
+    var goToProfileHandler: (() -> Void)? { get set }
+    var goToRegHandler: (() -> Void)? { get set }
     
-    private let authModel : AuthModel = AuthModel()
-    
-    private lazy var authUserData : AuthUserData = authModel.setUserAuthData(
-        email: emailTextField.text ?? .simpleEmail,
-        password: passwordTextField.text ?? .simplePassword
-    )
+    func getAuthUserData() -> AuthUserData
+}
 
-    private lazy var canvasImageView : UIImageView = AppUI.createCanvasImageView(image: .background)
+final class AuthView : UIImageView {
+    internal var goToProfileHandler: (() -> Void)?
+    internal var goToRegHandler: (() -> Void)?
     
     private lazy var loginLabel : UILabel = AppUI.createLabel(
         withText: "Login",
@@ -54,27 +54,9 @@ final class EnterViewController: UIViewController {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
             $0.setImage(.logMarine, for: .normal)
-            $0.addAction(logButtonAction, for: .touchUpInside)
+            $0.addTarget(self, action: #selector(onLoginTouched), for: .touchDown)
         }
     }()
-    
-    private lazy var logButtonAction = UIAction { [weak self] _ in
-        
-        guard let self = self else { return }
-        
-        authModel.signIn(userData: authUserData) { result in
-            
-            switch result {
-            case .success(let success):
-                if success {
-                    NotificationCenter.default.post(name: .setRoot, object: ProfileViewController())
-                }
-
-            case .failure(let failure):
-                self.createAlert(errorMessage: failure.rawValue)
-            }
-        }
-    }
     
     private lazy var regButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
@@ -83,36 +65,38 @@ final class EnterViewController: UIViewController {
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
             $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
-            $0.addAction(regButtonAction, for: .touchUpInside)
+            $0.addTarget(self, action: #selector(onRegTouched), for: .touchDown)
         }
     }()
     
-    private lazy var regButtonAction = UIAction { _ in
-        NotificationCenter.default.post(Notification(name: .setRoot, object: RegisterViewController()))
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setUpView()
+        self.activateConstraints()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUpView()
-        activateConstraints()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+}
+
+private extension AuthView {
     
     private func setUpView() {
-        canvasImageView.addSubviews(loginLabel, textFieldsStack, logButton, regButton)
-        canvasImageView.frame = view.frame
-        view.addSubview(canvasImageView)
+        self.image = .background
+        self.isUserInteractionEnabled = true
+        addSubviews(loginLabel, textFieldsStack, logButton, regButton)
     }
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            loginLabel.topAnchor.constraint(equalTo: canvasImageView.topAnchor, constant: 250),
-            loginLabel.leadingAnchor.constraint(equalTo: canvasImageView.leadingAnchor, constant: 50),
+            loginLabel.topAnchor.constraint(equalTo: topAnchor, constant: 250),
+            loginLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             loginLabel.heightAnchor.constraint(equalToConstant: 60),
             
             textFieldsStack.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 40),
             textFieldsStack.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor),
-            textFieldsStack.trailingAnchor.constraint(equalTo: canvasImageView.trailingAnchor, constant: -100),
+            textFieldsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
             textFieldsStack.heightAnchor.constraint(equalToConstant: 120),
             
             logButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 100),
@@ -126,23 +110,21 @@ final class EnterViewController: UIViewController {
             regButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-}
-
-extension EnterViewController {
     
-    func createAlert(errorMessage : String) {
-        
-        let alert = UIAlertController(
-            title: nil,
-            message: errorMessage,
-            preferredStyle: .alert
-        )
-        
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alert.addAction(cancelButton)
-        
-        self.present(alert, animated: true)
+    @objc private func onLoginTouched() {
+        self.goToProfileHandler?()
     }
     
+    @objc private func onRegTouched() {
+        self.goToRegHandler?()
+    }
+}
+
+extension AuthView : AuthViewProtocol {
+    func getAuthUserData() -> AuthUserData {
+        AuthUserData(
+            email: emailTextField.text ?? .simpleEmail,
+            password: passwordTextField.text ?? .simplePassword
+        )
+    }
 }
