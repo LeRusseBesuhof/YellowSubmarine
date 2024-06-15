@@ -1,8 +1,8 @@
 import UIKit
 
-protocol AuthViewControllerProtocol : AnyObject {
-    func createAlert(errorMessage: String)
-}
+//protocol AuthViewControllerProtocol : AnyObject {
+//    func createAlert(errorMessage: String)
+//}
 
 final class AuthViewController: UIViewController {
     
@@ -34,4 +34,4 @@ final class AuthViewController: UIViewController {
     }
 }
 
-extension AuthViewController : AuthViewControllerProtocol { }
+extension AuthViewController : ViewControllerProtocol { }

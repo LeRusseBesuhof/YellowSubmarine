@@ -2,13 +2,13 @@ import Foundation
 import UIKit
 
 protocol RegisterPresenterProtocol : AnyObject {
-    func loadView(controller: RegisterViewControllerProtocol, view: RegisterViewProtocol)
+    func loadView(controller: ViewControllerProtocol, view: RegisterViewProtocol)
 }
 
 final class RegisterPresenter {
     private let regModel : RegisterModelProtocol
     private let router : Router
-    private weak var controller : RegisterViewControllerProtocol?
+    private weak var controller : ViewControllerProtocol?
     private weak var view : RegisterViewProtocol?
     
     struct Dependencies {
@@ -64,7 +64,7 @@ private extension RegisterPresenter {
 
 extension RegisterPresenter : RegisterPresenterProtocol {
     
-    func loadView(controller: RegisterViewControllerProtocol, view: RegisterViewProtocol) {
+    func loadView(controller: ViewControllerProtocol, view: RegisterViewProtocol) {
         self.controller = controller
         self.view = view
         

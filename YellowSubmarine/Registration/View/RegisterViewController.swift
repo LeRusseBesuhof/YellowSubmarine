@@ -1,8 +1,8 @@
 import UIKit
 
-protocol RegisterViewControllerProtocol : AnyObject {
-    func createAlert(errorMessage: String)
-}
+//protocol RegisterViewControllerProtocol : AnyObject {
+//    func createAlert(errorMessage: String)
+//}
 
 final class RegisterViewController: UIViewController {
 
@@ -35,4 +35,4 @@ final class RegisterViewController: UIViewController {
     
 }
 
-extension RegisterViewController : RegisterViewControllerProtocol { }
+extension RegisterViewController : ViewControllerProtocol { }

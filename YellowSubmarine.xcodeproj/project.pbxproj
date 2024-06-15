@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */; };
 		3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB32C19E78C00BBD902 /* RegisterView.swift */; };
 		3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB52C1B2FF300BBD902 /* Router.swift */; };
 		3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3784DAB32C19E78C00BBD902 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		3784DAB52C1B2FF300BBD902 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3784DAB72C1B325400BBD902 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3755FBA92C1DE10800220EA3 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		3784DAB12C19E02300BBD902 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 		378C9FD82C1444AB007FC2A1 /* YellowSubmarine */ = {
 			isa = PBXGroup;
 			children = (
+				3755FBA92C1DE10800220EA3 /* Protocol */,
 				3784DAB52C1B2FF300BBD902 /* Router.swift */,
 				378C9FF92C145202007FC2A1 /* AppUI.swift */,
 				378CA0072C15F4A1007FC2A1 /* Registration */,
@@ -344,6 +355,7 @@
 			files = (
 				378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */,
 				3787E8012C1C92CA008938D7 /* AuthPresenter.swift in Sources */,
+				3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */,
 				378C9FFA2C145202007FC2A1 /* AppUI.swift in Sources */,
 				3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */,
 				3787E7F82C1C88A3008938D7 /* UIViewController.ext.swift in Sources */,

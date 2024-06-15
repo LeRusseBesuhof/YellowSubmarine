@@ -2,14 +2,14 @@ import Foundation
 import UIKit
 
 protocol AuthPresenterProtocol : AnyObject {
-    func loadView(controller: AuthViewControllerProtocol, view: AuthViewProtocol)
+    func loadView(controller: ViewControllerProtocol, view: AuthViewProtocol)
 }
 
 final class AuthPresenter {
     private let authModel : AuthModelProtocol
     private let router : Router
     private weak var view : AuthViewProtocol?
-    private weak var controller : AuthViewControllerProtocol?
+    private weak var controller : ViewControllerProtocol?
     
     struct Dependencies {
         let model : AuthModelProtocol
@@ -63,7 +63,7 @@ extension AuthPresenter {
 }
 
 extension AuthPresenter : AuthPresenterProtocol {
-    func loadView(controller: AuthViewControllerProtocol, view: AuthViewProtocol) {
+    func loadView(controller: ViewControllerProtocol, view: AuthViewProtocol) {
         self.controller = controller
         self.view = view
         
