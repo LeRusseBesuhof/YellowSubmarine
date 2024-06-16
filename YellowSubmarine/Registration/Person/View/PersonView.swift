@@ -10,20 +10,79 @@ final class PersonView: UIImageView {
     
     var sendDate: (() -> Void)?
     
-    private lazy var ticketView : UIImageView = {
-        .config(view: UIImageView()) {
-            $0.image = .ticket
-            $0.clipsToBounds = true
-            $0.contentMode = .scaleAspectFill
+    private lazy var personLabel = AppUI.createLabel(
+        withText: "Personal\nInformation",
+        textColor: .appBrown,
+        font: .getAmitaFont(fontType: .bold, fontSize: 50),
+        alignment: .left
+    )
+    
+    private lazy var profileButton : UIButton = {
+        .config(view: UIButton()) {
+            $0.setImage(UIImage(systemName: "photo"), for: .normal)
+            $0.tintColor = .appBrown
         }
     }()
     
-//    private lazy var personInfoLabel = AppUI.createLabel(
-//        withText: "Fill your ticket",
-//        textColor: .appBrown,
-//        font: <#T##UIFont#>,
-//        alignment: <#T##NSTextAlignment#>,
-//        isUnderlined: <#T##Bool#>)
+    private lazy var profileView : UIView = {
+        .config(view: UIView()) { [weak self] in
+            guard let self = self else { return }
+            $0.layer.cornerRadius = 50
+            $0.backgroundColor = .white
+            $0.layer.borderColor = UIColor.appBrown.cgColor
+            $0.layer.borderWidth = 4
+            $0.clipsToBounds = true
+            $0.addSubview(profileButton)
+            
+            NSLayoutConstraint.activate([
+                profileButton.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
+                profileButton.topAnchor.constraint(equalTo: $0.topAnchor),
+                profileButton.trailingAnchor.constraint(equalTo: $0.trailingAnchor),
+                profileButton.bottomAnchor.constraint(equalTo: $0.bottomAnchor),
+            ])
+        }
+    }()
+    
+    private lazy var nameLabel = AppUI.createLabel(
+        withText: "Enter your name:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var nameTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "highlighter",
+        cornerRadius: 20)
+    
+    private lazy var genderLabel : UILabel = AppUI.createLabel(
+        withText: "Choose your gender:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var genderSegmentControl : UISegmentedControl = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.insertSegment(withTitle: "Male", at: 0, animated: true)
+        $0.insertSegment(withTitle: "Female", at: 1, animated: true)
+        $0.selectedSegmentIndex = 0
+        $0.backgroundColor = .appLightYellow
+        $0.selectedSegmentTintColor = .appLightBrown
+        $0.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appBrown], for: .normal)
+        $0.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        return $0
+    }(UISegmentedControl())
+    
+    private lazy var birthdayLabel : UILabel = AppUI.createLabel(
+        withText: "Set your Birthday:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left)
     
     private lazy var datePicker : UIDatePicker = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -31,15 +90,30 @@ final class PersonView: UIImageView {
         $0.preferredDatePickerStyle = .compact
         $0.minimumDate = createDate(day: 1, month: 1, year: 1924)
         $0.maximumDate = Date.now
-        $0.date = createDate(day: 1, month: 1, year: 2000)
+        $0.date = Date.now
+        $0.backgroundColor = .appLightYellow
+        $0.tintColor = .red
         return $0
     }(UIDatePicker())
+    
+    private lazy var dateView : UIView = {
+        .config(view: UIView()) { [weak self] in
+            guard let self = self else { return }
+            $0.layer.cornerRadius = 20
+            $0.backgroundColor = .appLightYellow
+            $0.addSubview(datePicker)
+            
+            NSLayoutConstraint.activate([
+                datePicker.centerXAnchor.constraint(equalTo: $0.centerXAnchor),
+                datePicker.centerYAnchor.constraint(equalTo: $0.centerYAnchor),
+            ])
+        }
+    }()
     
     private lazy var sendButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
-            $0.backgroundColor = .appOrange
-            $0.layer.cornerRadius = 20
+            $0.setImage(.regMarine, for: .normal)
             $0.addTarget(self, action: #selector(onSendDateTouched), for: .touchDown)
         }
     }()
@@ -72,34 +146,62 @@ private extension PersonView {
     private func setUpView() {
         image = .background
         isUserInteractionEnabled = true
-        addSubviews(ticketView)
-        // addSubviews(datePicker, sendButton)
+        
+        addSubviews(personLabel, profileView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView, sendButton)
     }
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            ticketView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            ticketView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            ticketView.widthAnchor.constraint(equalToConstant: 300),
-            ticketView.heightAnchor.constraint(equalToConstant: 500)
-//            datePicker.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-//            datePicker.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            
-//            sendButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            sendButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            sendButton.widthAnchor.constraint(equalToConstant: 100),
-//            sendButton.heightAnchor.constraint(equalToConstant: 60)
+            personLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            personLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            personLabel.widthAnchor.constraint(equalToConstant: 300),
+            
+            profileView.topAnchor.constraint(equalTo: personLabel.topAnchor),
+            profileView.centerXAnchor.constraint(equalTo: personLabel.trailingAnchor, constant: -20),
+            profileView.widthAnchor.constraint(equalToConstant: 100),
+            profileView.heightAnchor.constraint(equalToConstant: 100),
+            
+            nameLabel.topAnchor.constraint(equalTo: personLabel.bottomAnchor, constant: 30),
+            nameLabel.leadingAnchor.constraint(equalTo: personLabel.leadingAnchor),
+            
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            nameTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            nameTextField.widthAnchor.constraint(equalToConstant: 280),
+            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            genderLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 40),
+            genderLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
+            
+            genderSegmentControl.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 20),
+            genderSegmentControl.leadingAnchor.constraint(equalTo: genderLabel.leadingAnchor, constant: 20),
+            genderSegmentControl.widthAnchor.constraint(equalToConstant: 250),
+            genderSegmentControl.heightAnchor.constraint(equalToConstant: 40),
+            
+            birthdayLabel.topAnchor.constraint(equalTo: genderSegmentControl.bottomAnchor, constant: 40),
+            birthdayLabel.leadingAnchor.constraint(equalTo: genderSegmentControl.leadingAnchor, constant: 30),
+            
+            dateView.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor, constant: 20),
+            dateView.centerXAnchor.constraint(equalTo: birthdayLabel.centerXAnchor),
+            dateView.widthAnchor.constraint(equalToConstant: 140),
+            dateView.heightAnchor.constraint(equalToConstant: 50),
+
+            sendButton.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 30),
+            sendButton.centerXAnchor.constraint(equalTo: dateView.trailingAnchor),
+            sendButton.widthAnchor.constraint(equalToConstant: 85),
+            sendButton.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     
     @objc private func onSendDateTouched() {
-        print(datePicker.date)
         self.sendDate?()
     }
 }
 
 extension PersonView : PersonViewProtocol {
     func getPersonData() -> PersonData {
-        PersonData(birthday: datePicker.date)
+        PersonData(
+            name: nameTextField.text ?? .simpleNickname,
+            gender: genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex) ?? .simpleGender,
+            birthday: datePicker.date)
     }
 }

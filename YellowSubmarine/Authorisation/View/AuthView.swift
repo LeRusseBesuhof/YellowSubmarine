@@ -15,8 +15,7 @@ final class AuthView : UIImageView {
         withText: "Login",
         textColor: .appBrown,
         font: .getAmitaFont(fontType: .bold, fontSize: 50),
-        alignment: .center,
-        isUnderlined: false
+        alignment: .center
     )
     
     private lazy var emailTextField : UITextField = AppUI.createTextField(

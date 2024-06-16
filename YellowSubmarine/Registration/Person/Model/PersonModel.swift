@@ -14,5 +14,7 @@ extension PersonModel : PersonModelProtocol {
 }
 
 struct PersonData {
+    let name : String
+    let gender : String
     let birthday : Date
 }

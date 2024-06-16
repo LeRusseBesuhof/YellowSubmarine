@@ -13,4 +13,5 @@ extension String {
     static let simpleNickname = "Simple Nickname"
     static let simpleEmail = "Simple Email"
     static let simplePassword = "SimplePassword"
+    static let simpleGender = "Refrigerator"
 }

@@ -16,15 +16,14 @@ final class RegisterView: UIImageView {
         withText: "Register",
         textColor: .appBrown,
         font: .getAmitaFont(fontType: .bold, fontSize: 50),
-        alignment: .center,
-        isUnderlined: false
+        alignment: .center
     )
     
     private lazy var nicknameTextField : UITextField = AppUI.createTextField(
         withPlaceholder: "Nickname",
         placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        font: UIFont.getMontserratFont(fontSize: 16),
+        font: .getMontserratFont(fontSize: 16),
         textColor: .appBrown,
         leftViewPic: "person",
         cornerRadius: 20
@@ -34,7 +33,7 @@ final class RegisterView: UIImageView {
         withPlaceholder: "Email",
         placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        font: UIFont.getMontserratFont(fontSize: 16),
+        font: .getMontserratFont(fontSize: 16),
         textColor: .appBrown,
         leftViewPic: "envelope",
         cornerRadius: 20
@@ -44,7 +43,7 @@ final class RegisterView: UIImageView {
         withPlaceholder: "Password",
         placeholderColor: .appPlaceholder,
         bgColor: .appLightYellow,
-        font: UIFont.getMontserratFont(fontSize: 16),
+        font: .getMontserratFont(fontSize: 16),
         textColor: .appBrown,
         leftViewPic: "lock",
         cornerRadius: 20
@@ -75,7 +74,7 @@ final class RegisterView: UIImageView {
             let title = String.getUnderlinedString("Login")
             $0.setAttributedTitle(title, for: .normal)
             $0.setTitleColor(.appOrange, for: .normal)
-            $0.titleLabel?.font = UIFont.getMeriendaFont(fontSize: 28)
+            $0.titleLabel?.font = .getMeriendaFont(fontSize: 28)
             $0.addTarget(self, action: #selector(onLoginTouched), for: .touchDown)
         }
     }()
