@@ -1,14 +1,18 @@
 import UIKit
 
 protocol PersonViewProtocol : UIImageView {
-    var sendDate: (() -> Void)? { get set }
+    var sendData: ((Data) -> Void)? { get set }
+    var chooseProfilePicture: (() -> Void)? { get set }
+    
+    var imagePicker: UIImagePickerController { get set }
     
     func getPersonData() -> PersonData
 }
 
 final class PersonView: UIImageView {
     
-    var sendDate: (() -> Void)?
+    var sendData: ((Data) -> Void)?
+    var chooseProfilePicture: (() -> Void)?
     
     private lazy var personLabel = AppUI.createLabel(
         withText: "Personal\nInformation",
@@ -17,31 +21,30 @@ final class PersonView: UIImageView {
         alignment: .left
     )
     
-    private lazy var profileButton : UIButton = {
-        .config(view: UIButton()) {
-            $0.setImage(UIImage(systemName: "photo"), for: .normal)
-            $0.tintColor = .appBrown
-        }
-    }()
-    
-    private lazy var profileView : UIView = {
-        .config(view: UIView()) { [weak self] in
+    private lazy var tapGest = UITapGestureRecognizer(target: self, action: #selector(onProfileImageViewTap))
+
+    private lazy var profileImageView : UIImageView = {
+        .config(view: UIImageView()) { [weak self] in
             guard let self = self else { return }
+            $0.image = UIImage(systemName: "camera.fill")
+            $0.tintColor = .appBrown
             $0.layer.cornerRadius = 50
             $0.backgroundColor = .white
             $0.layer.borderColor = UIColor.appBrown.cgColor
             $0.layer.borderWidth = 4
+            $0.contentMode = .center
             $0.clipsToBounds = true
-            $0.addSubview(profileButton)
-            
-            NSLayoutConstraint.activate([
-                profileButton.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
-                profileButton.topAnchor.constraint(equalTo: $0.topAnchor),
-                profileButton.trailingAnchor.constraint(equalTo: $0.trailingAnchor),
-                profileButton.bottomAnchor.constraint(equalTo: $0.bottomAnchor),
-            ])
+            $0.isUserInteractionEnabled = true
+            $0.addGestureRecognizer(tapGest)
         }
     }()
+    
+    internal lazy var imagePicker : UIImagePickerController = {
+        $0.delegate = self
+        $0.sourceType = .photoLibrary
+        $0.allowsEditing = true
+        return $0
+    }(UIImagePickerController())
     
     private lazy var nameLabel = AppUI.createLabel(
         withText: "Enter your name:",
@@ -114,7 +117,7 @@ final class PersonView: UIImageView {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
             $0.setImage(.regMarine, for: .normal)
-            $0.addTarget(self, action: #selector(onSendDateTouched), for: .touchDown)
+            $0.addTarget(self, action: #selector(onSendDataTouched), for: .touchDown)
         }
     }()
     
@@ -147,7 +150,7 @@ private extension PersonView {
         image = .background
         isUserInteractionEnabled = true
         
-        addSubviews(personLabel, profileView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView, sendButton)
+        addSubviews(personLabel, profileImageView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView, sendButton)
     }
     
     private func activateConstraints() {
@@ -156,10 +159,10 @@ private extension PersonView {
             personLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             personLabel.widthAnchor.constraint(equalToConstant: 300),
             
-            profileView.topAnchor.constraint(equalTo: personLabel.topAnchor),
-            profileView.centerXAnchor.constraint(equalTo: personLabel.trailingAnchor, constant: -20),
-            profileView.widthAnchor.constraint(equalToConstant: 100),
-            profileView.heightAnchor.constraint(equalToConstant: 100),
+            profileImageView.topAnchor.constraint(equalTo: personLabel.topAnchor),
+            profileImageView.centerXAnchor.constraint(equalTo: personLabel.trailingAnchor, constant: -20),
+            profileImageView.widthAnchor.constraint(equalToConstant: 100),
+            profileImageView.heightAnchor.constraint(equalToConstant: 100),
             
             nameLabel.topAnchor.constraint(equalTo: personLabel.bottomAnchor, constant: 30),
             nameLabel.leadingAnchor.constraint(equalTo: personLabel.leadingAnchor),
@@ -192,16 +195,36 @@ private extension PersonView {
         ])
     }
     
-    @objc private func onSendDateTouched() {
-        self.sendDate?()
+    @objc private func onProfileImageViewTap() {
+        self.chooseProfilePicture?()
+    }
+    
+    @objc private func onSendDataTouched() {
+        guard let imageData = profileImageView.image?.jpegData(compressionQuality: 0.1) else {
+            print("no image or compression went wrong")
+            return
+        }
+        self.sendData?(imageData)
     }
 }
 
 extension PersonView : PersonViewProtocol {
+    
     func getPersonData() -> PersonData {
         PersonData(
             name: nameTextField.text ?? .simpleNickname,
             gender: genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex) ?? .simpleGender,
             birthday: datePicker.date)
+    }
+}
+
+extension PersonView : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            profileImageView.image = image
+            profileImageView.contentMode = .scaleAspectFill
+        }
+        picker.dismiss(animated: true)
     }
 }

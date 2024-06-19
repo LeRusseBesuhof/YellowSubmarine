@@ -1,6 +1,12 @@
 import UIKit
 
+protocol PersonViewControllerProtocol : ViewControllerProtocol {
+    func presentPickerController(_ picker: UIImagePickerController) -> Void
+}
+
 final class PersonViewController: UIViewController {
+    
+    internal var chooseImage : (() -> Void)?
 
     private let personPresenter : PersonPresenterProtocol!
     private let personView : PersonViewProtocol!
@@ -31,6 +37,10 @@ final class PersonViewController: UIViewController {
     
 }
 
-extension PersonViewController : ViewControllerProtocol {
-    
+extension PersonViewController : ViewControllerProtocol { }
+
+extension PersonViewController : PersonViewControllerProtocol {
+    func presentPickerController(_ picker: UIImagePickerController) {
+        self.present(picker, animated: true)
+    }
 }

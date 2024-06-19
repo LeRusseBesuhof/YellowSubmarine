@@ -15,7 +15,7 @@ final class RegisterAssembly {
             dependencies: .init(presenter: presenter)
         )
         
-        let targetController = AuthAssembly.build(prevController: controller)
+        let targetController = PersonAssembly.build(prevController: controller)
         
         router.setRootViewController(controller: controller)
         router.setTargetViewController(controller: targetController)

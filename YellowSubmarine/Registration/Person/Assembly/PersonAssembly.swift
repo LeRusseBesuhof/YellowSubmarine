@@ -3,7 +3,7 @@ import UIKit
 
 final class PersonAssembly {
     
-    static func build() -> UIViewController {
+    static func build(prevController: UIViewController) -> UIViewController {
         let router = Router()
         let model = PersonModel()
         
@@ -11,7 +11,7 @@ final class PersonAssembly {
         
         let controller = PersonViewController(dependencies: .init(presenter: presenter))
         
-        let targetController = ProfileViewController()
+        let targetController = AuthAssembly.build(prevController: prevController)
         
         router.setRootViewController(controller: controller)
         router.setTargetViewController(controller: targetController)

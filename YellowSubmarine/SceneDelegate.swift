@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: window)
         self.window?.makeKeyAndVisible()
         
-        // self.vc = RegisterAssembly.build()
-        self.vc = PersonAssembly.build()
+        self.vc = RegisterAssembly.build()
+        // self.vc = PersonAssembly.build()
         guard let rootVC = self.vc else { return }
         self.window?.rootViewController = rootVC
         

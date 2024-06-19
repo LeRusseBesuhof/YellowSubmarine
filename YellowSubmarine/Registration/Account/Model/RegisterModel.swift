@@ -4,7 +4,7 @@ import FirebaseFirestore
 
 protocol RegisterModelProtocol : AnyObject {
     func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void)
-    func setUserInitialDatabaseData(name: String, uid: String)
+    func setUserInitialDatabaseData(nick: String, email: String, uid: String)
 }
 
 final class RegisterModel { }
@@ -13,7 +13,9 @@ extension RegisterModel : RegisterModelProtocol {
     
     func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void) {
         
-        Auth.auth().createUser(withEmail: userRegData.email, password: userRegData.password) { result, err in
+        Auth.auth().createUser(withEmail: userRegData.email, password: userRegData.password) { [weak self] result, err in
+            
+            guard let self = self else { return }
             
             guard err == nil else {
                 let authError = AuthErrorCode(_nsError: err! as NSError)
@@ -32,11 +34,11 @@ extension RegisterModel : RegisterModelProtocol {
                 return
             }
             
-            if let _ = result?.user {
+            if let user = result?.user {
                 
                 // user.sendEmailVerification()
                 
-                // setUserInitialDatabaseData(name: userRegData.name, uid: user.uid)
+                setUserInitialDatabaseData(nick: userRegData.name, email: userRegData.email, uid: user.uid)
                 
                 completion(.success(true))
             }
@@ -44,10 +46,10 @@ extension RegisterModel : RegisterModelProtocol {
         }
     }
     
-    func setUserInitialDatabaseData(name: String, uid: String) {
+    func setUserInitialDatabaseData(nick: String, email: String, uid: String) {
         let userData : [String : Any] = [
-            "name" : name,
-            "isActive" : true
+            "nick" : nick,
+            "email" : email,
         ]
         
         Firestore.firestore()
