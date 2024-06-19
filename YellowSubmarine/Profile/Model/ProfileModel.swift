@@ -3,7 +3,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol ProfileModelProtocol : AnyObject {
-    func loadUserData() -> ProfileFields
+    func loadUserData(completion: @escaping (Result<ProfileFields, Error>) -> Void)
 }
 
 final class ProfileModel {
@@ -19,28 +19,34 @@ extension ProfileModel : ProfileModelProtocol {
     
     // TODO: Make using completion handler!
     
-    func loadUserData() -> ProfileFields {
+    func loadUserData(completion: @escaping (Result<ProfileFields, Error>) -> Void) {
         var profileFields = ProfileFields()
         
         guard let uid = getUserID() else {
+            completion(.failure(DownloadError.noUID))
             print("no uid")
-            return profileFields
+            return
         }
         
         Firestore.firestore().collection("users").document(uid).getDocument { snap, err in
-            guard err == nil else { print("snap went wrong"); return }
-            
-            if let documents = snap {
-                profileFields.nick = documents["nick"] as! String
-                profileFields.email = documents["email"] as! String
-                profileFields.image = documents["profile image"] as! String
-                profileFields.name = documents["name"] as! String
-                profileFields.bDay = documents["birthday"] as! Date
-                profileFields.gender = documents["gender"] as! String
+            guard err == nil else {
+                completion(.failure(err!))
+                return
             }
+            
+            guard let documents = snap else {
+                completion(.failure(DownloadError.snapError))
+                return
+            }
+            profileFields.nick = documents["nick"] as? String ?? ""
+            profileFields.email = documents["email"] as? String ?? ""
+            profileFields.image = documents["profile image"] as? String ?? ""
+            profileFields.name = documents["name"] as? String ?? ""
+            profileFields.bDay = documents["birthday"] as? Date ?? Date()
+            profileFields.gender = documents["gender"] as? String ?? ""
+            
+            completion(.success(profileFields))
         }
-        
-        return profileFields
     }
 }
 
@@ -51,4 +57,9 @@ struct ProfileFields {
     var name : String = ""
     var bDay : Date = Date()
     var gender : String = ""
+}
+
+enum DownloadError : String, Error {
+    case noUID = "Can't find UID"
+    case snapError = "Something wrong with SnapShot"
 }

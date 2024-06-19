@@ -12,7 +12,7 @@ final class AuthAssembly {
         
         let controller = AuthViewController(dependencies: .init(presenter: presenter))
         
-        let targetController = ProfileViewController()
+        let targetController = ProfileAssembly.build()
         
         router.setRootViewController(controller: controller)
         router.setTargetViewController(controller: targetController)

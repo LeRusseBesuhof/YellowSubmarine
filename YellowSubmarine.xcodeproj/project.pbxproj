@@ -10,6 +10,7 @@
 		3728AD1F2C2304D600606F0D /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD1E2C2304D600606F0D /* ProfileModel.swift */; };
 		3728AD212C23052A00606F0D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD202C23052A00606F0D /* ProfileView.swift */; };
 		3728AD232C230E5C00606F0D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD222C230E5C00606F0D /* ProfilePresenter.swift */; };
+		3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD242C23431400606F0D /* ProfileAssembly.swift */; };
 		3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */; };
 		3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB22C1DE54100220EA3 /* PersonModel.swift */; };
 		3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB42C1DE62E00220EA3 /* PersonView.swift */; };
@@ -53,6 +54,7 @@
 		3728AD1E2C2304D600606F0D /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		3728AD202C23052A00606F0D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3728AD222C230E5C00606F0D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		3728AD242C23431400606F0D /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
 		3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3755FBB22C1DE54100220EA3 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		3755FBB42C1DE62E00220EA3 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		3728AD1A2C2304A700606F0D /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				3728AD242C23431400606F0D /* ProfileAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */,
 				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,
 				3784DABB2C1B392800BBD902 /* RegisterAssembly.swift in Sources */,
+				3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */,
 				3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */,
 				3787E7FF2C1C8F61008938D7 /* AuthAssembly.swift in Sources */,
 			);

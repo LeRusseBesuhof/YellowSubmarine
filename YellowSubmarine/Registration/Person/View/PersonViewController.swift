@@ -37,8 +37,6 @@ final class PersonViewController: UIViewController {
     
 }
 
-extension PersonViewController : ViewControllerProtocol { }
-
 extension PersonViewController : PersonViewControllerProtocol {
     func presentPickerController(_ picker: UIImagePickerController) {
         self.present(picker, animated: true)

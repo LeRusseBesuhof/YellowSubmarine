@@ -25,7 +25,18 @@ final class ProfilePresenter {
 private extension ProfilePresenter {
     
     private func setHandlers() {
-        self.view?.currentUserData = self.model.loadUserData()
+        self.model.loadUserData { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let userData):
+                print("data")
+                // view?.currentUserData = userData
+                // view?.updateData()
+            case .failure(let err):
+                controller?.createAlert(errorMessage: err.localizedDescription)
+            }
+        }
     }
     
 }

@@ -3,13 +3,18 @@ import UIKit
 
 final class AppUI {
     
-    static func createCanvasImageView(image: UIImage) -> UIImageView {
-        {
-            $0.isUserInteractionEnabled = true
+    static func createImageView(image: UIImage, tintColor: UIColor, cornerRadius: CGFloat, borderWidth: CGFloat) -> UIImageView {
+        .config(view: UIImageView()) {
+            $0.image = image
+            $0.tintColor = tintColor
+            $0.layer.cornerRadius = cornerRadius
+            $0.backgroundColor = .white
+            $0.layer.borderColor = tintColor.cgColor
+            $0.layer.borderWidth = borderWidth
+            $0.contentMode = .center
             $0.clipsToBounds = true
-            $0.contentMode = .scaleAspectFill
-            return $0
-        }(UIImageView(image: image))
+            $0.isUserInteractionEnabled = true
+        }
     }
     
     static func createLabel(withText text: String, textColor color: UIColor , font: UIFont, alignment: NSTextAlignment, isUnderlined: Bool = false) -> UILabel {

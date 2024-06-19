@@ -1,6 +1,6 @@
 import UIKit
 
-protocol PersonViewProtocol : UIImageView {
+protocol PersonViewProtocol : UIScrollView {
     var sendData: ((UIImage) -> Void)? { get set }
     var chooseProfilePicture: (() -> Void)? { get set }
     
@@ -9,10 +9,31 @@ protocol PersonViewProtocol : UIImageView {
     func getPersonData() -> PersonData
 }
 
-final class PersonView: UIImageView {
+final class PersonView: UIScrollView {
     
     var sendData: ((UIImage) -> Void)?
     var chooseProfilePicture: (() -> Void)?
+    
+    private lazy var contentView : UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
+    // TODO: make doubled imageView
+    
+    private lazy var upContentImageView : UIImageView = {
+        .config(view: UIImageView()) {
+            $0.image = .background
+            $0.isUserInteractionEnabled = true
+        }
+    }()
+    
+    private lazy var downContentImageView : UIImageView = {
+        .config(view: UIImageView()) {
+            $0.image = .backgroundDown
+            $0.isUserInteractionEnabled = true
+        }
+    }()
     
     private lazy var personLabel = AppUI.createLabel(
         withText: "Personal\nInformation",
@@ -23,21 +44,12 @@ final class PersonView: UIImageView {
     
     private lazy var tapGest = UITapGestureRecognizer(target: self, action: #selector(onProfileImageViewTap))
 
-    private lazy var profileImageView : UIImageView = {
-        .config(view: UIImageView()) { [weak self] in
-            guard let self = self else { return }
-            $0.image = UIImage(systemName: "camera.fill")
-            $0.tintColor = .appBrown
-            $0.layer.cornerRadius = 50
-            $0.backgroundColor = .white
-            $0.layer.borderColor = UIColor.appBrown.cgColor
-            $0.layer.borderWidth = 4
-            $0.contentMode = .center
-            $0.clipsToBounds = true
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(tapGest)
-        }
-    }()
+    private lazy var profileImageView : UIImageView = AppUI.createImageView(
+        image: .camera,
+        tintColor: .appBrown,
+        cornerRadius: 50,
+        borderWidth: 4
+    )
     
     internal lazy var imagePicker : UIImagePickerController = {
         $0.delegate = self
@@ -147,16 +159,29 @@ private extension PersonView {
     }
     
     private func setUpView() {
-        image = .background
-        isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGest)
         
-        addSubviews(personLabel, profileImageView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView, sendButton)
+        upContentImageView.addSubviews(personLabel, profileImageView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView)
+        downContentImageView.addSubviews(sendButton)
+        contentView.addSubviews(upContentImageView, downContentImageView)
+        addSubview(contentView)
     }
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            personLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            personLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: widthAnchor),
+            
+            upContentImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            upContentImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            upContentImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            upContentImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+            
+            personLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),
+            personLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
             personLabel.widthAnchor.constraint(equalToConstant: 300),
             
             profileImageView.topAnchor.constraint(equalTo: personLabel.topAnchor),
@@ -187,11 +212,18 @@ private extension PersonView {
             dateView.centerXAnchor.constraint(equalTo: birthdayLabel.centerXAnchor),
             dateView.widthAnchor.constraint(equalToConstant: 140),
             dateView.heightAnchor.constraint(equalToConstant: 50),
+            
+            downContentImageView.topAnchor.constraint(equalTo: upContentImageView.bottomAnchor),
+            downContentImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            downContentImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            downContentImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            sendButton.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 30),
+            // sendButton.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 30),
+            sendButton.topAnchor.constraint(equalTo: downContentImageView.topAnchor, constant: 200),
             sendButton.centerXAnchor.constraint(equalTo: dateView.trailingAnchor),
             sendButton.widthAnchor.constraint(equalToConstant: 85),
-            sendButton.heightAnchor.constraint(equalToConstant: 80)
+            sendButton.heightAnchor.constraint(equalToConstant: 80),
+            sendButton.bottomAnchor.constraint(equalTo: downContentImageView.bottomAnchor, constant: -50)
         ])
     }
     
