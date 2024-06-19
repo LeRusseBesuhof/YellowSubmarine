@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol PersonPresenterProtocol : AnyObject {
     func loadView(controller: PersonViewControllerProtocol, view: PersonViewProtocol)
@@ -23,7 +24,7 @@ final class PersonPresenter {
 
 private extension PersonPresenter {
     
-    private func onSendDataTouched(_ imgData: Data) {
+    private func onSendDataTouched(_ image: UIImage) {
         guard let view = self.view else { print("no view"); return }
         let userData = view.getPersonData()
         
@@ -33,6 +34,7 @@ private extension PersonPresenter {
             gender: userData.gender
         )
         
+        guard let imgData = image.jpegData(compressionQuality: 0.1) else { print("compression went wrong"); return}
         personModel.uploadImage(imgData: imgData)
         
         router.nextController()
@@ -44,9 +46,9 @@ private extension PersonPresenter {
     }
     
     private func setHandlers() {
-        self.view?.sendData = { [weak self] imgData in
+        self.view?.sendData = { [weak self] image in
             guard let self = self else { return }
-            self.onSendDataTouched(imgData)
+            self.onSendDataTouched(image)
         }
         
         self.view?.chooseProfilePicture = { [weak self] in

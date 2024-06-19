@@ -1,20 +1,44 @@
-//
-//  ProfileView.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 19.06.2024.
-//
-
 import UIKit
 
-class ProfileView: UIView {
+protocol ProfileViewProtocol : UIImageView {
+    var currentUserData : ProfileFields! { get set }
+}
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+final class ProfileView: UIImageView {
+    
+    internal var currentUserData : ProfileFields!
+    
+    private lazy var nickLabel : UILabel = AppUI.createLabel(
+        withText: currentUserData.nick,
+        textColor: .white,
+        font: .getAmitaFont(fontSize: 28),
+        alignment: .center)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpView()
+        activateConstraints()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
+private extension ProfileView {
+    
+    private func setUpView() {
+        image = .profileBack
+        isUserInteractionEnabled = true
+    }
+    
+    private func activateConstraints() {
+        NSLayoutConstraint.activate([
+            
+        ])
+    }
+}
+
+extension ProfileView : ProfileViewProtocol {
+    
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ProfileViewControllerProtocol : AnyObject { }
+protocol ProfileViewControllerProtocol : ViewControllerProtocol { }
 
 final class ProfileViewController: UIViewController {
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3728AD1F2C2304D600606F0D /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD1E2C2304D600606F0D /* ProfileModel.swift */; };
+		3728AD212C23052A00606F0D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD202C23052A00606F0D /* ProfileView.swift */; };
+		3728AD232C230E5C00606F0D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD222C230E5C00606F0D /* ProfilePresenter.swift */; };
 		3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */; };
 		3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB22C1DE54100220EA3 /* PersonModel.swift */; };
 		3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB42C1DE62E00220EA3 /* PersonView.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3728AD1E2C2304D600606F0D /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		3728AD202C23052A00606F0D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3728AD222C230E5C00606F0D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3755FBB22C1DE54100220EA3 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		3755FBB42C1DE62E00220EA3 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -99,6 +105,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3728AD1A2C2304A700606F0D /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3728AD1B2C2304AF00606F0D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3728AD222C230E5C00606F0D /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3728AD1C2C2304B800606F0D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */,
+				3728AD202C23052A00606F0D /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3728AD1D2C2304C000606F0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3728AD1E2C2304D600606F0D /* ProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3755FBA92C1DE10800220EA3 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +311,10 @@
 		378CA0042C15E25B007FC2A1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */,
+				3728AD1D2C2304C000606F0D /* Model */,
+				3728AD1C2C2304B800606F0D /* View */,
+				3728AD1B2C2304AF00606F0D /* Presenter */,
+				3728AD1A2C2304A700606F0D /* Assembly */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -281,8 +322,8 @@
 		378CA0072C15F4A1007FC2A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				3755FBAD2C1DE4F500220EA3 /* Person */,
 				3755FBAC2C1DE4B500220EA3 /* Account */,
+				3755FBAD2C1DE4F500220EA3 /* Person */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -424,13 +465,16 @@
 				3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */,
 				3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */,
 				3787E7F82C1C88A3008938D7 /* UIViewController.ext.swift in Sources */,
+				3728AD232C230E5C00606F0D /* ProfilePresenter.swift in Sources */,
 				378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */,
 				378C9FFD2C14522D007FC2A1 /* UIView.ext.swift in Sources */,
 				3784DABD2C1B39B500BBD902 /* RegisterViewController.swift in Sources */,
+				3728AD212C23052A00606F0D /* ProfileView.swift in Sources */,
 				378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */,
 				3787E7FB2C1C8E46008938D7 /* AuthView.swift in Sources */,
 				3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */,
 				3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */,
+				3728AD1F2C2304D600606F0D /* ProfileModel.swift in Sources */,
 				378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */,
 				378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,

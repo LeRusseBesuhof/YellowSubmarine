@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PersonViewProtocol : UIImageView {
-    var sendData: ((Data) -> Void)? { get set }
+    var sendData: ((UIImage) -> Void)? { get set }
     var chooseProfilePicture: (() -> Void)? { get set }
     
     var imagePicker: UIImagePickerController { get set }
@@ -11,7 +11,7 @@ protocol PersonViewProtocol : UIImageView {
 
 final class PersonView: UIImageView {
     
-    var sendData: ((Data) -> Void)?
+    var sendData: ((UIImage) -> Void)?
     var chooseProfilePicture: (() -> Void)?
     
     private lazy var personLabel = AppUI.createLabel(
@@ -200,11 +200,8 @@ private extension PersonView {
     }
     
     @objc private func onSendDataTouched() {
-        guard let imageData = profileImageView.image?.jpegData(compressionQuality: 0.1) else {
-            print("no image or compression went wrong")
-            return
-        }
-        self.sendData?(imageData)
+        guard let image = profileImageView.image else { print("no image"); return}
+        self.sendData?(image)
     }
 }
 

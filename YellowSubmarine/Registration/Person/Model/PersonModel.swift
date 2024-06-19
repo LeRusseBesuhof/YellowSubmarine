@@ -61,7 +61,7 @@ final class PersonModel {
     private func addProfileImageLink(urlString: String) {
         guard let uid = getUserID() else { return }
         Firestore.firestore().collection("users").document(uid).setData([
-            "Profile image": urlString
+            "profile image": urlString
         ], merge: true)
     }
     
@@ -85,7 +85,6 @@ extension PersonModel : PersonModelProtocol {
                 self.addProfileImageLink(urlString: url.absoluteString)
             case .failure(let err):
                 print(err.localizedDescription)
-                // controller.createAlert
             }
         }
     }
