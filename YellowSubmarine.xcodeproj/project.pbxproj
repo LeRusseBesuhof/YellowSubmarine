@@ -48,6 +48,7 @@
 		378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0462C19704E007FC2A1 /* UIFont.ext.swift */; };
 		378CA04A2C1972A3007FC2A1 /* Amita-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */; };
 		378CA04B2C1972A3007FC2A1 /* Amita-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */; };
+		37DF40FD2C24467100F2C4F6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF40FC2C24467100F2C4F6 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		378CA0462C19704E007FC2A1 /* UIFont.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.ext.swift; sourceTree = "<group>"; };
 		378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Bold.ttf"; sourceTree = "<group>"; };
 		378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Regular.ttf"; sourceTree = "<group>"; };
+		37DF40FC2C24467100F2C4F6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 		378C9FD82C1444AB007FC2A1 /* YellowSubmarine */ = {
 			isa = PBXGroup;
 			children = (
+				37DF40FE2C2446C500F2C4F6 /* Singleton */,
 				3755FBA92C1DE10800220EA3 /* Protocol */,
 				3784DAB52C1B2FF300BBD902 /* Router.swift */,
 				378C9FF92C145202007FC2A1 /* AppUI.swift */,
@@ -375,6 +378,14 @@
 				378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		37DF40FE2C2446C500F2C4F6 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				37DF40FC2C24467100F2C4F6 /* UserData.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +495,7 @@
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
 				378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
+				37DF40FD2C24467100F2C4F6 /* UserData.swift in Sources */,
 				3755FBB72C1DF25900220EA3 /* PersonViewController.swift in Sources */,
 				3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */,
 				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,

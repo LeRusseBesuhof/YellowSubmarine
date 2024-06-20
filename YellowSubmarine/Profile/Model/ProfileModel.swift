@@ -3,7 +3,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol ProfileModelProtocol : AnyObject {
-    func loadUserData(completion: @escaping (Result<ProfileFields, Error>) -> Void)
+    func loadUserData(completion: @escaping (Result<Bool, Error>) -> Void)
 }
 
 final class ProfileModel {
@@ -19,9 +19,8 @@ extension ProfileModel : ProfileModelProtocol {
     
     // TODO: Make using completion handler!
     
-    func loadUserData(completion: @escaping (Result<ProfileFields, Error>) -> Void) {
-        var profileFields = ProfileFields()
-        
+    func loadUserData(completion: @escaping (Result<Bool, Error>) -> Void) {
+       
         guard let uid = getUserID() else {
             completion(.failure(DownloadError.noUID))
             print("no uid")
@@ -38,25 +37,22 @@ extension ProfileModel : ProfileModelProtocol {
                 completion(.failure(DownloadError.snapError))
                 return
             }
-            profileFields.nick = documents["nick"] as? String ?? ""
-            profileFields.email = documents["email"] as? String ?? ""
-            profileFields.image = documents["profile image"] as? String ?? ""
-            profileFields.name = documents["name"] as? String ?? ""
-            profileFields.bDay = documents["birthday"] as? Date ?? Date()
-            profileFields.gender = documents["gender"] as? String ?? ""
             
-            completion(.success(profileFields))
+            UserData.nick = documents["nick"] as? String ?? ""
+            UserData.email = documents["email"] as? String ?? ""
+            UserData.image = documents["profile image"] as? String ?? ""
+            UserData.name = documents["name"] as? String ?? ""
+            UserData.birthday = documents["birthday"] as? Date ?? Date()
+            UserData.gender = documents["gender"] as? String ?? ""
+            UserData.education = documents["education"] as? String ?? ""
+            UserData.profession = documents["profession"] as? String ?? ""
+            UserData.hobbies = documents["hobbies"] as? String ?? ""
+            UserData.film = documents["film"] as? String ?? ""
+            UserData.gift = documents["gift"] as? String ?? ""
+            
+            completion(.success(true))
         }
     }
-}
-
-struct ProfileFields {
-    var nick : String = ""
-    var email : String = ""
-    var image : String = ""
-    var name : String = ""
-    var bDay : Date = Date()
-    var gender : String = ""
 }
 
 enum DownloadError : String, Error {

@@ -26,9 +26,9 @@ extension AuthPresenter {
     
     func onLogTouched() {
         
-        guard let initialAuthUserData = self.view?.getAuthUserData() else { return }
+        self.view?.setAuthUserData()
         
-        self.authModel.signIn(userData: initialAuthUserData) { [weak self] result in
+        self.authModel.signIn { [weak self] result in
             guard let self = self else { return }
             
             switch result {

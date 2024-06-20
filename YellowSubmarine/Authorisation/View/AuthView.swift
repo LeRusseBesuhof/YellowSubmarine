@@ -4,7 +4,7 @@ protocol AuthViewProtocol : UIImageView {
     var goToProfileHandler: (() -> Void)? { get set }
     var goToRegHandler: (() -> Void)? { get set }
     
-    func getAuthUserData() -> AuthUserData
+    func setAuthUserData()
 }
 
 final class AuthView : UIImageView {
@@ -120,10 +120,8 @@ private extension AuthView {
 }
 
 extension AuthView : AuthViewProtocol {
-    func getAuthUserData() -> AuthUserData {
-        AuthUserData(
-            email: emailTextField.text ?? .simpleEmail,
-            password: passwordTextField.text ?? .simplePassword
-        )
+    func setAuthUserData() {
+        UserData.email = emailTextField.text ?? ""
+        UserData.password = passwordTextField.text ?? ""
     }
 }

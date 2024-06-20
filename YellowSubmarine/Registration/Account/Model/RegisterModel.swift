@@ -3,7 +3,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol RegisterModelProtocol : AnyObject {
-    func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void)
+    func userRegistration(completion: @escaping (Result<Bool, RegErrors>) -> Void)
     func setUserInitialDatabaseData(nick: String, email: String, uid: String)
 }
 
@@ -11,10 +11,10 @@ final class RegisterModel { }
 
 extension RegisterModel : RegisterModelProtocol {
     
-    func userRegistration(userRegData: UserRegData, completion: @escaping (Result<Bool, RegErrors>) -> Void) {
+    func userRegistration(completion: @escaping (Result<Bool, RegErrors>) -> Void) {
         
-        Auth.auth().createUser(withEmail: userRegData.email, password: userRegData.password) { [weak self] result, err in
-            
+        Auth.auth().createUser(withEmail: UserData.email, password: UserData.password) { [weak self] result, err in
+        
             guard let self = self else { return }
             
             guard err == nil else {
@@ -38,7 +38,7 @@ extension RegisterModel : RegisterModelProtocol {
                 
                 // user.sendEmailVerification()
                 
-                setUserInitialDatabaseData(nick: userRegData.name, email: userRegData.email, uid: user.uid)
+                setUserInitialDatabaseData(nick: UserData.nick, email: UserData.email, uid: user.uid)
                 
                 completion(.success(true))
             }
@@ -57,12 +57,6 @@ extension RegisterModel : RegisterModelProtocol {
             .document(uid)
             .setData(userData)
     }
-}
-
-struct UserRegData {
-    let name : String
-    let email : String
-    let password : String
 }
 
 enum RegErrors : String, Error {

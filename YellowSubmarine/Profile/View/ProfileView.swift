@@ -1,14 +1,10 @@
 import UIKit
 
 protocol ProfileViewProtocol : UIImageView {
-    var currentUserData : ProfileFields! { get set }
-    
     func updateData()
 }
 
 final class ProfileView: UIImageView {
-    
-    internal var currentUserData : ProfileFields!
     
     private lazy var nickLabel : UILabel = AppUI.createLabel(
         withText: "Wonderful girl",
@@ -94,9 +90,9 @@ private extension ProfileView {
 
 extension ProfileView : ProfileViewProtocol {
     func updateData() {
-        nickLabel.text = currentUserData.nick
-        profileImage.image = UIImage(named: currentUserData.image)
-        profileImage.contentMode = .scaleAspectFill
-        nameLabel.text = currentUserData.name
+//        nickLabel.text = currentUserData.nick
+//        profileImage.image = UIImage(named: currentUserData.image)
+//        profileImage.contentMode = .scaleAspectFill
+//        nameLabel.text = currentUserData.name
     }
 }

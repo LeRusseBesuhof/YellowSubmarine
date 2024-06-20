@@ -6,7 +6,7 @@ protocol PersonViewProtocol : UIScrollView {
     
     var imagePicker: UIImagePickerController { get set }
     
-    func getPersonData(completion: (Result<PersonData, Error>) -> Void)
+    func getPersonData(completion: (Result<Bool, FieldErrors>) -> Void)
 }
 
 final class PersonView: UIScrollView {
@@ -380,30 +380,29 @@ private extension PersonView {
 
 extension PersonView : PersonViewProtocol {
     
-    func getPersonData(completion: (Result<PersonData, Error>) -> Void) {
-        guard let name = nameTextField.text,
-                let edu = eduTextField.text,
-                let prof = professionTextField.text,
-                let hobbies = hobbiesTextField.text,
-                let film = filmTextField.text,
-                let gift = giftTextField.text 
-        else { 
+    func getPersonData(completion: (Result<Bool, FieldErrors>) -> Void) {
+        
+        guard let name = nameTextField.text, name != "",
+                let edu = eduTextField.text, edu != "",
+                let prof = professionTextField.text, prof != "",
+                let hobbies = hobbiesTextField.text, hobbies != "",
+                let film = filmTextField.text, film != "",
+                let gift = giftTextField.text, gift != ""
+        else {
             completion(.failure(FieldErrors.unfilledField))
             return
         }
         
-        let personData = PersonData(
-            name: name,
-            gender: genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex)!,
-            birthday: datePicker.date,
-            education: edu,
-            profession: prof,
-            hobbies: hobbies,
-            film: film,
-            gift: gift
-        )
+        UserData.name = name
+        UserData.education = edu
+        UserData.profession = prof
+        UserData.hobbies = hobbies
+        UserData.film = film
+        UserData.gift = gift
+        UserData.birthday = datePicker.date
+        UserData.gender = genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex)!
         
-        completion(.success(personData))
+        completion(.success(true))
     }
 }
 

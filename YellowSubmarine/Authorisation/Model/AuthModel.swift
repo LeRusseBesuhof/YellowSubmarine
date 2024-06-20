@@ -2,16 +2,16 @@ import Foundation
 import FirebaseAuth
 
 protocol AuthModelProtocol : AnyObject {
-    func signIn(userData : AuthUserData, completion: @escaping (Result<Bool, AuthErrors>) -> Void)
+    func signIn(completion: @escaping (Result<Bool, AuthErrors>) -> Void)
 }
 
 final class AuthModel { }
 
 extension AuthModel : AuthModelProtocol {
     
-    func signIn(userData : AuthUserData, completion: @escaping (Result<Bool, AuthErrors>) -> Void) {
+    func signIn(completion: @escaping (Result<Bool, AuthErrors>) -> Void) {
         
-        Auth.auth().signIn(withEmail: userData.email, password: userData.password) { result, err  in
+        Auth.auth().signIn(withEmail: UserData.email, password: UserData.password) { result, err  in
             
             guard err == nil else {
                 let authError = AuthErrorCode(_nsError: err! as NSError)
@@ -35,11 +35,6 @@ extension AuthModel : AuthModelProtocol {
             }
         }
     }
-}
-
-struct AuthUserData {
-    let email: String
-    let password: String
 }
 
 enum AuthErrors : String, Error {

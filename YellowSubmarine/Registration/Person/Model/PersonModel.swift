@@ -5,7 +5,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 protocol PersonModelProtocol : AnyObject {
-    func uploadPersonalUserData(_ personData: PersonData)
+    func uploadPersonalUserData()
     func uploadImage(imgData: Data)
 }
 
@@ -89,34 +89,23 @@ extension PersonModel : PersonModelProtocol {
         }
     }
     
-    func uploadPersonalUserData(_ personData: PersonData) {
+    func uploadPersonalUserData() {
         
         guard let uid = getUserID() else { return }
         
         let dataBase = Firestore.firestore()
         dataBase.collection("users").document(uid).setData([
-            "name": personData.name,
-            "gender": personData.gender,
-            "birthday": personData.birthday,
-            "education": personData.education,
-            "profession": personData.profession,
-            "hobbies": personData.hobbies,
-            "film": personData.film,
-            "gift": personData.gift
+            "name": UserData.name,
+            "gender": UserData.gender,
+            "birthday": UserData.birthday,
+            "education": UserData.education,
+            "profession": UserData.profession,
+            "hobbies": UserData.hobbies,
+            "film": UserData.film,
+            "gift": UserData.gift
         ], merge: true)
         
     }
-}
-
-struct PersonData {
-    var name : String
-    var gender : String
-    var birthday : Date
-    var education : String
-    var profession : String
-    var hobbies : String
-    var film : String
-    var gift : String
 }
 
 enum StorageErrors : String, Error {

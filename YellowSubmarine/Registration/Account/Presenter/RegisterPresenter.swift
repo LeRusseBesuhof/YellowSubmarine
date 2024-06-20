@@ -25,9 +25,9 @@ private extension RegisterPresenter {
     
     private func onRegTouched() {
         
-        guard let initialUserRegData = self.view?.getUserRegData() else { return }
+        self.view?.setUserRegData()
         
-        self.regModel.userRegistration(userRegData: initialUserRegData) { [weak self] result in
+        self.regModel.userRegistration { [weak self] result in
             guard let self = self else { return }
             
             switch result {

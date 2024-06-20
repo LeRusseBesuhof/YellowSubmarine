@@ -29,8 +29,10 @@ private extension ProfilePresenter {
             guard let self = self else { return }
             
             switch result {
-            case .success(let userData):
-                print("data")
+            case .success(let success):
+                if success {
+                    print(UserData.nick, UserData.gift)
+                }
                 // view?.currentUserData = userData
                 // view?.updateData()
             case .failure(let err):

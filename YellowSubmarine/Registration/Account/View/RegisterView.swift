@@ -4,7 +4,7 @@ protocol RegisterViewProtocol : UIImageView {
     var goToAuthHandler: (() -> Void)? { get set }
     var regAndGoToAuthHandler: (() -> Void)? { get set }
     
-    func getUserRegData() -> UserRegData
+    func setUserRegData()
 }
 
 final class RegisterView: UIImageView {
@@ -133,12 +133,10 @@ private extension RegisterView {
 }
 
 extension RegisterView : RegisterViewProtocol {
-    func getUserRegData() -> UserRegData {
-        UserRegData(
-            name: nicknameTextField.text ?? .simpleNickname,
-            email: emailTextField.text ?? .simpleEmail,
-            password: passwordTextField.text ?? .simplePassword
-        )
+    func setUserRegData() {
+        UserData.nick = nicknameTextField.text ?? ""
+        UserData.email = emailTextField.text ?? ""
+        UserData.password = passwordTextField.text ?? ""
     }
     
 }
