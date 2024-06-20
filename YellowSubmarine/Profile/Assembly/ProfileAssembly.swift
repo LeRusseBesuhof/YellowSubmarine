@@ -9,7 +9,7 @@ final class ProfileAssembly {
         
         let presenter = ProfilePresenter(dependencies: .init(model: model, router: router))
         
-        let controller = ProfileViewController(dependencies: .init(presenter: presenter))
+        let controller = UINavigationController(rootViewController: ProfileViewController(dependencies: .init(presenter: presenter)))
         
         router.setRootViewController(controller: controller)
         

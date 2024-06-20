@@ -49,6 +49,8 @@
 		378CA04A2C1972A3007FC2A1 /* Amita-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */; };
 		378CA04B2C1972A3007FC2A1 /* Amita-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */; };
 		37DF40FD2C24467100F2C4F6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF40FC2C24467100F2C4F6 /* UserData.swift */; };
+		37DF41002C2467D900F2C4F6 /* ProfileTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */; };
+		37DF41022C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,8 @@
 		378CA0482C1972A3007FC2A1 /* Amita-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Bold.ttf"; sourceTree = "<group>"; };
 		378CA0492C1972A3007FC2A1 /* Amita-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amita-Regular.ttf"; sourceTree = "<group>"; };
 		37DF40FC2C24467100F2C4F6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableModel.swift; sourceTree = "<group>"; };
+		37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIListContentConfiguration.ext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3728AD1E2C2304D600606F0D /* ProfileModel.swift */,
+				37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 		378C9FD82C1444AB007FC2A1 /* YellowSubmarine */ = {
 			isa = PBXGroup;
 			children = (
+				378CA03E2C196736007FC2A1 /* LoginModel */,
 				37DF40FE2C2446C500F2C4F6 /* Singleton */,
 				3755FBA92C1DE10800220EA3 /* Protocol */,
 				3784DAB52C1B2FF300BBD902 /* Router.swift */,
@@ -283,7 +289,6 @@
 				378CA00B2C188184007FC2A1 /* Authorisation */,
 				378CA0042C15E25B007FC2A1 /* Profile */,
 				378CA0412C196F56007FC2A1 /* Fonts */,
-				378CA03E2C196736007FC2A1 /* LoginModel */,
 				378C9FFB2C14521D007FC2A1 /* Extension */,
 				378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */,
 				378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */,
@@ -310,6 +315,7 @@
 				378CA0002C15C6AF007FC2A1 /* String.ext.swift */,
 				378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */,
 				3787E7F72C1C88A3008938D7 /* UIViewController.ext.swift */,
+				37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				378C9FFD2C14522D007FC2A1 /* UIView.ext.swift in Sources */,
 				3784DABD2C1B39B500BBD902 /* RegisterViewController.swift in Sources */,
 				3728AD212C23052A00606F0D /* ProfileView.swift in Sources */,
+				37DF41002C2467D900F2C4F6 /* ProfileTableModel.swift in Sources */,
 				378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */,
 				3787E7FB2C1C8E46008938D7 /* AuthView.swift in Sources */,
 				3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */,
@@ -503,6 +510,7 @@
 				3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */,
 				3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */,
 				3787E7FF2C1C8F61008938D7 /* AuthAssembly.swift in Sources */,
+				37DF41022C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

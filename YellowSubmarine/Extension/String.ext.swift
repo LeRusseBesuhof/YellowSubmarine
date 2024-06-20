@@ -9,9 +9,6 @@ extension String {
         return underlineAttributedString
     }
     
-    // MARK: Reg & Auth default values
-    static let simpleNickname = "Simple Nickname"
-    static let simpleEmail = "Simple Email"
-    static let simplePassword = "SimplePassword"
-    static let simpleGender = "Refrigerator"
+    static let male = "\u{FE0F}"
+    static let female = "\u{2642}"
 }

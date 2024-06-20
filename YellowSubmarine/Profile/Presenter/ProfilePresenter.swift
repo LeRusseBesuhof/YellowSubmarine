@@ -31,10 +31,8 @@ private extension ProfilePresenter {
             switch result {
             case .success(let success):
                 if success {
-                    print(UserData.nick, UserData.gift)
+                    view?.updateData()
                 }
-                // view?.currentUserData = userData
-                // view?.updateData()
             case .failure(let err):
                 controller?.createAlert(errorMessage: err.localizedDescription)
             }

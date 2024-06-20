@@ -12,7 +12,7 @@ final class UserData {
     static var image : String = ""
     static var name : String = ""
     static var gender : String = ""
-    static var birthday : Date = Date()
+    static var birthday : String = ""
     static var education : String = ""
     static var profession : String = ""
     static var hobbies : String = ""

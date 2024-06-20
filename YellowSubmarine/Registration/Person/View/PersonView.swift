@@ -399,7 +399,12 @@ extension PersonView : PersonViewProtocol {
         UserData.hobbies = hobbies
         UserData.film = film
         UserData.gift = gift
-        UserData.birthday = datePicker.date
+        
+        let bDay = datePicker.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        UserData.birthday = dateFormatter.string(from: bDay)
+        
         UserData.gender = genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex)!
         
         completion(.success(true))

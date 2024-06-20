@@ -17,8 +17,6 @@ final class ProfileModel {
 
 extension ProfileModel : ProfileModelProtocol {
     
-    // TODO: Make using completion handler!
-    
     func loadUserData(completion: @escaping (Result<Bool, Error>) -> Void) {
        
         guard let uid = getUserID() else {
@@ -42,7 +40,7 @@ extension ProfileModel : ProfileModelProtocol {
             UserData.email = documents["email"] as? String ?? ""
             UserData.image = documents["profile image"] as? String ?? ""
             UserData.name = documents["name"] as? String ?? ""
-            UserData.birthday = documents["birthday"] as? Date ?? Date()
+            UserData.birthday = documents["birthday"] as? String ?? ""
             UserData.gender = documents["gender"] as? String ?? ""
             UserData.education = documents["education"] as? String ?? ""
             UserData.profession = documents["profession"] as? String ?? ""
