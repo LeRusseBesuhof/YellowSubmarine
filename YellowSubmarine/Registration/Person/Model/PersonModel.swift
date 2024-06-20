@@ -5,7 +5,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 protocol PersonModelProtocol : AnyObject {
-    func setPersonalUserData(name: String, birthday: Date, gender: String)
+    func uploadPersonalUserData(_ personData: PersonData)
     func uploadImage(imgData: Data)
 }
 
@@ -89,24 +89,34 @@ extension PersonModel : PersonModelProtocol {
         }
     }
     
-    func setPersonalUserData(name: String, birthday: Date, gender: String) {
+    func uploadPersonalUserData(_ personData: PersonData) {
         
         guard let uid = getUserID() else { return }
         
         let dataBase = Firestore.firestore()
         dataBase.collection("users").document(uid).setData([
-            "name": name,
-            "birthday": birthday,
-            "gender": gender
+            "name": personData.name,
+            "gender": personData.gender,
+            "birthday": personData.birthday,
+            "education": personData.education,
+            "profession": personData.profession,
+            "hobbies": personData.hobbies,
+            "film": personData.film,
+            "gift": personData.gift
         ], merge: true)
         
     }
 }
 
 struct PersonData {
-    let name : String
-    let gender : String
-    let birthday : Date
+    var name : String
+    var gender : String
+    var birthday : Date
+    var education : String
+    var profession : String
+    var hobbies : String
+    var film : String
+    var gift : String
 }
 
 enum StorageErrors : String, Error {
@@ -114,4 +124,8 @@ enum StorageErrors : String, Error {
     case noObject = "Object not Found!"
     case unauthentificated = "The user is not authorised!\nPlease log in and try again"
     case anyError = "There's an error"
+}
+
+enum FieldErrors : String, Error {
+    case unfilledField = "Please fill in all fields!"
 }

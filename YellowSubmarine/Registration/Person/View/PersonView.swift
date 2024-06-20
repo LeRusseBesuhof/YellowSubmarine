@@ -6,10 +6,12 @@ protocol PersonViewProtocol : UIScrollView {
     
     var imagePicker: UIImagePickerController { get set }
     
-    func getPersonData() -> PersonData
+    func getPersonData(completion: (Result<PersonData, Error>) -> Void)
 }
 
 final class PersonView: UIScrollView {
+    
+    // TODO: ADD SOME FIELDS LIKE JOB, EDUCATION, HOBBIES
     
     var sendData: ((UIImage) -> Void)?
     var chooseProfilePicture: (() -> Void)?
@@ -18,8 +20,6 @@ final class PersonView: UIScrollView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
-    
-    // TODO: make doubled imageView
     
     private lazy var upContentImageView : UIImageView = {
         .config(view: UIImageView()) {
@@ -72,7 +72,8 @@ final class PersonView: UIScrollView {
         font: .getMontserratFont(fontSize: 16),
         textColor: .appBrown,
         leftViewPic: "highlighter",
-        cornerRadius: 20)
+        cornerRadius: 20
+    )
     
     private lazy var genderLabel : UILabel = AppUI.createLabel(
         withText: "Choose your gender:",
@@ -125,6 +126,98 @@ final class PersonView: UIScrollView {
         }
     }()
     
+    private lazy var educationLabel : UILabel = AppUI.createLabel(
+        withText: "Your education:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var eduTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "graduationcap",
+        cornerRadius: 20
+    )
+    
+    private lazy var professionLabel : UILabel = AppUI.createLabel(
+        withText: "Your profession:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var professionTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "briefcase",
+        cornerRadius: 20
+    )
+    
+    private lazy var hobbiesLabel : UILabel = AppUI.createLabel(
+        withText: "Your hobbies:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var hobbiesTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "gamecontroller",
+        cornerRadius: 20
+    )
+    
+    private lazy var filmLabel : UILabel = AppUI.createLabel(
+        withText: "Your favourite film:",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .left
+    )
+    
+    private lazy var filmTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "film",
+        cornerRadius: 20
+    )
+    
+    private lazy var giftLabel : UILabel = AppUI.createLabel(
+        withText: "What do you want to get for your birthday?",
+        textColor: .appOrange,
+        font: .getMeriendaFont(fontSize: 24),
+        alignment: .center
+    )
+    
+    private lazy var giftTextField = AppUI.createTextField(
+        withPlaceholder: "",
+        placeholderColor: .appPlaceholder,
+        bgColor: .appLightYellow,
+        font: .getMontserratFont(fontSize: 16),
+        textColor: .appBrown,
+        leftViewPic: "gift",
+        cornerRadius: 20
+    )
+    
+    private lazy var attentionLabel : UILabel = AppUI.createLabel(
+        withText: "* Please fill in all fields to register",
+        textColor: .appPlaceholder,
+        font: .getMontserratFont(fontSize: 18),
+        alignment: .left
+    )
+    
     private lazy var sendButton : UIButton = {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
@@ -159,10 +252,13 @@ private extension PersonView {
     }
     
     private func setUpView() {
+        contentInsetAdjustmentBehavior = .never
         profileImageView.addGestureRecognizer(tapGest)
         
-        upContentImageView.addSubviews(personLabel, profileImageView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView)
-        downContentImageView.addSubviews(sendButton)
+        upContentImageView.addSubviews(personLabel, profileImageView, nameLabel, nameTextField, genderLabel, genderSegmentControl, birthdayLabel, dateView, educationLabel, eduTextField)
+        
+        downContentImageView.addSubviews(professionLabel, professionTextField, hobbiesLabel, hobbiesTextField, filmLabel, filmTextField, giftLabel, giftTextField, attentionLabel, sendButton)
+        
         contentView.addSubviews(upContentImageView, downContentImageView)
         addSubview(contentView)
     }
@@ -213,17 +309,62 @@ private extension PersonView {
             dateView.widthAnchor.constraint(equalToConstant: 140),
             dateView.heightAnchor.constraint(equalToConstant: 50),
             
+            educationLabel.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 40),
+            educationLabel.leadingAnchor.constraint(equalTo: dateView.leadingAnchor, constant: 20),
+            
+            eduTextField.topAnchor.constraint(equalTo: educationLabel.bottomAnchor, constant: 20),
+            eduTextField.leadingAnchor.constraint(equalTo: educationLabel.leadingAnchor, constant: 10),
+            eduTextField.widthAnchor.constraint(equalToConstant: 200),
+            eduTextField.heightAnchor.constraint(equalToConstant: 50),
+            
             downContentImageView.topAnchor.constraint(equalTo: upContentImageView.bottomAnchor),
             downContentImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             downContentImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            downContentImageView.heightAnchor.constraint(equalTo: upContentImageView.heightAnchor),
             downContentImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            // sendButton.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: 30),
-            sendButton.topAnchor.constraint(equalTo: downContentImageView.topAnchor, constant: 200),
-            sendButton.centerXAnchor.constraint(equalTo: dateView.trailingAnchor),
-            sendButton.widthAnchor.constraint(equalToConstant: 85),
-            sendButton.heightAnchor.constraint(equalToConstant: 80),
-            sendButton.bottomAnchor.constraint(equalTo: downContentImageView.bottomAnchor, constant: -50)
+            professionLabel.topAnchor.constraint(equalTo: downContentImageView.topAnchor),
+            professionLabel.leadingAnchor.constraint(equalTo: eduTextField.leadingAnchor, constant: 10),
+            
+            professionTextField.topAnchor.constraint(equalTo: professionLabel.bottomAnchor, constant: 20),
+            professionTextField.leadingAnchor.constraint(equalTo: eduTextField.leadingAnchor),
+            professionTextField.widthAnchor.constraint(equalToConstant: 200),
+            professionTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            hobbiesLabel.topAnchor.constraint(equalTo: professionTextField.bottomAnchor, constant: 40),
+            hobbiesLabel.leadingAnchor.constraint(equalTo: professionTextField.leadingAnchor, constant: -30),
+            
+            hobbiesTextField.topAnchor.constraint(equalTo: hobbiesLabel.bottomAnchor, constant: 20),
+            hobbiesTextField.leadingAnchor.constraint(equalTo: hobbiesLabel.leadingAnchor, constant: -30),
+            hobbiesTextField.widthAnchor.constraint(equalToConstant: 240),
+            hobbiesTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            filmLabel.topAnchor.constraint(equalTo: hobbiesTextField.bottomAnchor, constant: 40),
+            filmLabel.leadingAnchor.constraint(equalTo: hobbiesTextField.leadingAnchor),
+            
+            filmTextField.topAnchor.constraint(equalTo: filmLabel.bottomAnchor, constant: 20),
+            filmTextField.leadingAnchor.constraint(equalTo: hobbiesTextField.leadingAnchor, constant: -30),
+            filmTextField.widthAnchor.constraint(equalToConstant: 240),
+            filmTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            giftLabel.topAnchor.constraint(equalTo: filmTextField.bottomAnchor, constant: 40),
+            giftLabel.leadingAnchor.constraint(equalTo: filmTextField.leadingAnchor, constant: -30),
+            giftLabel.widthAnchor.constraint(equalToConstant: 300),
+            
+            giftTextField.topAnchor.constraint(equalTo: giftLabel.bottomAnchor, constant: 30),
+            giftTextField.leadingAnchor.constraint(equalTo: giftLabel.leadingAnchor, constant: -20),
+            giftTextField.widthAnchor.constraint(equalToConstant: 250),
+            giftTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            attentionLabel.topAnchor.constraint(equalTo: giftTextField.bottomAnchor, constant: 30),
+            attentionLabel.leadingAnchor.constraint(equalTo: giftTextField.leadingAnchor),
+            attentionLabel.widthAnchor.constraint(equalToConstant: 250),
+            
+            sendButton.topAnchor.constraint(equalTo: downContentImageView.bottomAnchor, constant: -150),
+            sendButton.centerXAnchor.constraint(equalTo: downContentImageView.centerXAnchor, constant: -60),
+            sendButton.widthAnchor.constraint(equalToConstant: 95),
+            sendButton.heightAnchor.constraint(equalToConstant: 90),
+        
         ])
     }
     
@@ -239,11 +380,30 @@ private extension PersonView {
 
 extension PersonView : PersonViewProtocol {
     
-    func getPersonData() -> PersonData {
-        PersonData(
-            name: nameTextField.text ?? .simpleNickname,
-            gender: genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex) ?? .simpleGender,
-            birthday: datePicker.date)
+    func getPersonData(completion: (Result<PersonData, Error>) -> Void) {
+        guard let name = nameTextField.text,
+                let edu = eduTextField.text,
+                let prof = professionTextField.text,
+                let hobbies = hobbiesTextField.text,
+                let film = filmTextField.text,
+                let gift = giftTextField.text 
+        else { 
+            completion(.failure(FieldErrors.unfilledField))
+            return
+        }
+        
+        let personData = PersonData(
+            name: name,
+            gender: genderSegmentControl.titleForSegment(at: genderSegmentControl.selectedSegmentIndex)!,
+            birthday: datePicker.date,
+            education: edu,
+            profession: prof,
+            hobbies: hobbies,
+            film: film,
+            gift: gift
+        )
+        
+        completion(.success(personData))
     }
 }
 

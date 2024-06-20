@@ -26,13 +26,14 @@ private extension PersonPresenter {
     
     private func onSendDataTouched(_ image: UIImage) {
         guard let view = self.view else { print("no view"); return }
-        let userData = view.getPersonData()
-        
-        personModel.setPersonalUserData(
-            name: userData.name,
-            birthday: userData.birthday,
-            gender: userData.gender
-        )
+        view.getPersonData { result in
+            switch result {
+            case .success(let data):
+                personModel.uploadPersonalUserData(data)
+            case .failure(let err):
+                controller?.createAlert(errorMessage: err.localizedDescription)
+            }
+        }
         
         guard let imgData = image.jpegData(compressionQuality: 0.1) else { print("compression went wrong"); return}
         personModel.uploadImage(imgData: imgData)
