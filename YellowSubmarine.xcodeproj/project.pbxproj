@@ -52,6 +52,11 @@
 		37DF41002C2467D900F2C4F6 /* ProfileTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */; };
 		37DF41022C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */; };
 		37DF41052C25B95400F2C4F6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 37DF41042C25B95400F2C4F6 /* SDWebImage */; };
+		37DF410D2C25BEB100F2C4F6 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF410C2C25BEB100F2C4F6 /* SettingsModel.swift */; };
+		37DF410F2C25BF1B00F2C4F6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF410E2C25BF1B00F2C4F6 /* SettingsView.swift */; };
+		37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41102C25BF6800F2C4F6 /* SettingsViewController.swift */; };
+		37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */; };
+		37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +103,11 @@
 		37DF40FC2C24467100F2C4F6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableModel.swift; sourceTree = "<group>"; };
 		37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIListContentConfiguration.ext.swift; sourceTree = "<group>"; };
+		37DF410C2C25BEB100F2C4F6 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		37DF410E2C25BF1B00F2C4F6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		37DF41102C25BF6800F2C4F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,10 +335,8 @@
 		378CA0042C15E25B007FC2A1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				3728AD1D2C2304C000606F0D /* Model */,
-				3728AD1C2C2304B800606F0D /* View */,
-				3728AD1B2C2304AF00606F0D /* Presenter */,
-				3728AD1A2C2304A700606F0D /* Assembly */,
+				37DF41072C25BE6400F2C4F6 /* Settings */,
+				37DF41062C25BE3100F2C4F6 /* Main */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -394,6 +402,61 @@
 				37DF40FC2C24467100F2C4F6 /* UserData.swift */,
 			);
 			path = Singleton;
+			sourceTree = "<group>";
+		};
+		37DF41062C25BE3100F2C4F6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3728AD1D2C2304C000606F0D /* Model */,
+				3728AD1C2C2304B800606F0D /* View */,
+				3728AD1B2C2304AF00606F0D /* Presenter */,
+				3728AD1A2C2304A700606F0D /* Assembly */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		37DF41072C25BE6400F2C4F6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				37DF410B2C25BE9C00F2C4F6 /* Model */,
+				37DF410A2C25BE9600F2C4F6 /* View */,
+				37DF41092C25BE8C00F2C4F6 /* Presenter */,
+				37DF41082C25BE8500F2C4F6 /* Assembly */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		37DF41082C25BE8500F2C4F6 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		37DF41092C25BE8C00F2C4F6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		37DF410A2C25BE9600F2C4F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37DF410E2C25BF1B00F2C4F6 /* SettingsView.swift */,
+				37DF41102C25BF6800F2C4F6 /* SettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37DF410B2C25BE9C00F2C4F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37DF410C2C25BEB100F2C4F6 /* SettingsModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,11 +565,16 @@
 				3728AD1F2C2304D600606F0D /* ProfileModel.swift in Sources */,
 				378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */,
 				378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */,
+				37DF410F2C25BF1B00F2C4F6 /* SettingsView.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
 				378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */,
+				37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
+				37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */,
+				37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */,
 				37DF40FD2C24467100F2C4F6 /* UserData.swift in Sources */,
+				37DF410D2C25BEB100F2C4F6 /* SettingsModel.swift in Sources */,
 				3755FBB72C1DF25900220EA3 /* PersonViewController.swift in Sources */,
 				3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */,
 				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,
