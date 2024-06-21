@@ -1,12 +1,12 @@
 import UIKit
 
 protocol ProfileViewProtocol : UIImageView {
+    var profileImage : UIImageView { get set }
+    
     func updateData()
 }
 
 final class ProfileView: UIImageView {
-    
-    //TODO: make settings & notes
     
     private let settingsButton : UIBarButtonItem = {
         $0.tintColor = .white
@@ -19,7 +19,7 @@ final class ProfileView: UIImageView {
         font: .getAmitaFont(fontType: .bold, fontSize: 40),
         alignment: .center)
     
-    private lazy var profileImage : UIImageView = AppUI.createImageView(
+    internal lazy var profileImage : UIImageView = AppUI.createImageView(
         image: .travelBlogger,
         tintColor: .appBrown,
         cornerRadius: 80,
@@ -105,10 +105,10 @@ private extension ProfileView {
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            nickLabel.topAnchor.constraint(equalTo: topAnchor, constant: 90),
+            nickLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             nickLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            canvasView.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 100),
+            canvasView.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 90),
             canvasView.leadingAnchor.constraint(equalTo: leadingAnchor),
             canvasView.trailingAnchor.constraint(equalTo: trailingAnchor),
             canvasView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -130,10 +130,10 @@ private extension ProfileView {
             emailLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             emailLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
     
@@ -144,13 +144,14 @@ private extension ProfileView {
 
 extension ProfileView : ProfileViewProtocol {
     func updateData() {
-        nickLabel.text = UserData.nick
-        profileImage.image = UIImage(named: UserData.image)
         profileImage.contentMode = .scaleAspectFill
+        
+        nickLabel.text = UserData.nick
         nameLabel.text = UserData.name
         birthdayLabel.text = UserData.birthday
         genderLabel.text = UserData.gender == "male" ? .male : .female
         emailLabel.text = UserData.email
+        
         mockData = ProfileTableModel.getMockData()
         tableView.reloadData()
     }
@@ -169,7 +170,14 @@ extension ProfileView : UITableViewDataSource {
         var config = cell.defaultContentConfiguration()
         cell.accessoryType = .none
         cell.selectionStyle = .none
-        cell.contentConfiguration = config.setConfig(text: item.field, font: .getMontserratFont(fontSize: 20), image: item.image)
+        cell.contentConfiguration = config.setConfig(
+            text: item.field,
+            font: .getMontserratFont(fontSize: 16),
+            image: item.image,
+            sndText: item.category,
+            sndTextColor: .appSecondaryText,
+            sndTextFont: .getMontserratFont(fontSize: 12)
+        )
         
         return cell
     }
@@ -178,6 +186,6 @@ extension ProfileView : UITableViewDataSource {
 
 extension ProfileView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        64
+        60
     }
 }

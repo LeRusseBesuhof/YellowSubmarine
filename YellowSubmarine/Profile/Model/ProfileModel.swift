@@ -38,7 +38,6 @@ extension ProfileModel : ProfileModelProtocol {
             
             UserData.nick = documents["nick"] as? String ?? ""
             UserData.email = documents["email"] as? String ?? ""
-            UserData.image = documents["profile image"] as? String ?? ""
             UserData.name = documents["name"] as? String ?? ""
             UserData.birthday = documents["birthday"] as? String ?? ""
             UserData.gender = documents["gender"] as? String ?? ""
@@ -48,7 +47,10 @@ extension ProfileModel : ProfileModelProtocol {
             UserData.film = documents["film"] as? String ?? ""
             UserData.gift = documents["gift"] as? String ?? ""
             
-            completion(.success(true))
+            if let urlString = documents["profile image"] as? String, let url = URL(string: urlString) {
+                UserData.image = url
+                completion(.success(true))
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ final class UserData {
     static var nick : String = ""
     static var email : String = ""
     static var password : String = ""
-    static var image : String = ""
+    static var image : URL?
     static var name : String = ""
     static var gender : String = ""
     static var birthday : String = ""

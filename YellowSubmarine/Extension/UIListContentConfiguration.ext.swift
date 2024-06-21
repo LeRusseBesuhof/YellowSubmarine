@@ -2,13 +2,18 @@ import Foundation
 import UIKit
 
 extension UIListContentConfiguration {
-    mutating func setConfig(text: String, font: UIFont, image: String) -> UIListContentConfiguration {
+    mutating func setConfig(text: String, font: UIFont, image: String, sndText: String, sndTextColor: UIColor, sndTextFont: UIFont) -> UIListContentConfiguration {
         self.text = text
-        self.textProperties.font = font
+        textProperties.font = font
+        textProperties.numberOfLines = .zero
+        
+        self.secondaryText = sndText
+        secondaryTextProperties.color = sndTextColor
+        secondaryTextProperties.font = sndTextFont
         
         self.image = UIImage(named: image)
-        self.imageProperties.maximumSize = CGSize(width: 40, height: 40)
-        self.imageToTextPadding = 20
+        imageProperties.maximumSize = CGSize(width: 36, height: 36)
+        imageToTextPadding = 20
         
         return self
     }

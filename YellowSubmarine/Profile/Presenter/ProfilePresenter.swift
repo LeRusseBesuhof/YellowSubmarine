@@ -1,4 +1,5 @@
 import Foundation
+import SDWebImage
 
 protocol ProfilePresenterProtocol : AnyObject {
     func loadView(controller: ProfileViewControllerProtocol, view: ProfileViewProtocol)
@@ -31,6 +32,7 @@ private extension ProfilePresenter {
             switch result {
             case .success(let success):
                 if success {
+                    view?.profileImage.sd_setImage(with: UserData.image)
                     view?.updateData()
                 }
             case .failure(let err):
