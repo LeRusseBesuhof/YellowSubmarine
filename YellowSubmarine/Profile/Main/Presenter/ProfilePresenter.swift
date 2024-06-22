@@ -3,6 +3,7 @@ import SDWebImage
 
 protocol ProfilePresenterProtocol : AnyObject {
     func loadView(controller: ProfileViewControllerProtocol, view: ProfileViewProtocol)
+    func updateData()
 }
 
 final class ProfilePresenter {
@@ -36,7 +37,7 @@ private extension ProfilePresenter {
                     view?.updateData()
                 }
             case .failure(let err):
-                controller?.createAlert(errorMessage: err.localizedDescription)
+                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel")
             }
         }
     }
@@ -48,6 +49,10 @@ extension ProfilePresenter : ProfilePresenterProtocol {
         self.controller = controller
         self.view = view
         
+        self.setHandlers()
+    }
+    
+    func updateData() {
         self.setHandlers()
     }
 }

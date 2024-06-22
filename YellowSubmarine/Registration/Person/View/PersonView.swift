@@ -178,7 +178,7 @@ final class PersonView: UIScrollView {
     )
     
     private lazy var filmLabel : UILabel = AppUI.createLabel(
-        withText: "Your favourite film:",
+        withText: "Your favourite films:",
         textColor: .appOrange,
         font: .getMeriendaFont(fontSize: 24),
         alignment: .left
@@ -195,7 +195,7 @@ final class PersonView: UIScrollView {
     )
     
     private lazy var giftLabel : UILabel = AppUI.createLabel(
-        withText: "What do you want to get for your birthday?",
+        withText: "Your wish list",
         textColor: .appOrange,
         font: .getMeriendaFont(fontSize: 24),
         alignment: .center

@@ -3,15 +3,15 @@ import UIKit
 
 extension UIViewController {
     
-    func createAlert(errorMessage : String) {
+    func createAlert(message : String, buttonText: String = "Cancel") {
         
         let alert = UIAlertController(
             title: nil,
-            message: errorMessage,
+            message: message,
             preferredStyle: .alert
         )
         
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelButton = UIAlertAction(title: buttonText, style: .cancel)
         
         alert.addAction(cancelButton)
         

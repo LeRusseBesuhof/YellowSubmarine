@@ -41,7 +41,6 @@
 		378CA0032C15E02C007FC2A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */; };
 		378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA0082C15F4C3007FC2A1 /* RegisterModel.swift */; };
 		378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA00D2C1882AB007FC2A1 /* AuthModel.swift */; };
-		378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */; };
 		378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CA03F2C19674B007FC2A1 /* LoginModel.swift */; };
 		378CA0432C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0422C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf */; };
 		378CA0452C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378CA0442C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf */; };
@@ -57,6 +56,7 @@
 		37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41102C25BF6800F2C4F6 /* SettingsViewController.swift */; };
 		37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */; };
 		37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */; };
+		37DF41172C26B65200F2C4F6 /* Notification.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41162C26B65200F2C4F6 /* Notification.ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,6 @@
 		378CA0022C15E02C007FC2A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		378CA0082C15F4C3007FC2A1 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		378CA00D2C1882AB007FC2A1 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
-		378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.ext.swift; sourceTree = "<group>"; };
 		378CA03F2C19674B007FC2A1 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		378CA0422C196F89007FC2A1 /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		378CA0442C196F93007FC2A1 /* Merienda-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merienda-VariableFont_wght.ttf"; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		37DF41102C25BF6800F2C4F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
+		37DF41162C26B65200F2C4F6 /* Notification.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.ext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,9 +325,9 @@
 				378C9FFC2C14522D007FC2A1 /* UIView.ext.swift */,
 				378CA0462C19704E007FC2A1 /* UIFont.ext.swift */,
 				378CA0002C15C6AF007FC2A1 /* String.ext.swift */,
-				378CA03C2C1964B8007FC2A1 /* Notification.ext.swift */,
 				3787E7F72C1C88A3008938D7 /* UIViewController.ext.swift */,
 				37DF41012C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift */,
+				37DF41162C26B65200F2C4F6 /* Notification.ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -335,8 +335,8 @@
 		378CA0042C15E25B007FC2A1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				37DF41072C25BE6400F2C4F6 /* Settings */,
 				37DF41062C25BE3100F2C4F6 /* Main */,
+				37DF41072C25BE6400F2C4F6 /* Settings */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -547,6 +547,7 @@
 				378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */,
 				3787E8012C1C92CA008938D7 /* AuthPresenter.swift in Sources */,
 				3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */,
+				37DF41172C26B65200F2C4F6 /* Notification.ext.swift in Sources */,
 				3755FBBB2C1DF7FB00220EA3 /* PersonAssembly.swift in Sources */,
 				378C9FFA2C145202007FC2A1 /* AppUI.swift in Sources */,
 				3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */,
@@ -568,7 +569,6 @@
 				37DF410F2C25BF1B00F2C4F6 /* SettingsView.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
-				378CA03D2C1964B8007FC2A1 /* Notification.ext.swift in Sources */,
 				37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
 				37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */,

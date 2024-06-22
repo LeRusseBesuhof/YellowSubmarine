@@ -11,8 +11,8 @@ struct ProfileTableModel : Identifiable {
             ProfileTableModel(image: "education", field: UserData.education, category: "Education"),
             ProfileTableModel(image: "profession", field: UserData.profession, category: "Profession"),
             ProfileTableModel(image: "hobby", field: UserData.hobbies, category: "Hobbies"),
-            ProfileTableModel(image: "film", field: UserData.film, category: "Favourite film"),
-            ProfileTableModel(image: "gift", field: UserData.gift, category: "Nice gift for me :)"),
+            ProfileTableModel(image: "film", field: UserData.film, category: "Favourite films"),
+            ProfileTableModel(image: "gift", field: UserData.gift, category: "My wish list"),
         ]
     }
 }

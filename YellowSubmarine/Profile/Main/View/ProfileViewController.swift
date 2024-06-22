@@ -60,7 +60,7 @@ private extension ProfileViewController {
     }
     
     @objc private func onSettingsTouched() {
-        let settingsController = SettingsAssembly.build()
+        let settingsController = SettingsAssembly.build(profilePresenter)
         navigationController?.pushViewController(settingsController, animated: true)
     }
     

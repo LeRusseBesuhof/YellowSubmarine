@@ -76,7 +76,6 @@ final class ProfileView: UIImageView {
     private lazy var tableView : UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
-        $0.delegate = self
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         $0.bouncesVertically = false
         return $0
@@ -182,10 +181,4 @@ extension ProfileView : UITableViewDataSource {
         return cell
     }
     
-}
-
-extension ProfileView : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
-    }
 }

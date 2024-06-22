@@ -60,6 +60,7 @@ final class PersonModel {
     
     private func addProfileImageLink(urlString: String) {
         guard let uid = getUserID() else { return }
+        
         Firestore.firestore().collection("users").document(uid).setData([
             "profile image": urlString
         ], merge: true)

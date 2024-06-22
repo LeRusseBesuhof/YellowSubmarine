@@ -36,7 +36,7 @@ private extension RegisterPresenter {
                     onLoginTouched()
                 }
             case .failure(let failure):
-                controller?.createAlert(errorMessage: failure.rawValue)
+                controller?.createAlert(message: failure.rawValue, buttonText: "Cancel")
             }
         }
         

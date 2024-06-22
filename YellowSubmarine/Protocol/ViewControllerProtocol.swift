@@ -1,5 +1,5 @@
 import Foundation
 
 protocol ViewControllerProtocol : AnyObject {
-    func createAlert(errorMessage: String)
+    func createAlert(message: String, buttonText: String)
 }

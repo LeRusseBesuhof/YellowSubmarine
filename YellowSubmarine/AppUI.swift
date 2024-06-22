@@ -23,6 +23,7 @@ final class AppUI {
             $0.font = font
             $0.textAlignment = alignment
             $0.numberOfLines = .zero
+            // $0.backgroundColor = .lightGray
             if isUnderlined {
                 $0.attributedText = String.getUnderlinedString(text)
             } else {
@@ -63,4 +64,16 @@ final class AppUI {
         }()
     }
     
+    static func createStack(label: UILabel, textField: UITextField, spacing: CGFloat = 10) -> UIStackView {
+        
+        .config(view: UIStackView()) { stack in
+            stack.axis = .vertical
+            stack.alignment = .fill
+            stack.spacing = spacing
+            stack.distribution = .equalSpacing
+            [label, textField].forEach {
+                stack.addArrangedSubview($0)
+            }
+        }
+    }
 }

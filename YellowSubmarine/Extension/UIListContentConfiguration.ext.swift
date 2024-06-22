@@ -7,7 +7,7 @@ extension UIListContentConfiguration {
         textProperties.font = font
         textProperties.numberOfLines = .zero
         
-        self.secondaryText = sndText
+        self.secondaryText = .middlePoint + sndText
         secondaryTextProperties.color = sndTextColor
         secondaryTextProperties.font = sndTextFont
         
