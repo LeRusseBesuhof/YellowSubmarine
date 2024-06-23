@@ -17,8 +17,11 @@ final class RegisterAssembly {
         
         let targetController = PersonAssembly.build(prevController: controller)
         
+        let toPushController = AuthAssembly.build(prevController: controller)
+        
         router.setRootViewController(controller: controller)
         router.setTargetViewController(controller: targetController)
+        router.setPushController(controller: toPushController)
         
         return controller
     }

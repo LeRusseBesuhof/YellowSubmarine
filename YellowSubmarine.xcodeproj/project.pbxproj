@@ -11,6 +11,11 @@
 		3728AD212C23052A00606F0D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD202C23052A00606F0D /* ProfileView.swift */; };
 		3728AD232C230E5C00606F0D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD222C230E5C00606F0D /* ProfilePresenter.swift */; };
 		3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728AD242C23431400606F0D /* ProfileAssembly.swift */; };
+		3749BAEE2C2872B100C5E2AE /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749BAED2C2872B100C5E2AE /* CreationViewController.swift */; };
+		3749BAF22C28733800C5E2AE /* CreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749BAF12C28733800C5E2AE /* CreationView.swift */; };
+		3749BAF42C28736100C5E2AE /* CreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749BAF32C28736100C5E2AE /* CreationModel.swift */; };
+		3749BAF62C28740600C5E2AE /* CreationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749BAF52C28740600C5E2AE /* CreationPresenter.swift */; };
+		3749BAF92C2875FD00C5E2AE /* CreationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749BAF82C2875FD00C5E2AE /* CreationAssembly.swift */; };
 		3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */; };
 		3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB22C1DE54100220EA3 /* PersonModel.swift */; };
 		3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755FBB42C1DE62E00220EA3 /* PersonView.swift */; };
@@ -57,6 +62,11 @@
 		37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */; };
 		37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */; };
 		37DF41172C26B65200F2C4F6 /* Notification.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41162C26B65200F2C4F6 /* Notification.ext.swift */; };
+		37DF411E2C28667D00F2C4F6 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF411D2C28667D00F2C4F6 /* NoteModel.swift */; };
+		37DF41202C2866C800F2C4F6 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF411F2C2866C800F2C4F6 /* NoteView.swift */; };
+		37DF41222C28672900F2C4F6 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41212C28672900F2C4F6 /* NoteViewController.swift */; };
+		37DF41242C28675400F2C4F6 /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41232C28675400F2C4F6 /* NotePresenter.swift */; };
+		37DF41262C2869DF00F2C4F6 /* NoteAssemby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41252C2869DF00F2C4F6 /* NoteAssemby.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +74,11 @@
 		3728AD202C23052A00606F0D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3728AD222C230E5C00606F0D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		3728AD242C23431400606F0D /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
+		3749BAED2C2872B100C5E2AE /* CreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
+		3749BAF12C28733800C5E2AE /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
+		3749BAF32C28736100C5E2AE /* CreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationModel.swift; sourceTree = "<group>"; };
+		3749BAF52C28740600C5E2AE /* CreationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPresenter.swift; sourceTree = "<group>"; };
+		3749BAF82C2875FD00C5E2AE /* CreationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationAssembly.swift; sourceTree = "<group>"; };
 		3755FBAA2C1DE11A00220EA3 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3755FBB22C1DE54100220EA3 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		3755FBB42C1DE62E00220EA3 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -108,6 +123,11 @@
 		37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		37DF41162C26B65200F2C4F6 /* Notification.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.ext.swift; sourceTree = "<group>"; };
+		37DF411D2C28667D00F2C4F6 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		37DF411F2C2866C800F2C4F6 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		37DF41212C28672900F2C4F6 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		37DF41232C28675400F2C4F6 /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		37DF41252C2869DF00F2C4F6 /* NoteAssemby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAssemby.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +177,61 @@
 				37DF40FF2C2467D900F2C4F6 /* ProfileTableModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3749BAEA2C28725D00C5E2AE /* List */ = {
+			isa = PBXGroup;
+			children = (
+				37DF411C2C28666100F2C4F6 /* Model */,
+				37DF411B2C28665B00F2C4F6 /* View */,
+				37DF411A2C28665400F2C4F6 /* Presenter */,
+				37DF41192C28664500F2C4F6 /* Assembly */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		3749BAEB2C28727700C5E2AE /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAF02C28731A00C5E2AE /* Model */,
+				3749BAEC2C28728800C5E2AE /* View */,
+				3749BAEF2C28731100C5E2AE /* Presenter */,
+				3749BAF72C2875E800C5E2AE /* Assembly */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		3749BAEC2C28728800C5E2AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAED2C2872B100C5E2AE /* CreationViewController.swift */,
+				3749BAF12C28733800C5E2AE /* CreationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3749BAEF2C28731100C5E2AE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAF52C28740600C5E2AE /* CreationPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3749BAF02C28731A00C5E2AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAF32C28736100C5E2AE /* CreationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3749BAF72C2875E800C5E2AE /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAF82C2875FD00C5E2AE /* CreationAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		3755FBA92C1DE10800220EA3 /* Protocol */ = {
@@ -292,11 +367,11 @@
 		378C9FD82C1444AB007FC2A1 /* YellowSubmarine */ = {
 			isa = PBXGroup;
 			children = (
+				3784DAB52C1B2FF300BBD902 /* Router.swift */,
+				378C9FF92C145202007FC2A1 /* AppUI.swift */,
 				378CA03E2C196736007FC2A1 /* LoginModel */,
 				37DF40FE2C2446C500F2C4F6 /* Singleton */,
 				3755FBA92C1DE10800220EA3 /* Protocol */,
-				3784DAB52C1B2FF300BBD902 /* Router.swift */,
-				378C9FF92C145202007FC2A1 /* AppUI.swift */,
 				378CA0072C15F4A1007FC2A1 /* Registration */,
 				378CA00B2C188184007FC2A1 /* Authorisation */,
 				378CA0042C15E25B007FC2A1 /* Profile */,
@@ -337,6 +412,7 @@
 			children = (
 				37DF41062C25BE3100F2C4F6 /* Main */,
 				37DF41072C25BE6400F2C4F6 /* Settings */,
+				37DF41182C2862F600F2C4F6 /* Notes */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -459,6 +535,48 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		37DF41182C2862F600F2C4F6 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				3749BAEA2C28725D00C5E2AE /* List */,
+				3749BAEB2C28727700C5E2AE /* Creation */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		37DF41192C28664500F2C4F6 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				37DF41252C2869DF00F2C4F6 /* NoteAssemby.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		37DF411A2C28665400F2C4F6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				37DF41232C28675400F2C4F6 /* NotePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		37DF411B2C28665B00F2C4F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37DF411F2C2866C800F2C4F6 /* NoteView.swift */,
+				37DF41212C28672900F2C4F6 /* NoteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37DF411C2C28666100F2C4F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37DF411D2C28667D00F2C4F6 /* NoteModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -550,18 +668,23 @@
 				37DF41172C26B65200F2C4F6 /* Notification.ext.swift in Sources */,
 				3755FBBB2C1DF7FB00220EA3 /* PersonAssembly.swift in Sources */,
 				378C9FFA2C145202007FC2A1 /* AppUI.swift in Sources */,
+				3749BAF42C28736100C5E2AE /* CreationModel.swift in Sources */,
 				3755FBB32C1DE54100220EA3 /* PersonModel.swift in Sources */,
 				3784DAB42C19E78C00BBD902 /* RegisterView.swift in Sources */,
 				3787E7F82C1C88A3008938D7 /* UIViewController.ext.swift in Sources */,
 				3728AD232C230E5C00606F0D /* ProfilePresenter.swift in Sources */,
+				3749BAF92C2875FD00C5E2AE /* CreationAssembly.swift in Sources */,
 				378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */,
 				378C9FFD2C14522D007FC2A1 /* UIView.ext.swift in Sources */,
 				3784DABD2C1B39B500BBD902 /* RegisterViewController.swift in Sources */,
 				3728AD212C23052A00606F0D /* ProfileView.swift in Sources */,
 				37DF41002C2467D900F2C4F6 /* ProfileTableModel.swift in Sources */,
 				378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */,
+				37DF41202C2866C800F2C4F6 /* NoteView.swift in Sources */,
 				3787E7FB2C1C8E46008938D7 /* AuthView.swift in Sources */,
+				37DF41262C2869DF00F2C4F6 /* NoteAssemby.swift in Sources */,
 				3784DAB62C1B2FF300BBD902 /* Router.swift in Sources */,
+				3749BAEE2C2872B100C5E2AE /* CreationViewController.swift in Sources */,
 				3755FBB52C1DE62E00220EA3 /* PersonView.swift in Sources */,
 				3728AD1F2C2304D600606F0D /* ProfileModel.swift in Sources */,
 				378CA0012C15C6AF007FC2A1 /* String.ext.swift in Sources */,
@@ -569,7 +692,10 @@
 				37DF410F2C25BF1B00F2C4F6 /* SettingsView.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
+				37DF411E2C28667D00F2C4F6 /* NoteModel.swift in Sources */,
 				37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */,
+				3749BAF62C28740600C5E2AE /* CreationPresenter.swift in Sources */,
+				37DF41222C28672900F2C4F6 /* NoteViewController.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
 				37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */,
 				37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */,
@@ -579,10 +705,12 @@
 				3755FBB92C1DF29300220EA3 /* PersonPresenter.swift in Sources */,
 				378CA0472C19704E007FC2A1 /* UIFont.ext.swift in Sources */,
 				3784DABB2C1B392800BBD902 /* RegisterAssembly.swift in Sources */,
+				37DF41242C28675400F2C4F6 /* NotePresenter.swift in Sources */,
 				3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */,
 				3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */,
 				3787E7FF2C1C8F61008938D7 /* AuthAssembly.swift in Sources */,
 				37DF41022C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift in Sources */,
+				3749BAF22C28733800C5E2AE /* CreationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,20 +37,17 @@ final class NoteViewController: UIViewController {
 private extension NoteViewController {
     func setUpNavigationBar() {
         let logOutBarButton = UIBarButtonItem(
-            title: "Create Note",
+            image: UIImage(systemName: "plus"),
             primaryAction: UIAction { [weak self] _ in
                 guard let self = self else { return }
                 
-                
-                // code
+                let creationVC = CreationAssembly.build()
+                present(creationVC, animated: true)
             }
         )
         
         navigationItem.rightBarButtonItem = logOutBarButton
         navigationController?.navigationBar.tintColor = .white
-        
-        title = "Settings"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
 

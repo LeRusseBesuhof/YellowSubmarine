@@ -23,7 +23,6 @@ final class AppUI {
             $0.font = font
             $0.textAlignment = alignment
             $0.numberOfLines = .zero
-            // $0.backgroundColor = .lightGray
             if isUnderlined {
                 $0.attributedText = String.getUnderlinedString(text)
             } else {
@@ -45,7 +44,7 @@ final class AppUI {
                     NSAttributedString.Key.font : font
                 ]
 
-                $0.attributedPlaceholder = NSAttributedString(string: text, attributes:attributes)
+                $0.attributedPlaceholder = NSAttributedString(string: text, attributes: attributes)
                 
                 let imageView : UIImageView = {
                     $0.image = UIImage(systemName: leftViewPic)
@@ -60,6 +59,7 @@ final class AppUI {
                 
                 $0.leftView = leftView
                 $0.leftViewMode = .always
+                
             }
         }()
     }

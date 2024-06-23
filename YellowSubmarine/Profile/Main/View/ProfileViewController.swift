@@ -65,7 +65,8 @@ private extension ProfileViewController {
     }
     
     @objc private func onNotesTouched() {
-        print("notes")
+        let noteController = NoteAssemby.build()
+        navigationController?.pushViewController(noteController, animated: true)
     }
 }
 

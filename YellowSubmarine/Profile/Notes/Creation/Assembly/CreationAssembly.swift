@@ -1,8 +1,14 @@
-//
-//  CreationAssembly.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 23.06.2024.
-//
-
 import Foundation
+import UIKit
+
+final class CreationAssembly {
+    static func build() -> UIViewController {
+        let model = CreationModel()
+        
+        let presenter = CreationPresenter(dependencies: .init(model: model))
+        
+        let controller = CreationViewController(dependencies: .init(presenter: presenter))
+        
+        return controller
+    }
+}

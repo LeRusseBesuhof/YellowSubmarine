@@ -2,10 +2,13 @@ import Foundation
 
 protocol SettingsPresenterProtocol {
     func loadView(view: SettingsViewProtocol, controller: SettingsViewControllerProtocol)
+    
+    func logOut()
 }
 
 final class SettingsPresenter {
     private let model : SettingsModelProtocol!
+    private let loginModel : LoginModel = LoginModel()
     private let profilePresenter : ProfilePresenterProtocol!
     private weak var controller : SettingsViewControllerProtocol?
     private weak var view : SettingsViewProtocol?
@@ -42,5 +45,9 @@ extension SettingsPresenter : SettingsPresenterProtocol {
         self.controller = controller
         
         self.setUpHandlers()
+    }
+    
+    func logOut() {
+        loginModel.logOut()
     }
 }

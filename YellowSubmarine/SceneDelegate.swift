@@ -22,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
         
         self.vc = loginModel.isUserLogin() == true ? ProfileAssembly.build() : RegisterAssembly.build()
-        // self.vc = RegisterAssembly.build()
-        // self.vc = ProfileAssembly.build()
-        // self.vc = PersonAssembly.build(prevController: RegisterAssembly.build())
+        
+        // self.vc = NoteAssemby.build()
+        
         guard let rootVC = self.vc else { return }
         self.window?.rootViewController = rootVC
         

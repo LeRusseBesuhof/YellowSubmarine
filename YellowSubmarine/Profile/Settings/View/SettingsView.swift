@@ -28,7 +28,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -50,7 +50,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -72,7 +72,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -94,7 +94,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -116,7 +116,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -138,7 +138,7 @@ final class SettingsView : UIImageView {
         placeholderColor: .appPlaceholder,
         bgColor: .appLightGray,
         font: .getMontserratFont(fontSize: 14),
-        textColor: .appBrown,
+        textColor: .black,
         leftViewPic: "highlighter",
         cornerRadius: 20
     )
@@ -190,6 +190,8 @@ private extension SettingsView {
     private func setUpView() {
         image = .backMerged
         isUserInteractionEnabled = true
+    
+        
         
         canvasView.addSubviews(fieldsStack)
         addSubviews(canvasView, saveButton)
@@ -222,7 +224,6 @@ private extension SettingsView {
     }
     
     @objc private func onSaveChangesTouched() {
-        print("changes")
         var dictOfChanges = [String: String]()
         
         if let nick = nickTextField.text, nick != "" {

@@ -33,7 +33,7 @@ private extension RegisterPresenter {
             switch result {
             case .success(let success):
                 if success {
-                    onLoginTouched()
+                    onRegisterTouched()
                 }
             case .failure(let failure):
                 controller?.createAlert(message: failure.rawValue, buttonText: "Cancel")
@@ -42,8 +42,12 @@ private extension RegisterPresenter {
         
     }
     
-    private func onLoginTouched() {
+    private func onRegisterTouched() {
         self.router.nextController()
+    }
+    
+    private func onLoginTouched() {
+        self.router.pushController()
     }
     
     private func setHandlers() {
