@@ -28,6 +28,9 @@ extension AuthPresenter {
         
         self.view?.setAuthUserData()
         
+        print(UserData.email)
+        print(UserData.password)
+        
         self.authModel.signIn { [weak self] result in
             guard let self = self else { return }
             
@@ -38,7 +41,7 @@ extension AuthPresenter {
                 }
 
             case .failure(let failure):
-                controller?.createAlert(message: failure.rawValue, buttonText: "Cancel")
+                controller?.createAlert(message: failure.rawValue, buttonText: "Cancel", isClosingAction: false)
             }
         }
         

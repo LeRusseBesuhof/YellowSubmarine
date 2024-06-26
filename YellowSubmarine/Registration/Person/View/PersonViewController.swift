@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PersonViewControllerProtocol : ViewControllerProtocol {
-    func presentPickerController(_ picker: UIImagePickerController) -> Void
+    func presentPickerController(_ picker: UIImagePickerController)
 }
 
 final class PersonViewController: UIViewController {

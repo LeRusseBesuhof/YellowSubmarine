@@ -37,7 +37,7 @@ private extension PersonPresenter {
                     router.nextController()
                 }
             case .failure(let err):
-                controller?.createAlert(message: err.rawValue, buttonText: "Cancel")
+                controller?.createAlert(message: err.rawValue, buttonText: "Cancel", isClosingAction: false)
             }
         }
     }

@@ -58,10 +58,3 @@ extension RegisterModel : RegisterModelProtocol {
             .setData(userData)
     }
 }
-
-enum RegErrors : String, Error {
-    case weakPassword = "Weak Password!\nPassword length must be at least 8 characters long!"
-    case invalidEmail = "Invalid email adress"
-    case emailAlreadyInUse = "Email is already in use!\nTry another one"
-    case operationNotAllowed = "Sorry!\n This operation is not allowed!"
-}

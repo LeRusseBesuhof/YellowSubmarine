@@ -8,22 +8,13 @@ protocol ProfileModelProtocol : AnyObject {
 
 final class ProfileModel {
     
-    private func getUserID() -> String? {
-        guard let uid = Auth.auth().currentUser?.uid else { return nil }
-            return uid
-    }
-    
 }
 
 extension ProfileModel : ProfileModelProtocol {
     
     func loadUserData(completion: @escaping (Result<Bool, Error>) -> Void) {
        
-        guard let uid = getUserID() else {
-            completion(.failure(DownloadError.noUID))
-            print("no uid")
-            return
-        }
+        guard let uid = UserData.shared.userID else { return }
         
         Firestore.firestore().collection("users").document(uid).getDocument { snap, err in
             guard err == nil else {
@@ -53,9 +44,4 @@ extension ProfileModel : ProfileModelProtocol {
             }
         }
     }
-}
-
-enum DownloadError : String, Error {
-    case noUID = "Can't find UID"
-    case snapError = "Something wrong with SnapShot"
 }

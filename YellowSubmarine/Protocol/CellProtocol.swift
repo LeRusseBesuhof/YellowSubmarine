@@ -1,5 +1,5 @@
 import Foundation
 
-protocol CollectionCellProtocol : AnyObject {
+protocol CellProtocol : AnyObject {
     static var reuseID : String { get }
 }

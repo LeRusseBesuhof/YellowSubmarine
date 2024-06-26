@@ -195,7 +195,7 @@ final class PersonView: UIScrollView {
     )
     
     private lazy var giftLabel : UILabel = AppUI.createLabel(
-        withText: "Your wish list",
+        withText: "Your wish list:",
         textColor: .appOrange,
         font: .getMeriendaFont(fontSize: 24),
         alignment: .center
@@ -343,11 +343,11 @@ private extension PersonView {
             filmLabel.leadingAnchor.constraint(equalTo: hobbiesTextField.leadingAnchor),
             
             filmTextField.topAnchor.constraint(equalTo: filmLabel.bottomAnchor, constant: 20),
-            filmTextField.leadingAnchor.constraint(equalTo: hobbiesTextField.leadingAnchor, constant: -30),
+            filmTextField.leadingAnchor.constraint(equalTo: filmLabel.leadingAnchor, constant: -30),
             filmTextField.widthAnchor.constraint(equalToConstant: 240),
             filmTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            giftLabel.topAnchor.constraint(equalTo: filmTextField.bottomAnchor, constant: 40),
+            giftLabel.topAnchor.constraint(equalTo: filmTextField.bottomAnchor, constant: 30),
             giftLabel.leadingAnchor.constraint(equalTo: filmTextField.leadingAnchor, constant: -30),
             giftLabel.widthAnchor.constraint(equalToConstant: 300),
             

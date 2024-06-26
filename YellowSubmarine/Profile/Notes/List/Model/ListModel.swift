@@ -1,13 +1,13 @@
 import Foundation
 
-protocol NoteModelProtocol : AnyObject {
+protocol ListModelProtocol : AnyObject {
     
 }
 
-final class NoteModel {
+final class ListModel {
     
 }
 
-extension NoteModel : NoteModelProtocol {
+extension ListModel : ListModelProtocol {
     
 }

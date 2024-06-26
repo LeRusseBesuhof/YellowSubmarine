@@ -1,7 +1,8 @@
 import UIKit
 
 protocol CreationViewControllerProtocol : ViewControllerProtocol {
-    
+    func popNoteCreator()
+    func presentPickerController(_ picker: UIImagePickerController)
 }
 
 final class CreationViewController: UIViewController {
@@ -35,5 +36,12 @@ final class CreationViewController: UIViewController {
 }
 
 extension CreationViewController : CreationViewControllerProtocol {
+    // зачем это?
+    func popNoteCreator() {
+        navigationController?.popViewController(animated: true)
+    }
     
+    func presentPickerController(_ picker: UIImagePickerController) {
+        self.present(picker, animated: true)
+    }
 }

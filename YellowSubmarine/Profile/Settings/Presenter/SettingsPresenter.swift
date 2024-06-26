@@ -27,7 +27,7 @@ final class SettingsPresenter {
 private extension SettingsPresenter {
     private func onSaveChangesTouch(_ dictOfChanges: [String: String]) {
         self.model.updateData(dictOfChanges)
-        self.controller?.createAlert(message: "Changes were successfully saved", buttonText: "OK")
+        self.controller?.createAlert(message: "Changes were successfully saved", buttonText: "OK", isClosingAction: false)
         self.profilePresenter.updateData()
     }
     

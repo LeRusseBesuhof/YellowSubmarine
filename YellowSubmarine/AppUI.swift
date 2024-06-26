@@ -3,7 +3,7 @@ import UIKit
 
 final class AppUI {
     
-    static func createImageView(image: UIImage, tintColor: UIColor, cornerRadius: CGFloat, borderWidth: CGFloat) -> UIImageView {
+    static func createImageView(image: UIImage, tintColor: UIColor, cornerRadius: CGFloat = 0, borderWidth: CGFloat = 0) -> UIImageView {
         .config(view: UIImageView()) {
             $0.image = image
             $0.tintColor = tintColor

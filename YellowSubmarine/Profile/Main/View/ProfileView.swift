@@ -50,7 +50,7 @@ final class ProfileView: UIImageView {
         st.alignment = .center
         st.axis = .horizontal
         st.distribution = .fill
-        genderLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        birthdayLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         [birthdayLabel, genderLabel].forEach
         { st.addArrangedSubview($0) }
         return st

@@ -11,11 +11,6 @@ protocol PersonModelProtocol : AnyObject {
 
 final class PersonModel {
     
-    private func getUserID() -> String? {
-        guard let uid = Auth.auth().currentUser?.uid else { return nil }
-            return uid
-    }
-    
     private func uploadOneImage(_ img: Data?, _ storageLink: FirebaseStorage.StorageReference, completion: @escaping ((Result<URL, StorageErrors>) -> Void)) {
         
         let metadata = StorageMetadata()
@@ -59,10 +54,10 @@ final class PersonModel {
         }
     
     private func addProfileImageLink(urlString: String) {
-        guard let uid = getUserID() else { return }
+        guard let uid = UserData.shared.userID else { return }
         
         Firestore.firestore().collection("users").document(uid).setData([
-            "profile image": urlString
+            "imgLink": urlString
         ], merge: true)
     }
     
@@ -72,7 +67,7 @@ extension PersonModel : PersonModelProtocol {
     
     func uploadImage(imgData: Data) {
         
-        guard let uid = getUserID() else { return }
+        guard let uid = UserData.shared.userID else { return }
         
         let imageName = UUID().uuidString + ".jpeg"
         let ref = Storage.storage().reference().child(uid).child("gallery").child(imageName)
@@ -92,7 +87,7 @@ extension PersonModel : PersonModelProtocol {
     
     func uploadPersonalUserData() {
         
-        guard let uid = getUserID() else { return }
+        guard let uid = UserData.shared.userID else { return }
         
         let dataBase = Firestore.firestore()
         dataBase.collection("users").document(uid).setData([
@@ -107,15 +102,4 @@ extension PersonModel : PersonModelProtocol {
         ], merge: true)
         
     }
-}
-
-enum StorageErrors : String, Error {
-    case unknown = "Unknown Error!\nSomething went wrong"
-    case noObject = "Object not Found!"
-    case unauthentificated = "The user is not authorised!\nPlease log in and try again"
-    case anyError = "There's an error"
-}
-
-enum FieldErrors : String, Error {
-    case unfilledField = "Please fill in all fields!"
 }

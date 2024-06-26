@@ -1,20 +1,20 @@
 import UIKit
 
-protocol NoteViewControllerProtocol : ViewControllerProtocol {
+protocol ListViewControllerProtocol : ViewControllerProtocol {
     
 }
 
-final class NoteViewController: UIViewController {
-    private let noteView : NoteViewProtocol!
-    private let notePresenter : NotePresenter!
+final class ListViewController: UIViewController {
+    private let listView : ListViewProtocol!
+    private let listPresenter : ListPresenter!
     
     struct Dependencies {
-        let presenter : NotePresenter
+        let presenter : ListPresenter
     }
     
     init(dependencies: Dependencies) {
-        self.noteView = NoteView(frame: UIScreen.main.bounds)
-        self.notePresenter = dependencies.presenter
+        self.listView = ListView(frame: UIScreen.main.bounds)
+        self.listPresenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,17 +24,17 @@ final class NoteViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.notePresenter.loadView(view: noteView, controller: self)
+        self.listPresenter.loadView(view: listView, controller: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        view.addSubview(noteView)
+        view.addSubview(listView)
     }
 }
 
-private extension NoteViewController {
+private extension ListViewController {
     func setUpNavigationBar() {
         let logOutBarButton = UIBarButtonItem(
             image: UIImage(systemName: "plus"),
@@ -51,6 +51,6 @@ private extension NoteViewController {
     }
 }
 
-extension NoteViewController : NoteViewControllerProtocol {
+extension ListViewController : ListViewControllerProtocol {
     
 }

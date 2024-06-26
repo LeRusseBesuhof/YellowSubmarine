@@ -3,7 +3,7 @@ import UIKit
 
 extension UIViewController {
     
-    func createAlert(message : String, buttonText: String = "Cancel") {
+    func createAlert(message : String, buttonText: String, isClosingAction: Bool) {
         
         let alert = UIAlertController(
             title: nil,
@@ -11,8 +11,15 @@ extension UIViewController {
             preferredStyle: .alert
         )
         
-        let cancelButton = UIAlertAction(title: buttonText, style: .cancel)
-        
+        var cancelButton : UIAlertAction!
+        if isClosingAction {
+            cancelButton = UIAlertAction(title: buttonText, style: .cancel) { _ in
+                self.dismiss(animated: true)
+            }
+        } else {
+            cancelButton = UIAlertAction(title: buttonText, style: .cancel)
+        }
+
         alert.addAction(cancelButton)
         
         self.present(alert, animated: true)

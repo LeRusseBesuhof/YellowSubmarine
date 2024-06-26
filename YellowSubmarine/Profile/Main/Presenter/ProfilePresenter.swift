@@ -37,7 +37,7 @@ private extension ProfilePresenter {
                     view?.updateData()
                 }
             case .failure(let err):
-                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel")
+                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
             }
         }
     }

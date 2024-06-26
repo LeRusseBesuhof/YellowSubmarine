@@ -36,10 +36,3 @@ extension AuthModel : AuthModelProtocol {
         }
     }
 }
-
-enum AuthErrors : String, Error {
-    case wrongPassword = "Wrong Password"
-    case invalidEmail = "Invalid email adress"
-    case unverifiedEmail = "Unverified email"
-    case userNotFound = "The supplied auth credential is malformed or has expired"
-}

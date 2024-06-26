@@ -1,10 +1,11 @@
 import UIKit
 
-protocol NoteViewProtocol : UIImageView {
-    var noteMockData : [Note] { get set }
+protocol ListViewProtocol : UIImageView {
+    var notesMockData : [Note] { get set }
+    func updateData()
 }
 
-final class NoteView: UIImageView {
+final class ListView: UIImageView {
     
     private lazy var titleLabel : UILabel = AppUI.createLabel(
         withText: "Your notes",
@@ -20,26 +21,14 @@ final class NoteView: UIImageView {
         }
     }()
     
-    internal var noteMockData : [Note] = []
+    internal var notesMockData : [Note] = []
     
-    private lazy var collectionView : UICollectionView = {
-        let layout = $0.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.scrollDirection = .horizontal
-        layout.itemSize = canvasView.frame.size
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        $0.isPagingEnabled = true
-        $0.dataSource = self
-        $0.register(NoteViewCell.self, forCellWithReuseIdentifier: NoteViewCell.reuseID)
-        return $0
-    }(UICollectionView(frame: canvasView.frame, collectionViewLayout: UICollectionViewLayout()))
-    
-//    private lazy var tableView : UITableView = {
-//        .config(view: UITableView()) {
-//            $0.dataSource = self
-//            $0.register(UITableViewCell.self, forCellReuseIdentifier: "note")
-//        }
-//    }()
+    private lazy var tableView : UITableView = {
+        .config(view: UITableView()) {
+            $0.dataSource = self
+            $0.register(UITableViewCell.self, forCellReuseIdentifier: "list")
+        }
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,7 +42,7 @@ final class NoteView: UIImageView {
     
 }
 
-private extension NoteView {
+private extension ListView {
     private func setUpView() {
         image = .backMerged
         isUserInteractionEnabled = true
@@ -75,34 +64,33 @@ private extension NoteView {
     }
 }
 
-extension NoteView : NoteViewProtocol {
-    
-}
-
-extension NoteView : UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { 1 }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = noteMockData[indexPath.item]
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteViewCell.reuseID, for: indexPath) as? NoteViewCell else { return UICollectionViewCell() }
-        
-        cell.setUpCell()
-        return cell
+extension ListView : ListViewProtocol {
+    func updateData() {
+        tableView.reloadData()
     }
 }
 
-extension NoteView : UICollectionViewDelegate {
+extension ListView : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        notesMockData.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let item = notesMockData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
+        var config = cell.defaultContentConfiguration()
+        cell.accessoryType = .detailButton
+        cell.selectionStyle = .blue
+        cell.contentConfiguration = config.setConfig(
+            text: item.name,
+            font: .getMontserratFont(fontSize: 16),
+            isURL: true,
+            image: item.imgUrl,
+            sndText: item.date,
+            sndTextColor: .appSecondaryText,
+            sndTextFont: .getMontserratFont(fontSize: 12)
+        )
+        return cell
+    }
 }
-
-//extension NoteView : UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        0
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        UITableViewCell()
-//    }
-//    
-//}

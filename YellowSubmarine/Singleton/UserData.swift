@@ -1,4 +1,5 @@
 import Foundation
+import FirebaseAuth
 
 final class UserData {
     
@@ -18,4 +19,11 @@ final class UserData {
     static var hobbies : String = ""
     static var film : String = ""
     static var gift : String = ""
+    
+    var userID : String? {
+        get {
+            guard let uid = Auth.auth().currentUser?.uid else { return nil }
+            return uid
+        }
+    }
 }

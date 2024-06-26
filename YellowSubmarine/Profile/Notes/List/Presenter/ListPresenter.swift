@@ -1,33 +1,33 @@
 import Foundation
 
-protocol NotePresenterProtocol : AnyObject {
-    func loadView(view: NoteViewProtocol, controller: NoteViewControllerProtocol)
+protocol ListPresenterProtocol : AnyObject {
+    func loadView(view: ListViewProtocol, controller: ListViewControllerProtocol)
 }
 
-final class NotePresenter {
-    private let noteModel : NoteModelProtocol!
-    private weak var noteView : NoteViewProtocol?
-    private weak var noteController : NoteViewControllerProtocol?
+final class ListPresenter {
+    private let listModel : ListModelProtocol!
+    private weak var listView : ListViewProtocol?
+    private weak var listController : ListViewControllerProtocol?
     
     struct Dependencies {
-        let model : NoteModelProtocol
+        let model : ListModelProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.noteModel = dependencies.model
+        self.listModel = dependencies.model
     }
 }
 
-private extension NotePresenter {
+private extension ListPresenter {
     private func setUpHandlers() {
         
     }
 }
 
-extension NotePresenter : NotePresenterProtocol {
-    func loadView(view: NoteViewProtocol, controller: NoteViewControllerProtocol) {
-        self.noteView = view
-        self.noteController = controller
+extension ListPresenter : ListPresenterProtocol {
+    func loadView(view: ListViewProtocol, controller: ListViewControllerProtocol) {
+        self.listView = view
+        self.listController = controller
         
         self.setUpHandlers()
     }
