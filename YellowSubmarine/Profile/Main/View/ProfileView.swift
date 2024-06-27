@@ -74,12 +74,12 @@ final class ProfileView: UIImageView {
     private var mockData = ProfileTableModel.getMockData()
     
     private lazy var tableView : UITableView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.dataSource = self
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        $0.bouncesVertically = false
-        return $0
-    }(UITableView())
+        .config(view: UITableView()) {
+            $0.dataSource = self
+            $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            $0.bouncesVertically = false
+        }
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

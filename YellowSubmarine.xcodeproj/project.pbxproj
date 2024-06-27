@@ -62,7 +62,6 @@
 		37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */; };
 		37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */; };
 		37DF41172C26B65200F2C4F6 /* Notification.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41162C26B65200F2C4F6 /* Notification.ext.swift */; };
-		37DF411E2C28667D00F2C4F6 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF411D2C28667D00F2C4F6 /* ListModel.swift */; };
 		37DF41202C2866C800F2C4F6 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF411F2C2866C800F2C4F6 /* ListView.swift */; };
 		37DF41222C28672900F2C4F6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41212C28672900F2C4F6 /* ListViewController.swift */; };
 		37DF41242C28675400F2C4F6 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF41232C28675400F2C4F6 /* ListPresenter.swift */; };
@@ -127,7 +126,6 @@
 		37DF41122C25BFB600F2C4F6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		37DF41142C25C1B800F2C4F6 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		37DF41162C26B65200F2C4F6 /* Notification.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.ext.swift; sourceTree = "<group>"; };
-		37DF411D2C28667D00F2C4F6 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		37DF411F2C2866C800F2C4F6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		37DF41212C28672900F2C4F6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		37DF41232C28675400F2C4F6 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				3749BAF32C28736100C5E2AE /* CreationModel.swift */,
-				37E268F82C2C478000A54ED7 /* LoadModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -584,7 +581,7 @@
 		37DF411C2C28666100F2C4F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				37DF411D2C28667D00F2C4F6 /* ListModel.swift */,
+				37E268F82C2C478000A54ED7 /* LoadModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -715,7 +712,6 @@
 				37DF410F2C25BF1B00F2C4F6 /* SettingsView.swift in Sources */,
 				378C9FFF2C15C597007FC2A1 /* AuthViewController.swift in Sources */,
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
-				37DF411E2C28667D00F2C4F6 /* ListModel.swift in Sources */,
 				37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */,
 				3749BAF62C28740600C5E2AE /* CreationPresenter.swift in Sources */,
 				37DF41222C28672900F2C4F6 /* ListViewController.swift in Sources */,

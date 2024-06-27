@@ -2,7 +2,7 @@ import UIKit
 
 protocol ListViewProtocol : UIImageView {
     var notesMockData : [Note] { get set }
-    func updateData()
+    func updateData(_ notes: [Note])
 }
 
 final class ListView: UIImageView {
@@ -18,6 +18,7 @@ final class ListView: UIImageView {
         .config(view: UIView()) {
             $0.backgroundColor = .white
             $0.layer.cornerRadius = 50
+            $0.clipsToBounds = true
         }
     }()
     
@@ -47,6 +48,7 @@ private extension ListView {
         image = .backMerged
         isUserInteractionEnabled = true
         
+        canvasView.addSubview(tableView)
         addSubviews(titleLabel, canvasView)
     }
     
@@ -60,12 +62,18 @@ private extension ListView {
             canvasView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             canvasView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             canvasView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
+            
+            tableView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 30),
+            tableView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -30),
+            tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor)
         ])
     }
 }
 
 extension ListView : ListViewProtocol {
-    func updateData() {
+    func updateData(_ notes: [Note]) {
+        notesMockData = notes
         tableView.reloadData()
     }
 }
@@ -80,7 +88,7 @@ extension ListView : UITableViewDataSource {
         let item = notesMockData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
         var config = cell.defaultContentConfiguration()
-        cell.accessoryType = .detailButton
+        cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .blue
         cell.contentConfiguration = config.setConfig(
             text: item.name,

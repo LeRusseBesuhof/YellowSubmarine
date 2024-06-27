@@ -3,7 +3,7 @@ import UIKit
 
 final class NoteAssemby {
     static func build() -> UIViewController {
-        let model = ListModel()
+        let model = LoadModel()
         
         let presenter = ListPresenter(dependencies: .init(model: model))
         

@@ -5,22 +5,31 @@ protocol ListPresenterProtocol : AnyObject {
 }
 
 final class ListPresenter {
-    private let listModel : ListModelProtocol!
+    private let loadModel : LoadModelProtocol!
     private weak var listView : ListViewProtocol?
     private weak var listController : ListViewControllerProtocol?
     
     struct Dependencies {
-        let model : ListModelProtocol
+        let model : LoadModelProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.listModel = dependencies.model
+        self.loadModel = dependencies.model
     }
 }
 
 private extension ListPresenter {
     private func setUpHandlers() {
-        
+        self.loadModel.getNotes { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let notes):
+                listView?.updateData(notes)
+            case .failure(let err):
+                listController?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
+            }
+        }
     }
 }
 

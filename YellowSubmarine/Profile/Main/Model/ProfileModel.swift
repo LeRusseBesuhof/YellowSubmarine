@@ -38,10 +38,10 @@ extension ProfileModel : ProfileModelProtocol {
             UserData.film = documents["film"] as? String ?? ""
             UserData.gift = documents["gift"] as? String ?? ""
             
-            if let urlString = documents["profile image"] as? String, let url = URL(string: urlString) {
+            if let urlString = documents["imgLink"] as? String, let url = URL(string: urlString) {
                 UserData.image = url
-                completion(.success(true))
             }
+            completion(.success(true))
         }
     }
 }

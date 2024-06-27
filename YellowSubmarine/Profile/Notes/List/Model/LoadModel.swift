@@ -3,7 +3,7 @@ import FirebaseFirestore
 
 
 protocol LoadModelProtocol : AnyObject {
-    func getNote(completion: @escaping (Result<[Note], Error>) -> ())
+    func getNotes(completion: @escaping (Result<[Note], Error>) -> ())
 }
 
 final class LoadModel {
@@ -13,7 +13,7 @@ private extension LoadModel {
 }
 
 extension LoadModel : LoadModelProtocol {
-    func getNote(completion: @escaping (Result<[Note], Error>) -> ()) {
+    func getNotes(completion: @escaping (Result<[Note], Error>) -> ()) {
         guard let uid = UserData.shared.userID else { return }
         
         Firestore.firestore()
@@ -33,8 +33,7 @@ extension LoadModel : LoadModelProtocol {
             
                 var notes : [Note] = [Note]()
                 
-                documents.forEach { [weak self] field in
-                    guard let self = self else { return }
+                documents.forEach { field in
                     
                     let note = Note(
                         name: field["name"] as? String ?? "",
