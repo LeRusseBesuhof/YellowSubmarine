@@ -31,6 +31,10 @@
 		3787E7FB2C1C8E46008938D7 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787E7FA2C1C8E46008938D7 /* AuthView.swift */; };
 		3787E7FF2C1C8F61008938D7 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787E7FE2C1C8F61008938D7 /* AuthAssembly.swift */; };
 		3787E8012C1C92CA008938D7 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787E8002C1C92CA008938D7 /* AuthPresenter.swift */; };
+		378904D92C30649800FF9E01 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378904D82C30649800FF9E01 /* NoteViewController.swift */; };
+		378904DB2C3064AA00FF9E01 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378904DA2C3064AA00FF9E01 /* NoteModel.swift */; };
+		378904DD2C3064B700FF9E01 /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378904DC2C3064B700FF9E01 /* NotePresenter.swift */; };
+		378904DF2C3064CC00FF9E01 /* NoteAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378904DE2C3064CC00FF9E01 /* NoteAssembly.swift */; };
 		378C9FDA2C1444AB007FC2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */; };
 		378C9FDC2C1444AB007FC2A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */; };
 		378C9FE32C1444AD007FC2A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378C9FE22C1444AD007FC2A1 /* Assets.xcassets */; };
@@ -97,6 +101,10 @@
 		3787E7FA2C1C8E46008938D7 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		3787E7FE2C1C8F61008938D7 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
 		3787E8002C1C92CA008938D7 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		378904D82C30649800FF9E01 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		378904DA2C3064AA00FF9E01 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		378904DC2C3064B700FF9E01 /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		378904DE2C3064CC00FF9E01 /* NoteAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAssembly.swift; sourceTree = "<group>"; };
 		378C9FD62C1444AB007FC2A1 /* YellowSubmarine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellowSubmarine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378C9FD92C1444AB007FC2A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		378C9FDB2C1444AB007FC2A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -354,6 +362,39 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
+		378904D42C30644D00FF9E01 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				378904DE2C3064CC00FF9E01 /* NoteAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		378904D52C30646C00FF9E01 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				378904DC2C3064B700FF9E01 /* NotePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		378904D62C30647600FF9E01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37E268FF2C2C5EFC00A54ED7 /* NoteView.swift */,
+				378904D82C30649800FF9E01 /* NoteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		378904D72C30647B00FF9E01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				378904DA2C3064AA00FF9E01 /* NoteModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		378C9FCD2C1444AB007FC2A1 = {
 			isa = PBXGroup;
 			children = (
@@ -589,7 +630,10 @@
 		37E268FE2C2C5EC800A54ED7 /* CurrentNote */ = {
 			isa = PBXGroup;
 			children = (
-				37E268FF2C2C5EFC00A54ED7 /* NoteView.swift */,
+				378904D72C30647B00FF9E01 /* Model */,
+				378904D62C30647600FF9E01 /* View */,
+				378904D52C30646C00FF9E01 /* Presenter */,
+				378904D42C30644D00FF9E01 /* Assembly */,
 			);
 			path = CurrentNote;
 			sourceTree = "<group>";
@@ -679,6 +723,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378904DD2C3064B700FF9E01 /* NotePresenter.swift in Sources */,
 				378CA0402C19674B007FC2A1 /* LoginModel.swift in Sources */,
 				3787E8012C1C92CA008938D7 /* AuthPresenter.swift in Sources */,
 				3755FBAB2C1DE11A00220EA3 /* ViewControllerProtocol.swift in Sources */,
@@ -714,7 +759,9 @@
 				378CA0092C15F4C3007FC2A1 /* RegisterModel.swift in Sources */,
 				37DF41112C25BF6800F2C4F6 /* SettingsViewController.swift in Sources */,
 				3749BAF62C28740600C5E2AE /* CreationPresenter.swift in Sources */,
+				378904D92C30649800FF9E01 /* NoteViewController.swift in Sources */,
 				37DF41222C28672900F2C4F6 /* ListViewController.swift in Sources */,
+				378904DB2C3064AA00FF9E01 /* NoteModel.swift in Sources */,
 				378CA00E2C1882AB007FC2A1 /* AuthModel.swift in Sources */,
 				37DF41132C25BFB600F2C4F6 /* SettingsPresenter.swift in Sources */,
 				37DF41152C25C1B800F2C4F6 /* SettingsAssembly.swift in Sources */,
@@ -727,6 +774,7 @@
 				3784DABB2C1B392800BBD902 /* RegisterAssembly.swift in Sources */,
 				37DF41242C28675400F2C4F6 /* ListPresenter.swift in Sources */,
 				3728AD252C23431400606F0D /* ProfileAssembly.swift in Sources */,
+				378904DF2C3064CC00FF9E01 /* NoteAssembly.swift in Sources */,
 				3784DAB82C1B325400BBD902 /* RegisterPresenter.swift in Sources */,
 				3787E7FF2C1C8F61008938D7 /* AuthAssembly.swift in Sources */,
 				37DF41022C246B7200F2C4F6 /* UIListContentConfiguration.ext.swift in Sources */,

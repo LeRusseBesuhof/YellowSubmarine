@@ -19,7 +19,6 @@ final class CreationModel {
         
         storageLink.putData(data, metadata: metadata) { meta, err in
             
-            print("here")
             guard err == nil else {
                 let storageError = StorageErrorCode(_bridgedNSError: err! as NSError)
                 switch storageError {
@@ -55,7 +54,6 @@ final class CreationModel {
     
     private func addNoteImageLink(_ urlString: String, _ noteReference: String) {
         guard let uid = UserData.shared.userID else { return }
-        print("\(noteReference) in imageLoader")
         
         Firestore.firestore()
             .collection("users")
@@ -86,7 +84,6 @@ extension CreationModel : CreationModelProtocol {
                 "text" : noteData.text
             ], merge: true)
         
-        // TODO: сделать, чтобы изображение грузилось туда же, куда и наполнение заметки
         return newNoteRef
     }
     
@@ -97,9 +94,7 @@ extension CreationModel : CreationModelProtocol {
         let imageName = noteRef + ".jpeg"
         let ref = Storage.storage().reference().child(uid).child("notes").child(imageName)
         
-        self.uploadOneImage(imgData, ref) { [weak self] result in
-            
-            guard let self = self else { return }
+        self.uploadOneImage(imgData, ref) { result in
             
             switch result {
             case .success(let url):

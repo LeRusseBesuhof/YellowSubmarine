@@ -1,20 +1,20 @@
 import UIKit
 
 protocol ListViewControllerProtocol : ViewControllerProtocol {
-    
+    func presentNote(_ note: UIViewController)
 }
 
 final class ListViewController: UIViewController {
-    private let listView : ListViewProtocol!
-    private let listPresenter : ListPresenter!
+    private let lView : ListViewProtocol!
+    private let presenter : ListPresenter!
     
     struct Dependencies {
         let presenter : ListPresenter
     }
     
     init(dependencies: Dependencies) {
-        self.listView = ListView(frame: UIScreen.main.bounds)
-        self.listPresenter = dependencies.presenter
+        self.lView = ListView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,13 +24,13 @@ final class ListViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.listPresenter.loadView(view: listView, controller: self)
+        self.presenter.loadView(view: lView, controller: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        view.addSubview(listView)
+        view.addSubview(lView)
     }
 }
 
@@ -52,5 +52,7 @@ private extension ListViewController {
 }
 
 extension ListViewController : ListViewControllerProtocol {
-    
+    func presentNote(_ note: UIViewController) {
+        self.present(note, animated: true)
+    }
 }

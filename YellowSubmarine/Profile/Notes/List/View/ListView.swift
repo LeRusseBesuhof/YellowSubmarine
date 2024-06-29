@@ -2,10 +2,14 @@ import UIKit
 
 protocol ListViewProtocol : UIImageView {
     var notesMockData : [Note] { get set }
+    var selectNote : ((Note) -> Void)? { get set }
+    
     func updateData(_ notes: [Note])
 }
 
 final class ListView: UIImageView {
+    
+    internal var selectNote: ((Note) -> Void)?
     
     private lazy var titleLabel : UILabel = AppUI.createLabel(
         withText: "Your notes",
@@ -27,6 +31,7 @@ final class ListView: UIImageView {
     private lazy var tableView : UITableView = {
         .config(view: UITableView()) {
             $0.dataSource = self
+            $0.delegate = self
             $0.register(UITableViewCell.self, forCellReuseIdentifier: "list")
         }
     }()
@@ -89,7 +94,7 @@ extension ListView : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
         var config = cell.defaultContentConfiguration()
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .blue
+        cell.selectionStyle = .default
         cell.contentConfiguration = config.setConfig(
             text: item.name,
             font: .getMontserratFont(fontSize: 16),
@@ -100,5 +105,13 @@ extension ListView : UITableViewDataSource {
             sndTextFont: .getMontserratFont(fontSize: 12)
         )
         return cell
+    }
+}
+
+extension ListView : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = notesMockData[indexPath.row]
+        self.selectNote?(item)
     }
 }

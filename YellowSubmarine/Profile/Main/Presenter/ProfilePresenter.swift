@@ -36,15 +36,7 @@ private extension ProfilePresenter {
         self.model.loadProfileImage { [weak self] result in
             guard let self = self else { return }
             
-            switch result {
-            case .success(let success):
-                if success {
-                    view?.profileImage.sd_setImage(with: UserData.image)
-                    view?.updateData()
-                }
-            case .failure(let err):
-                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
-            }
+            resultCheck(result)
         }
     }
     
@@ -52,20 +44,24 @@ private extension ProfilePresenter {
         self.model.loadUserData { [weak self] result in
             guard let self = self else { return }
             
-            switch result {
-            case .success(let success):
-                if success {
-                    view?.profileImage.sd_setImage(with: UserData.image)
-                    view?.updateData()
-                }
-            case .failure(let err):
-                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
-            }
+            resultCheck(result)
         }
         
         self.view?.chooseProfileImage = { [weak self] in
             guard let self = self else { return }
             self.onChooseProfileImageTouched()
+        }
+    }
+    
+    private func resultCheck(_ result: Result<Bool, Error>) {
+        switch result {
+        case .success(let success):
+            if success {
+                view?.profileImage.sd_setImage(with: UserData.image)
+                view?.updateData()
+            }
+        case .failure(let err):
+            controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
         }
     }
     

@@ -20,7 +20,7 @@ extension LoadModel : LoadModelProtocol {
             .collection("users")
             .document(uid)
             .collection("notes")
-            .getDocuments { snap, err in
+            .addSnapshotListener { snap, err in
                 guard err == nil else {
                     completion(.failure(err!))
                     return

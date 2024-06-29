@@ -1,8 +1,17 @@
-//
-//  NoteModel.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 29.06.2024.
-//
-
 import Foundation
+
+protocol NoteModelProtocol : AnyObject {
+    func getNoteData() -> Note
+}
+
+final class NoteModel {
+    private var note : Note
+    
+    init(_ note: Note) {
+        self.note = note
+    }
+}
+
+extension NoteModel : NoteModelProtocol {
+    func getNoteData() -> Note { note }
+}

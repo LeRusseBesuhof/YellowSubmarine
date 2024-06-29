@@ -28,6 +28,7 @@ private extension CreationPresenter {
                 let noteRef = creationModel.uploadNote(curNoteData)
                 if let imgData = image.jpegData(compressionQuality: 0.1) {
                     creationModel.uploadNoteImage(imgData, noteRef)
+                    print(2)
                 } else { print("compression went wrong") }
                 
                 creationController?.createAlert(message: "Note was successfully uploaded", buttonText: "OK", isClosingAction: true)

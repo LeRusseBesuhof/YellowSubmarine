@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-final class NoteAssemby {
+final class ListAssemby {
     static func build() -> UIViewController {
         let model = LoadModel()
         

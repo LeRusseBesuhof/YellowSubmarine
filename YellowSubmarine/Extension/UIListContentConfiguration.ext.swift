@@ -12,13 +12,9 @@ extension UIListContentConfiguration {
         secondaryTextProperties.color = sndTextColor
         secondaryTextProperties.font = sndTextFont
         
-        if isURL {
-            let imageView = UIImageView()
-            imageView.sd_setImage(with: URL(string: image))
-            self.image = imageView.image
-        } else {
-            self.image = UIImage(named: image)
-        }
+        guard !isURL else { return self }
+        
+        self.image = UIImage(named: image)
         imageProperties.maximumSize = CGSize(width: 36, height: 36)
         imageToTextPadding = 20
         
