@@ -14,9 +14,7 @@ extension UIListContentConfiguration {
         
         if isURL {
             let imageView = UIImageView()
-            if let urlString = URL(string: image) {
-                imageView.sd_setImage(with: urlString)
-            }
+            imageView.sd_setImage(with: URL(string: image))
             self.image = imageView.image
         } else {
             self.image = UIImage(named: image)

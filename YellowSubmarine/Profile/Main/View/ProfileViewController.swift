@@ -1,6 +1,8 @@
 import UIKit
 
-protocol ProfileViewControllerProtocol : ViewControllerProtocol { }
+protocol ProfileViewControllerProtocol : ViewControllerProtocol {
+    func presentPickerController(_ picker: UIImagePickerController)
+}
 
 final class ProfileViewController: UIViewController {
     
@@ -70,4 +72,8 @@ private extension ProfileViewController {
     }
 }
 
-extension ProfileViewController : ProfileViewControllerProtocol { }
+extension ProfileViewController : ProfileViewControllerProtocol {
+    func presentPickerController(_ picker: UIImagePickerController) {
+        self.present(picker, animated: true)
+    }
+}

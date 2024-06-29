@@ -21,10 +21,32 @@ final class ProfilePresenter {
         self.model = dependencies.model
         self.router = dependencies.router
     }
-    
 }
 
 private extension ProfilePresenter {
+    
+    private func onChooseProfileImageTouched() {
+        guard let view = self.view else { print("no view"); return }
+        self.controller?.presentPickerController(view.imagePicker)
+        
+        loadProfileImage()
+    }
+    
+    private func loadProfileImage() {
+        self.model.loadProfileImage { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let success):
+                if success {
+                    view?.profileImage.sd_setImage(with: UserData.image)
+                    view?.updateData()
+                }
+            case .failure(let err):
+                controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
+            }
+        }
+    }
     
     private func setHandlers() {
         self.model.loadUserData { [weak self] result in
@@ -39,6 +61,11 @@ private extension ProfilePresenter {
             case .failure(let err):
                 controller?.createAlert(message: err.localizedDescription, buttonText: "Cancel", isClosingAction: false)
             }
+        }
+        
+        self.view?.chooseProfileImage = { [weak self] in
+            guard let self = self else { return }
+            self.onChooseProfileImageTouched()
         }
     }
     

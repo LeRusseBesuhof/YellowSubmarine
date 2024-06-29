@@ -26,14 +26,14 @@ private extension PersonPresenter {
     
     private func onSendDataTouched(_ image: UIImage) {
         
-        guard let imgData = image.jpegData(compressionQuality: 0.1) else { print("compression went wrong"); return}
-        personModel.uploadImage(imgData: imgData)
-        
         self.view?.getPersonData { result in
             switch result {
             case .success(let isAllowed):
                 if isAllowed { 
+                    guard let imgData = image.jpegData(compressionQuality: 0.1) else { print("compression went wrong"); return}
+                    
                     personModel.uploadPersonalUserData()
+                    personModel.uploadImage(imgData: imgData)
                     router.nextController()
                 }
             case .failure(let err):

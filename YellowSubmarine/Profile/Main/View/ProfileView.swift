@@ -2,16 +2,15 @@ import UIKit
 
 protocol ProfileViewProtocol : UIImageView {
     var profileImage : UIImageView { get set }
+    var chooseProfileImage : (() -> Void)? { get set }
+    var imagePicker : UIImagePickerController { get }
     
     func updateData()
 }
 
 final class ProfileView: UIImageView {
     
-    private let settingsButton : UIBarButtonItem = {
-        $0.tintColor = .white
-        return $0
-    }(UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: ProfileView.self, action: #selector(onSettingsTouched)))
+    internal var chooseProfileImage: (() -> Void)?
     
     private lazy var nickLabel : UILabel = AppUI.createLabel(
         withText: "",
@@ -25,6 +24,8 @@ final class ProfileView: UIImageView {
         cornerRadius: 80,
         borderWidth: 6
     )
+    
+    private lazy var onProfileImageTap = UITapGestureRecognizer(target: self, action: #selector(tapGest))
     
     private lazy var nameLabel : UILabel = AppUI.createLabel(
         withText: "",
@@ -81,6 +82,13 @@ final class ProfileView: UIImageView {
         }
     }()
     
+    internal lazy var imagePicker : UIImagePickerController = {
+        $0.delegate = self
+        $0.allowsEditing = true
+        $0.sourceType = .photoLibrary
+        return $0
+    }(UIImagePickerController())
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
@@ -97,6 +105,8 @@ private extension ProfileView {
     private func setUpView() {
         image = .profileBack
         isUserInteractionEnabled = true
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(onProfileImageTap)
         
         canvasView.addSubviews(profileImage, nameLabel, lilStack, emailLabel, tableView)
         addSubviews(nickLabel, canvasView)
@@ -136,8 +146,8 @@ private extension ProfileView {
         ])
     }
     
-    @objc private func onSettingsTouched() {
-        print("settings")
+    @objc private func tapGest() {
+        self.chooseProfileImage?()
     }
 }
 
@@ -177,8 +187,16 @@ extension ProfileView : UITableViewDataSource {
             sndTextColor: .appSecondaryText,
             sndTextFont: .getMontserratFont(fontSize: 12)
         )
-        
         return cell
     }
-    
+}
+
+extension ProfileView : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            profileImage.image = image
+            profileImage.contentMode = .scaleAspectFill
+        }
+        picker.dismiss(animated: true)
+    }
 }

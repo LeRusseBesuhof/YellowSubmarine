@@ -5,7 +5,7 @@ import FirebaseStorage
 
 protocol CreationModelProtocol : AnyObject {
     func uploadNote(_ noteData: NoteData) -> String
-    func uploadNoteImage(imgData: Data, noteReference: String)
+    func uploadNoteImage(_ imgData: Data, _ noteRef: String)
 }
 
 final class CreationModel {
@@ -19,6 +19,7 @@ final class CreationModel {
         
         storageLink.putData(data, metadata: metadata) { meta, err in
             
+            print("here")
             guard err == nil else {
                 let storageError = StorageErrorCode(_bridgedNSError: err! as NSError)
                 switch storageError {
@@ -54,6 +55,7 @@ final class CreationModel {
     
     private func addNoteImageLink(_ urlString: String, _ noteReference: String) {
         guard let uid = UserData.shared.userID else { return }
+        print("\(noteReference) in imageLoader")
         
         Firestore.firestore()
             .collection("users")
@@ -68,11 +70,31 @@ final class CreationModel {
 
 extension CreationModel : CreationModelProtocol {
     
-    func uploadNoteImage(imgData: Data, noteReference: String) {
+    func uploadNote(_ noteData: NoteData) -> String {
+        guard let uid = UserData.shared.userID else { return "" }
+        
+        let newNoteRef = UUID().uuidString
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(uid)
+            .collection("notes")
+            .document(newNoteRef)
+            .setData([
+                "name" : noteData.name,
+                "date" : noteData.date,
+                "text" : noteData.text
+            ], merge: true)
+        
+        // TODO: сделать, чтобы изображение грузилось туда же, куда и наполнение заметки
+        return newNoteRef
+    }
+    
+    func uploadNoteImage(_ imgData: Data, _ noteRef: String) {
         
         guard let uid = UserData.shared.userID else { return }
         
-        let imageName = noteReference + ".jpeg"
+        let imageName = noteRef + ".jpeg"
         let ref = Storage.storage().reference().child(uid).child("notes").child(imageName)
         
         self.uploadOneImage(imgData, ref) { [weak self] result in
@@ -81,33 +103,11 @@ extension CreationModel : CreationModelProtocol {
             
             switch result {
             case .success(let url):
-                self.addNoteImageLink(url.absoluteString, noteReference)
+                self.addNoteImageLink(url.absoluteString, noteRef)
             case .failure(let err):
                 print(err.localizedDescription)
             }
         }
-    }
-    
-    func uploadNote(_ noteData: NoteData) -> String {
-        guard let uid = UserData.shared.userID else { return "" }
-        
-        Firestore.firestore()
-            .collection("users")
-            .document(uid)
-            .collection("notes")
-            .addDocument(data: [
-                "name" : noteData.name,
-                "date" : noteData.date,
-                "text" : noteData.text
-            ])
-        
-        let docRef = Firestore.firestore()
-            .collection("users")
-            .document(uid)
-            .collection("notes")
-            .document()
-        
-        return docRef.documentID
     }
 }
 

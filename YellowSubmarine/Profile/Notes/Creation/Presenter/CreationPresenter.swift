@@ -25,12 +25,12 @@ private extension CreationPresenter {
             switch result {
             case .success(let data):
                 let curNoteData = NoteData(name: data.name, text: data.text, date: data.date)
-                let docID = creationModel.uploadNote(curNoteData)
+                let noteRef = creationModel.uploadNote(curNoteData)
+                if let imgData = image.jpegData(compressionQuality: 0.1) {
+                    creationModel.uploadNoteImage(imgData, noteRef)
+                } else { print("compression went wrong") }
                 
-                guard let imgData = image.jpegData(compressionQuality: 0.1) else { return }
-                creationModel.uploadNoteImage(imgData: imgData, noteReference: docID)
                 creationController?.createAlert(message: "Note was successfully uploaded", buttonText: "OK", isClosingAction: true)
-                
             case .failure(let err):
                 creationController?.createAlert(message: err.rawValue, buttonText: "Cancel", isClosingAction: false)
             }
