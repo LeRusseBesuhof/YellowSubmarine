@@ -51,20 +51,13 @@ final class CreationView : UIView {
         cornerRadius: 20
     )
     
-    private lazy var createNoteButton : UIButton = {
-        .config(view: UIButton()) { [weak self] in
-            guard let self = self else { return }
-            
-            $0.layer.cornerRadius = 20
-            $0.layer.borderColor = UIColor.appOrange.cgColor
-            $0.layer.borderWidth = 2
-            $0.backgroundColor = .white
-            $0.setTitle("Save changes", for: .normal)
-            $0.setTitleColor(.appOrange, for: .normal)
-            $0.titleLabel?.font = .getMontserratFont(fontSize: 24)
-            $0.addTarget(self, action: #selector(onCreateNoteTouch), for: .touchDown)
-        }
-    }()
+    private lazy var createNoteButton : UIButton = AppUI.createButton(
+        text: "Save",
+        textColor: .appOrange,
+        font: .getMontserratFont(fontSize: 24),
+        cornerRadius: 20,
+        borderWidth: 2
+    )
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,6 +74,7 @@ private extension CreationView {
     private func setUpView() {
         backgroundColor = .white
         noteImageView.addGestureRecognizer(onImageTapGest)
+        createNoteButton.addTarget(self, action: #selector(onCreateNoteTouch), for: .touchDown)
         
         addSubviews(noteImageView, noteNameTextField, noteFillTextField, createNoteButton)
     }

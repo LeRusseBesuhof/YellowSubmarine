@@ -1,7 +1,7 @@
 import UIKit
 
 protocol NoteViewControllerProtocol : ViewControllerProtocol {
-    
+    func presentPicker(_ picker: UIImagePickerController)
 }
 
 final class NoteViewController: UIViewController {
@@ -35,5 +35,7 @@ final class NoteViewController: UIViewController {
 }
 
 extension NoteViewController : NoteViewControllerProtocol {
-    
+    func presentPicker(_ picker: UIImagePickerController) {
+        self.present(picker, animated: true)
+    }
 }

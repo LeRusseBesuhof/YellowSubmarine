@@ -37,6 +37,7 @@ final class AppUI {
                 $0.layer.cornerRadius = cornerRadius
                 $0.backgroundColor = bgColor
                 $0.textColor = textColor
+                $0.font = font
                 $0.tintColor = placeholderColor
                 
                 let attributes = [
@@ -46,20 +47,21 @@ final class AppUI {
 
                 $0.attributedPlaceholder = NSAttributedString(string: text, attributes: attributes)
                 
-                let imageView : UIImageView = {
-                    $0.image = UIImage(systemName: leftViewPic)
-                    return $0
-                }(UIImageView(frame: CGRect(x: 10, y: 12, width: 20, height: 16)))
-                
-                let leftView : UIView = {
-                    $0.addSubview(imageView)
-                    $0.layer.cornerRadius = cornerRadius
-                    return $0
-                }(UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)))
-                
-                $0.leftView = leftView
-                $0.leftViewMode = .always
-                
+                if leftViewPic != "" {
+                    let imageView : UIImageView = {
+                        $0.image = UIImage(systemName: leftViewPic)
+                        return $0
+                    }(UIImageView(frame: CGRect(x: 10, y: 12, width: 20, height: 16)))
+                    
+                    let leftView : UIView = {
+                        $0.addSubview(imageView)
+                        $0.layer.cornerRadius = cornerRadius
+                        return $0
+                    }(UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)))
+                    
+                    $0.leftView = leftView
+                    $0.leftViewMode = .always
+                }
             }
         }()
     }
@@ -74,6 +76,18 @@ final class AppUI {
             [label, textField].forEach {
                 stack.addArrangedSubview($0)
             }
+        }
+    }
+    
+    static func createButton(text: String, textColor: UIColor, font: UIFont, cornerRadius: CGFloat, borderColor: UIColor = .appOrange, borderWidth: CGFloat = 0) -> UIButton {
+        .config(view: UIButton()) {
+            $0.layer.cornerRadius = cornerRadius
+            $0.layer.borderColor = borderColor.cgColor
+            $0.layer.borderWidth = borderWidth
+            $0.backgroundColor = .white
+            $0.setTitle(text, for: .normal)
+            $0.setTitleColor(textColor, for: .normal)
+            $0.titleLabel?.font = font
         }
     }
 }

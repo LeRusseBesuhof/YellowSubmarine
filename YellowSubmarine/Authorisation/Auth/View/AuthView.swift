@@ -3,6 +3,7 @@ import UIKit
 protocol AuthViewProtocol : UIImageView {
     var goToProfileHandler: (() -> Void)? { get set }
     var goToRegHandler: (() -> Void)? { get set }
+    var goToPasswordChangeHandler: (() -> Void)? { get set }
     
     func setAuthUserData()
 }
@@ -68,6 +69,19 @@ final class AuthView : UIImageView {
         }
     }()
     
+    internal var goToPasswordChangeHandler: (() -> Void)?
+    
+    private lazy var changePassButton : UIButton = {
+        .config(view: UIButton()) { [weak self] in
+            guard let self = self else { return }
+            
+            $0.setTitle("* forgot your password?", for: .normal)
+            $0.setTitleColor(.appPlaceholder, for: .normal)
+            $0.titleLabel?.font = .getMontserratFont(fontSize: 14)
+            $0.addTarget(self, action: #selector(onPassTouched), for: .touchDown)
+        }
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUpView()
@@ -84,7 +98,7 @@ private extension AuthView {
     private func setUpView() {
         self.image = .background
         self.isUserInteractionEnabled = true
-        addSubviews(loginLabel, textFieldsStack, logButton, regButton)
+        addSubviews(loginLabel, textFieldsStack, changePassButton, logButton, regButton)
     }
     
     private func activateConstraints() {
@@ -97,6 +111,10 @@ private extension AuthView {
             textFieldsStack.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor),
             textFieldsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
             textFieldsStack.heightAnchor.constraint(equalToConstant: 120),
+            
+            changePassButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 10),
+            changePassButton.leadingAnchor.constraint(equalTo: textFieldsStack.leadingAnchor),
+            changePassButton.trailingAnchor.constraint(equalTo: textFieldsStack.trailingAnchor),
             
             logButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 100),
             logButton.leadingAnchor.constraint(equalTo: textFieldsStack.centerXAnchor, constant: 60),
@@ -116,6 +134,10 @@ private extension AuthView {
     
     @objc private func onRegTouched() {
         self.goToRegHandler?()
+    }
+    
+    @objc private func onPassTouched() {
+        self.goToPasswordChangeHandler?()
     }
 }
 

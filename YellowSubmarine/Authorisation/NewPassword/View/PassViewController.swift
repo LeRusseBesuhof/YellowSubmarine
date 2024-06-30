@@ -1,29 +1,38 @@
-//
-//  PassViewController.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 30.06.2024.
-//
-
 import UIKit
 
-class PassViewController: UIViewController {
+protocol PassViewControllerProtocol : ViewControllerProtocol {
+    
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class PassViewController: UIViewController {
+    private let pView : PassViewProtocol!
+    private let presenter : PassPresenterProtocol!
+    
+    struct Dependencies {
+        let presenter : PassPresenter
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    init(dependencies: Dependencies) {
+        self.pView = PassView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
+        super.init(nibName: nil, bundle: nil)
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(pView)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        presenter.loadView(view: pView, controller: self)
+    }
+}
 
+extension PassViewController : PassViewControllerProtocol {
+    
 }

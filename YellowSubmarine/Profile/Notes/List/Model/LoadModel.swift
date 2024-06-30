@@ -39,7 +39,8 @@ extension LoadModel : LoadModelProtocol {
                         name: field["name"] as? String ?? "",
                         date: field["date"] as? String ?? "",
                         imgUrl: field["imgLink"] as? String ?? "",
-                        text: field["text"] as? String ?? ""
+                        text: field["text"] as? String ?? "",
+                        firestoreLink: field["firestoreLink"] as? String ?? ""
                     )
                     
                     notes.append(note)
@@ -55,4 +56,5 @@ struct Note : Identifiable {
     var date : String
     var imgUrl : String
     var text : String
+    var firestoreLink : String
 }

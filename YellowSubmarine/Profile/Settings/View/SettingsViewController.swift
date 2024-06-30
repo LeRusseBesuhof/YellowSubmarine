@@ -30,8 +30,8 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavigationBar(alertMessage: "Do you want to log out?")
         view.addSubview(settingsView)
+        setUpNavigationBar(alertMessage: "Do you want to log out?")
     }
 
 }

@@ -26,7 +26,6 @@ private extension ListPresenter {
             return
         }
         
-        print(note)
         let noteController = NoteAssembly.build(prevController: curController, note)
         self.controller?.presentNote(noteController)
     }

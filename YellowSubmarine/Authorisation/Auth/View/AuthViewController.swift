@@ -1,8 +1,8 @@
 import UIKit
 
-//protocol AuthViewControllerProtocol : AnyObject {
-//    func createAlert(errorMessage: String)
-//}
+protocol AuthViewControllerProtocol : ViewControllerProtocol {
+    func presentController(_ controller: UIViewController)
+}
 
 final class AuthViewController: UIViewController {
     
@@ -34,4 +34,8 @@ final class AuthViewController: UIViewController {
     }
 }
 
-extension AuthViewController : ViewControllerProtocol { }
+extension AuthViewController : AuthViewControllerProtocol {
+    func presentController(_ controller: UIViewController) {
+        self.present(controller, animated: true)
+    }
+}

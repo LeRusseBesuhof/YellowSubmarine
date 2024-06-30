@@ -59,11 +59,11 @@ private extension ListView {
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            canvasView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            canvasView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
             canvasView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             canvasView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             canvasView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
@@ -94,7 +94,7 @@ extension ListView : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
         var config = cell.defaultContentConfiguration()
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .default
+        cell.selectionStyle = .none
         cell.contentConfiguration = config.setConfig(
             text: item.name,
             font: .getMontserratFont(fontSize: 16),

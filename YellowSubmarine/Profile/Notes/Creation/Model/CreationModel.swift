@@ -10,14 +10,12 @@ protocol CreationModelProtocol : AnyObject {
 
 final class CreationModel {
     
-    private func uploadOneImage(_ img: Data?, _ storageLink: FirebaseStorage.StorageReference, completion: @escaping ((Result<URL, StorageErrors>) -> Void)) {
+    private func uploadOneImage(_ imgData: Data, _ storageLink: FirebaseStorage.StorageReference, completion: @escaping (Result<URL, StorageErrors>) -> Void) {
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
-        guard let data = img else { return }
-        
-        storageLink.putData(data, metadata: metadata) { meta, err in
+        storageLink.putData(imgData, metadata: metadata) { meta, err in
             
             guard err == nil else {
                 let storageError = StorageErrorCode(_bridgedNSError: err! as NSError)
@@ -35,13 +33,11 @@ final class CreationModel {
             
             storageLink.downloadURL { url, err in
                 guard err == nil else {
-                    print(err!.localizedDescription)
                     completion(.failure(.anyError))
                     return
                 }
                 
                 guard let url = url else {
-                    print(err!.localizedDescription)
                     completion(.failure(.anyError))
                     return
                 }
@@ -81,7 +77,8 @@ extension CreationModel : CreationModelProtocol {
             .setData([
                 "name" : noteData.name,
                 "date" : noteData.date,
-                "text" : noteData.text
+                "text" : noteData.text,
+                "firestoreLink" : newNoteRef
             ], merge: true)
         
         return newNoteRef

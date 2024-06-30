@@ -1,20 +1,34 @@
-//
-//  PassView.swift
-//  YellowSubmarine
-//
-//  Created by Павел Градов on 30.06.2024.
-//
-
 import UIKit
 
-class PassView: UIImageView {
+protocol PassViewProtocol : UIImageView {
+    
+}
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+final class PassView: UIImageView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpView()
+        activateConstraints()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
+private extension PassView {
+    private func setUpView() {
+        image = .backMerged
+        isUserInteractionEnabled = true
+    }
+    
+    private func activateConstraints() {
+        NSLayoutConstraint.activate([
+            
+        ])
+    }
+}
+
+extension PassView : PassViewProtocol {
+    
 }

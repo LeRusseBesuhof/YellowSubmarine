@@ -116,8 +116,9 @@ private extension ProfileView {
         NSLayoutConstraint.activate([
             nickLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             nickLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nickLabel.heightAnchor.constraint(equalToConstant: 36),
             
-            canvasView.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 90),
+            canvasView.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 120),
             canvasView.leadingAnchor.constraint(equalTo: leadingAnchor),
             canvasView.trailingAnchor.constraint(equalTo: trailingAnchor),
             canvasView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -130,14 +131,17 @@ private extension ProfileView {
             nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 5),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            nameLabel.heightAnchor.constraint(equalToConstant: 50),
             
             lilStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
             lilStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             lilStack.widthAnchor.constraint(equalToConstant: 125),
+            lilStack.heightAnchor.constraint(equalToConstant: 24),
             
             emailLabel.topAnchor.constraint(equalTo: lilStack.bottomAnchor, constant: 10),
             emailLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             emailLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            emailLabel.heightAnchor.constraint(equalToConstant: 24),
             
             tableView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

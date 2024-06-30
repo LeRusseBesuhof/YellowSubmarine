@@ -48,7 +48,7 @@ final class PersonView: UIScrollView {
         image: .camera,
         tintColor: .appBrown,
         cornerRadius: 50,
-        borderWidth: 4
+        borderWidth: 2
     )
     
     internal lazy var imagePicker : UIImagePickerController = {
