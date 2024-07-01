@@ -6,13 +6,7 @@ protocol LoadModelProtocol : AnyObject {
     func getNotes(completion: @escaping (Result<[Note], Error>) -> ())
 }
 
-final class LoadModel {
-}
-
-private extension LoadModel {
-}
-
-extension LoadModel : LoadModelProtocol {
+final class LoadModel : LoadModelProtocol {
     func getNotes(completion: @escaping (Result<[Note], Error>) -> ()) {
         guard let uid = UserData.shared.userID else { return }
         

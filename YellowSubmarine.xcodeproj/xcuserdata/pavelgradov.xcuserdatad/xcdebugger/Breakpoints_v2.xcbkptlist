@@ -62,25 +62,9 @@
             filePath = "YellowSubmarine/Profile/Main/Presenter/ProfilePresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "updateData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "402B048C-5856-454D-9B9B-A9DE2D977E8E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YellowSubmarine/Profile/Notes/List/View/ListView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "updateData(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -145,22 +129,6 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "uploadNoteImage(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "23B87AEB-6B3F-4B1E-BDE7-5DE749DF78D4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YellowSubmarine/Profile/Notes/Creation/Presenter/CreationPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "onCreateNoteTouched(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

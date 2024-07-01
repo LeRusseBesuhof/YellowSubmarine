@@ -5,7 +5,7 @@ protocol RegisterPresenterProtocol : AnyObject {
 }
 
 final class RegisterPresenter {
-    private let regModel : RegisterModelProtocol
+    private let model : RegisterModelProtocol
     private let router : Router
     private weak var controller : ViewControllerProtocol?
     private weak var view : RegisterViewProtocol?
@@ -16,7 +16,7 @@ final class RegisterPresenter {
     }
     
     init(dependencies: Dependencies) {
-        self.regModel = dependencies.model
+        self.model = dependencies.model
         self.router = dependencies.router
     }
 }
@@ -27,7 +27,7 @@ private extension RegisterPresenter {
         
         self.view?.setUserRegData()
         
-        self.regModel.userRegistration { [weak self] result in
+        self.model.userRegistration { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -52,16 +52,18 @@ private extension RegisterPresenter {
     
     private func setHandlers() {
         
-        self.view?.goToAuthHandler = { [weak self] in
+        self.view?.goToAuth = { [weak self] in
             guard let self = self else { return }
-            self.onLoginTouched()
+            
+            onLoginTouched()
         }
         
-        self.view?.regAndGoToAuthHandler = { [weak self] in
-            guard let self = self else { return }
-            self.onRegTouched()
-        }
         
+        self.view?.regAndGoToAuth = { [weak self] in
+            guard let self = self else { return }
+            
+            onRegTouched()
+        }
     }
 }
 

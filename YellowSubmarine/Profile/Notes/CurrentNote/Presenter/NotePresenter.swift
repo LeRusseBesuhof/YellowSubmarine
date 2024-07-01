@@ -8,6 +8,7 @@ protocol NotePresenterProtocol : AnyObject {
 }
 
 final class NotePresenter {
+    
     private var model : NoteModelProtocol!
     private weak var view : NoteViewProtocol?
     private weak var controller : NoteViewControllerProtocol?
@@ -67,19 +68,19 @@ private extension NotePresenter {
         self.view?.changeImage = { [weak self] image in
             guard let self = self else { return }
             
-            self.onChangeImageTouched(image)
+            onChangeImageTouched(image)
         }
         
         self.view?.deleteNote = { [weak self] in
             guard let self = self else { return }
             
-            self.onDeleteNoteTouched()
+            onDeleteNoteTouched()
         }
         
         self.view?.changeNote = { [weak self] in
             guard let self = self else { return }
             
-            self.onSaveChangesTouched()
+            onSaveChangesTouched()
         }
     }
 }

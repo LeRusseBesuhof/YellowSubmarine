@@ -7,7 +7,7 @@ protocol AuthPresenterProtocol : AnyObject {
 }
 
 final class AuthPresenter {
-    private let authModel : AuthModelProtocol
+    private let model : AuthModelProtocol
     private let router : Router
     private weak var view : AuthViewProtocol?
     private weak var controller : AuthViewControllerProtocol?
@@ -18,7 +18,7 @@ final class AuthPresenter {
     }
     
     init(dependencies: Dependencies) {
-        self.authModel = dependencies.model
+        self.model = dependencies.model
         self.router = dependencies.router
     }
 }
@@ -32,7 +32,7 @@ private extension AuthPresenter {
         print(UserData.email)
         print(UserData.password)
         
-        self.authModel.signIn { [weak self] result in
+        self.model.signIn { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -87,7 +87,7 @@ extension AuthPresenter : AuthPresenterProtocol {
     }
     
     func onSendResetPasswordEmailTouched(_ email: String) {
-        self.authModel.sendResetEmail(email) { err in
+        model.sendResetEmail(email) { err in
             guard err == nil else {
                 self.controller?.createAlert(
                     message: err!.localizedDescription,

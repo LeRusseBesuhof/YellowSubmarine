@@ -49,7 +49,8 @@ private extension ProfilePresenter {
         
         self.view?.chooseProfileImage = { [weak self] in
             guard let self = self else { return }
-            self.onChooseProfileImageTouched()
+            
+            onChooseProfileImageTouched()
         }
     }
     

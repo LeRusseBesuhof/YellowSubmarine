@@ -7,16 +7,16 @@ protocol AuthViewControllerProtocol : ViewControllerProtocol {
 
 final class AuthViewController: UIViewController {
     
-    private var authView: AuthViewProtocol!
-    private var authPresenter: AuthPresenterProtocol!
+    private var aView: AuthViewProtocol!
+    private var presenter: AuthPresenterProtocol!
     
     struct Dependencies {
         let presenter: AuthPresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.authView = AuthView(frame: UIScreen.main.bounds)
-        self.authPresenter = dependencies.presenter
+        self.aView = AuthView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,12 +26,12 @@ final class AuthViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.authPresenter.loadView(controller: self, view: self.authView)
+        self.presenter.loadView(controller: self, view: self.aView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(authView)
+        view.addSubview(aView)
     }
 }
 
@@ -50,7 +50,7 @@ extension AuthViewController : AuthViewControllerProtocol {
         let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
             
             let email = alertController.textFields![0].text
-            self.authPresenter.onSendResetPasswordEmailTouched(email ?? "")
+            self.presenter.onSendResetPasswordEmailTouched(email ?? "")
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)

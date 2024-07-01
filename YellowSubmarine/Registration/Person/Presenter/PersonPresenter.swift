@@ -6,7 +6,7 @@ protocol PersonPresenterProtocol : AnyObject {
 }
 
 final class PersonPresenter {
-    let personModel : PersonModelProtocol
+    let model : PersonModelProtocol
     let router : Router
     weak var view : PersonViewProtocol?
     weak var controller : PersonViewControllerProtocol?
@@ -17,7 +17,7 @@ final class PersonPresenter {
     }
     
     init(dependencies: Dependencies) {
-        self.personModel = dependencies.model
+        self.model = dependencies.model
         self.router = dependencies.router
     }
 }
@@ -32,8 +32,8 @@ private extension PersonPresenter {
                 if isAllowed { 
                     guard let imgData = image.jpegData(compressionQuality: 0.1) else { print("compression went wrong"); return}
                     
-                    personModel.uploadPersonalUserData()
-                    personModel.uploadImage(imgData: imgData)
+                    model.uploadPersonalUserData()
+                    model.uploadImage(imgData: imgData)
                     router.nextController()
                 }
             case .failure(let err):
@@ -50,12 +50,14 @@ private extension PersonPresenter {
     private func setHandlers() {
         self.view?.sendData = { [weak self] image in
             guard let self = self else { return }
-            self.onSendDataTouched(image)
+            
+            onSendDataTouched(image)
         }
         
         self.view?.chooseProfilePicture = { [weak self] in
             guard let self = self else { return }
-            self.onImagePickerTouched()
+            
+            onImagePickerTouched()
         }
     }
 }

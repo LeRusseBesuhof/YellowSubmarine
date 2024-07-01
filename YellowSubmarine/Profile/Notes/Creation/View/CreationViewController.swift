@@ -5,16 +5,16 @@ protocol CreationViewControllerProtocol : ViewControllerProtocol {
 }
 
 final class CreationViewController: UIViewController {
-    private let creationView : CreationViewProtocol!
-    private let creationPresenter : CreationPresenterProtocol!
+    private let cView : CreationViewProtocol!
+    private let presenter : CreationPresenterProtocol!
     
     struct Dependencies {
         let presenter : CreationPresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.creationView = CreationView(frame: UIScreen.main.bounds)
-        self.creationPresenter = dependencies.presenter
+        self.cView = CreationView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,12 +24,12 @@ final class CreationViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        creationPresenter.loadView(view: creationView, controller: self)
+        presenter.loadView(view: cView, controller: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(creationView)
+        view.addSubview(cView)
     }
     
 }

@@ -9,6 +9,7 @@ protocol AuthViewProtocol : UIImageView {
 }
 
 final class AuthView : UIImageView {
+    
     internal var goToProfileHandler: (() -> Void)?
     internal var goToRegHandler: (() -> Void)?
     

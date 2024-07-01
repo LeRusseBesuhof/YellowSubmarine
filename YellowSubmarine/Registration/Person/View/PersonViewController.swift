@@ -5,19 +5,19 @@ protocol PersonViewControllerProtocol : ViewControllerProtocol {
 }
 
 final class PersonViewController: UIViewController {
+
+    private let piew : PersonViewProtocol!
+    private let presenter : PersonPresenterProtocol!
     
     internal var chooseImage : (() -> Void)?
-
-    private let personPresenter : PersonPresenterProtocol!
-    private let personView : PersonViewProtocol!
     
     struct Dependencies {
         let presenter : PersonPresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.personView = PersonView(frame: UIScreen.main.bounds)
-        self.personPresenter = dependencies.presenter
+        self.piew = PersonView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,12 +27,12 @@ final class PersonViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.personPresenter.loadView(controller: self, view: personView)
+        self.presenter.loadView(controller: self, view: piew)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(personView)
+        view.addSubview(piew)
     }
     
 }

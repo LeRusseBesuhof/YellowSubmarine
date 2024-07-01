@@ -11,10 +11,8 @@ protocol PersonViewProtocol : UIScrollView {
 
 final class PersonView: UIScrollView {
     
-    // TODO: ADD SOME FIELDS LIKE JOB, EDUCATION, HOBBIES
-    
-    var sendData: ((UIImage) -> Void)?
-    var chooseProfilePicture: (() -> Void)?
+    internal var sendData: ((UIImage) -> Void)?
+    internal var chooseProfilePicture: (() -> Void)?
     
     private lazy var contentView : UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false

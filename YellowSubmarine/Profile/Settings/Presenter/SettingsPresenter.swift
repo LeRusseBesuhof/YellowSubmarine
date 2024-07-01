@@ -9,7 +9,7 @@ protocol SettingsPresenterProtocol {
 final class SettingsPresenter {
     private let model : SettingsModelProtocol!
     private let loginModel : LoginModel = LoginModel()
-    private let profilePresenter : ProfilePresenterProtocol!
+    private let presenter : ProfilePresenterProtocol!
     private weak var controller : SettingsViewControllerProtocol?
     private weak var view : SettingsViewProtocol?
     
@@ -20,21 +20,23 @@ final class SettingsPresenter {
     
     init(dependencies: Dependencies) {
         self.model = dependencies.model
-        self.profilePresenter = dependencies.profilePresenter
+        self.presenter = dependencies.profilePresenter
     }
 }
 
 private extension SettingsPresenter {
+    
     private func onSaveChangesTouch(_ dictOfChanges: [String: String]) {
         self.model.updateData(dictOfChanges)
         self.controller?.createAlert(message: "Changes were successfully saved", buttonText: "OK", isClosingAction: false)
-        self.profilePresenter.updateData()
+        self.presenter.updateData()
     }
     
     private func setUpHandlers() {
         self.view?.saveChanges = { [weak self] dictOfChanges in
             guard let self = self else { return }
-            self.onSaveChangesTouch(dictOfChanges)
+            
+            onSaveChangesTouch(dictOfChanges)
         }
     }
 }

@@ -2,16 +2,16 @@ import UIKit
 
 final class RegisterViewController: UIViewController {
 
-    private var registerView: RegisterViewProtocol!
-    private var registerPresenter: RegisterPresenterProtocol!
+    private var rView: RegisterViewProtocol!
+    private var presenter: RegisterPresenterProtocol!
     
     struct Dependencies {
         let presenter: RegisterPresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.registerView = RegisterView(frame: UIScreen.main.bounds)
-        self.registerPresenter = dependencies.presenter
+        self.rView = RegisterView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,12 +21,12 @@ final class RegisterViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.registerPresenter.loadView(controller: self, view: self.registerView)
+        self.presenter.loadView(controller: self, view: self.rView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(registerView)
+        view.addSubview(rView)
     }
     
 }

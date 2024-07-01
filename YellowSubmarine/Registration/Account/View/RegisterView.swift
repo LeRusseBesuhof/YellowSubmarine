@@ -1,16 +1,16 @@
 import UIKit
 
 protocol RegisterViewProtocol : UIImageView {
-    var goToAuthHandler: (() -> Void)? { get set }
-    var regAndGoToAuthHandler: (() -> Void)? { get set }
+    var goToAuth: (() -> Void)? { get set }
+    var regAndGoToAuth: (() -> Void)? { get set }
     
     func setUserRegData()
 }
 
 final class RegisterView: UIImageView {
     
-    internal var goToAuthHandler: (() -> Void)?
-    internal var regAndGoToAuthHandler: (() -> Void)?
+    internal var goToAuth: (() -> Void)?
+    internal var regAndGoToAuth: (() -> Void)?
     
     private lazy var registerLabel : UILabel = AppUI.createLabel(
         withText: "Register",
@@ -124,11 +124,11 @@ private extension RegisterView {
     }
     
     @objc private func onRegTouched() {
-        self.regAndGoToAuthHandler?()
+        self.regAndGoToAuth?()
     }
     
     @objc private func onLoginTouched() {
-        self.goToAuthHandler?()
+        self.goToAuth?()
     }
 }
 

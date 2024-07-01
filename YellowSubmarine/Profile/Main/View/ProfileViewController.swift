@@ -6,16 +6,16 @@ protocol ProfileViewControllerProtocol : ViewControllerProtocol {
 
 final class ProfileViewController: UIViewController {
     
-    private let profilePresenter : ProfilePresenterProtocol!
-    private let profileView : ProfileViewProtocol!
+    private let presenter : ProfilePresenterProtocol!
+    private let pView : ProfileViewProtocol!
     
     struct Dependencies {
         let presenter : ProfilePresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.profilePresenter = dependencies.presenter
-        self.profileView = ProfileView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
+        self.pView = ProfileView(frame: UIScreen.main.bounds)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,13 +25,13 @@ final class ProfileViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.profilePresenter.loadView(controller: self, view: profileView)
+        self.presenter.loadView(controller: self, view: pView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationItem()
-        view.addSubview(profileView)
+        view.addSubview(pView)
     }
 }
 
@@ -62,7 +62,7 @@ private extension ProfileViewController {
     }
     
     @objc private func onSettingsTouched() {
-        let settingsController = SettingsAssembly.build(profilePresenter)
+        let settingsController = SettingsAssembly.build(presenter)
         navigationController?.pushViewController(settingsController, animated: true)
     }
     

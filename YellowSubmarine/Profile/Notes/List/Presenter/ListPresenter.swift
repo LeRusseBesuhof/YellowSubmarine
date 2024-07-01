@@ -6,6 +6,7 @@ protocol ListPresenterProtocol : AnyObject {
 }
 
 final class ListPresenter {
+    
     private let model : LoadModelProtocol!
     private weak var view : ListViewProtocol?
     private weak var controller : ListViewControllerProtocol?
@@ -31,6 +32,7 @@ private extension ListPresenter {
     }
     
     private func setUpHandlers() {
+        
         self.model.getNotes { [weak self] result in
             guard let self = self else { return }
             
@@ -45,7 +47,7 @@ private extension ListPresenter {
         self.view?.selectNote = { [weak self] note in
             guard let self = self else { return }
             
-            self.onSelectNoteTouched(note)
+            onSelectNoteTouched(note)
         }
     }
 }

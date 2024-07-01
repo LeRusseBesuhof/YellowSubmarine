@@ -6,16 +6,16 @@ protocol SettingsViewControllerProtocol : ViewControllerProtocol {
 
 final class SettingsViewController: UIViewController {
 
-    private let settingsPresenter : SettingsPresenterProtocol!
-    private let settingsView : SettingsViewProtocol!
+    private let presenter : SettingsPresenterProtocol!
+    private let sView : SettingsViewProtocol!
     
     struct Dependencies {
         let presenter : SettingsPresenterProtocol
     }
     
     init(dependencies: Dependencies) {
-        self.settingsView = SettingsView(frame: UIScreen.main.bounds)
-        self.settingsPresenter = dependencies.presenter
+        self.sView = SettingsView(frame: UIScreen.main.bounds)
+        self.presenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,12 +25,12 @@ final class SettingsViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.settingsPresenter.loadView(view: settingsView, controller: self)
+        self.presenter.loadView(view: sView, controller: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(settingsView)
+        view.addSubview(sView)
         setUpNavigationBar(alertMessage: "Do you want to log out?")
     }
 
@@ -67,7 +67,7 @@ extension SettingsViewController : SettingsViewControllerProtocol {
         let quitAction = UIAlertAction(title: "Log out", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             
-            settingsPresenter.logOut()
+            presenter.logOut()
         }
         
         alertController.addAction(quitAction)
