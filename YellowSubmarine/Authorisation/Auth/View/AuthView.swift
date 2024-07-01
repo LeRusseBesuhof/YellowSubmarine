@@ -75,9 +75,16 @@ final class AuthView : UIImageView {
         .config(view: UIButton()) { [weak self] in
             guard let self = self else { return }
             
-            $0.setTitle("* forgot your password?", for: .normal)
-            $0.setTitleColor(.appPlaceholder, for: .normal)
-            $0.titleLabel?.font = .getMontserratFont(fontSize: 14)
+            let attributes : [NSAttributedString.Key : Any] = [
+                .foregroundColor: UIColor.appPlaceholder,
+                .font: UIFont.getMontserratFont(fontSize: 14),
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                .underlineColor: UIColor.appPlaceholder
+            ]
+            
+            let attributedTitle = NSAttributedString(string: "* forgot your password?", attributes: attributes)
+            
+            $0.setAttributedTitle(attributedTitle, for: .normal)
             $0.addTarget(self, action: #selector(onPassTouched), for: .touchDown)
         }
     }()

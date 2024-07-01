@@ -3,6 +3,7 @@ import UIKit
 
 protocol AuthPresenterProtocol : AnyObject {
     func loadView(controller: AuthViewControllerProtocol, view: AuthViewProtocol)
+    func onSendResetPasswordEmailTouched(_ email: String)
 }
 
 final class AuthPresenter {
@@ -52,13 +53,7 @@ private extension AuthPresenter {
     }
     
     private func onPassChangeTouched() {
-        guard let curController = self.controller as? UIViewController else {
-            print("not controller")
-            return
-        }
-        
-        let passController = PassAssembly.build(targetController: curController)
-        self.controller?.presentController(passController)
+        self.controller?.createAlertSheet(message: "An email will be sent to your email address with a link to reset your password. Please check your email")
     }
     
     private func setHandlers() {
@@ -89,5 +84,24 @@ extension AuthPresenter : AuthPresenterProtocol {
         self.view = view
         
         self.setHandlers()
+    }
+    
+    func onSendResetPasswordEmailTouched(_ email: String) {
+        self.authModel.sendResetEmail(email) { err in
+            guard err == nil else {
+                self.controller?.createAlert(
+                    message: err!.localizedDescription,
+                    buttonText: "Cancel",
+                    isClosingAction: false
+                )
+                return
+            }
+        }
+        
+        self.controller?.createAlert(
+            message: "Email with reset link was successfully sent",
+            buttonText: "OK",
+            isClosingAction: false
+        )
     }
 }

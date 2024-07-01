@@ -120,15 +120,15 @@ private extension NoteView {
             noteImageView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -20),
             noteImageView.heightAnchor.constraint(equalToConstant: 200),
             
-            noteName.topAnchor.constraint(equalTo: noteImageView.bottomAnchor, constant: 10),
+            noteName.topAnchor.constraint(equalTo: noteImageView.bottomAnchor, constant: 15),
             noteName.leadingAnchor.constraint(equalTo: noteImageView.leadingAnchor),
             noteName.trailingAnchor.constraint(equalTo: noteImageView.trailingAnchor),
             
-            noteDate.topAnchor.constraint(equalTo: noteName.bottomAnchor, constant: 6),
+            noteDate.topAnchor.constraint(equalTo: noteName.bottomAnchor, constant: 10),
             noteDate.leadingAnchor.constraint(equalTo: noteName.leadingAnchor),
             noteDate.trailingAnchor.constraint(equalTo: noteName.trailingAnchor),
             
-            noteText.topAnchor.constraint(equalTo: noteDate.bottomAnchor),
+            noteText.topAnchor.constraint(equalTo: noteDate.bottomAnchor, constant: 5),
             noteText.leadingAnchor.constraint(equalTo: noteDate.leadingAnchor),
             noteText.trailingAnchor.constraint(equalTo: noteDate.trailingAnchor),
             noteText.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -10),

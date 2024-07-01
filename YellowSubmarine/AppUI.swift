@@ -90,4 +90,17 @@ final class AppUI {
             $0.titleLabel?.font = font
         }
     }
+    
+    
+    static func createTextView(font: UIFont, textColor: UIColor, bgColor: UIColor, cornerRadius: CGFloat) -> UITextView {
+        .config(view: UITextView()) {
+            $0.font = font
+            $0.textColor = textColor
+            $0.backgroundColor = bgColor
+            $0.isEditable = true
+            $0.textAlignment = .left
+            $0.isScrollEnabled = true
+            $0.layer.cornerRadius = cornerRadius
+        }
+    }
 }

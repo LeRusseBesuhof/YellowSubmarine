@@ -3,6 +3,7 @@ import FirebaseAuth
 
 protocol AuthModelProtocol : AnyObject {
     func signIn(completion: @escaping (Result<Bool, AuthErrors>) -> Void)
+    func sendResetEmail(_ email: String, completion: @escaping (Error?) -> Void)
 }
 
 final class AuthModel { }
@@ -25,7 +26,7 @@ extension AuthModel : AuthModelProtocol {
                 case AuthErrorCode.invalidCredential:
                     completion(.failure(.userNotFound))
                 default:
-                    print(authError.userInfo)
+                    completion(.failure(.anyError))
                 }
                 return
             }
@@ -33,6 +34,16 @@ extension AuthModel : AuthModelProtocol {
             if let _ = result?.user.uid {
                 completion(.success(true))
             }
+        }
+    }
+    
+    func sendResetEmail(_ email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { err in
+            guard err == nil else {
+                completion(err)
+                return
+            }
+            completion(nil)
         }
     }
 }

@@ -41,15 +41,14 @@ final class CreationView : UIView {
         cornerRadius: 20
     )
     
-    private lazy var noteFillTextField : UITextField = AppUI.createTextField(
-        withPlaceholder: "Write there",
-        placeholderColor: .appPlaceholder,
-        bgColor: .appLightYellow,
-        font: .getMontserratFont(fontSize: 20),
-        textColor: .black,
-        leftViewPic: "pencil.and.list.clipboard",
-        cornerRadius: 20
-    )
+    private lazy var noteTextView : UITextView = {
+        .config(view: UITextView()) {
+            $0.layer.cornerRadius = 20
+            $0.font = .getMontserratFont(fontSize: 20)
+            $0.backgroundColor = .appLightYellow
+            $0.textContainerInset = UIEdgeInsets(top: 15, left: 33, bottom: 15, right: 33)
+        }
+    }()
     
     private lazy var createNoteButton : UIButton = AppUI.createButton(
         text: "Save",
@@ -74,9 +73,11 @@ private extension CreationView {
     private func setUpView() {
         backgroundColor = .white
         noteImageView.addGestureRecognizer(onImageTapGest)
+        noteTextView.delegate = self
+        noteTextView.setUpTextView("Write here", .appPlaceholder)
         createNoteButton.addTarget(self, action: #selector(onCreateNoteTouch), for: .touchDown)
         
-        addSubviews(noteImageView, noteNameTextField, noteFillTextField, createNoteButton)
+        addSubviews(noteImageView, noteNameTextField, noteTextView, createNoteButton)
     }
     
     private func activateConstraints() {
@@ -91,14 +92,14 @@ private extension CreationView {
             noteNameTextField.trailingAnchor.constraint(equalTo: noteImageView.trailingAnchor),
             noteNameTextField.heightAnchor.constraint(equalToConstant: 60),
             
-            noteFillTextField.topAnchor.constraint(equalTo: noteNameTextField.bottomAnchor, constant: 30),
-            noteFillTextField.leadingAnchor.constraint(equalTo: noteNameTextField.leadingAnchor),
-            noteFillTextField.trailingAnchor.constraint(equalTo: noteNameTextField.trailingAnchor),
-            noteFillTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200),
+            noteTextView.topAnchor.constraint(equalTo: noteNameTextField.bottomAnchor, constant: 30),
+            noteTextView.leadingAnchor.constraint(equalTo: noteNameTextField.leadingAnchor),
+            noteTextView.trailingAnchor.constraint(equalTo: noteNameTextField.trailingAnchor),
+            noteTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200),
             
-            createNoteButton.topAnchor.constraint(equalTo: noteFillTextField.bottomAnchor, constant: 30),
-            createNoteButton.leadingAnchor.constraint(equalTo: noteFillTextField.leadingAnchor),
-            createNoteButton.trailingAnchor.constraint(equalTo: noteFillTextField.trailingAnchor),
+            createNoteButton.topAnchor.constraint(equalTo: noteTextView.bottomAnchor, constant: 30),
+            createNoteButton.leadingAnchor.constraint(equalTo: noteTextView.leadingAnchor),
+            createNoteButton.trailingAnchor.constraint(equalTo: noteTextView.trailingAnchor),
             createNoteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -116,7 +117,7 @@ private extension CreationView {
 extension CreationView : CreationViewProtocol {
     func getNoteData(completion: (Result<(name: String, text: String, date: String), NoteErrors>) -> Void) {
         
-        guard let name = noteNameTextField.text, name != "", let text = noteFillTextField.text, text != "" else {
+        guard let name = noteNameTextField.text, name != "", let text = noteTextView.text, text != "" else {
             completion(.failure(NoteErrors.empty))
             return
         }
@@ -135,5 +136,21 @@ extension CreationView : UINavigationControllerDelegate, UIImagePickerController
             noteImageView.contentMode = .scaleAspectFill
         }
         picker.dismiss(animated: true)
+    }
+}
+
+extension CreationView : UITextViewDelegate {
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Write here" {
+            noteTextView.setUpTextView("", .black)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.setUpTextView("Write here", .appPlaceholder)
+        }
     }
 }
